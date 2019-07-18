@@ -1,11 +1,16 @@
 import mongoose from 'mongoose'
 
 import { MONGO_URI } from '../config'
+import initDb from './initDb'
 
 const connectDb = async () => {
+  // Connect to the database
   await mongoose.connect(MONGO_URI, { useNewUrlParser: true, useFindAndModify: false })
   mongoose.connection.on('error', console.error)
   console.log('The database connection was established.')
+
+  // Initialize database collections
+  await initDb()
 }
 
 export default connectDb

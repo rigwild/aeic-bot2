@@ -1,10 +1,10 @@
 import mongoose, { Schema } from 'mongoose'
 
-export interface TpGroup extends mongoose.Document {
+export interface TpGroup {
   name: string
   yearGroup: string
   tdGroup: string
-  homework: [{
+  homework?: [{
     subject: string
     content: string
     authorId: string
@@ -13,7 +13,7 @@ export interface TpGroup extends mongoose.Document {
   }]
 }
 
-export const TpGroupModel = mongoose.model<TpGroup>('TpGroup', new Schema({
+export const TpGroupModel = mongoose.model('TpGroup', new Schema({
   name: { type: String, required: true },
   yearGroup: { type: String, required: true },
   tdGroup: { type: String, required: true },

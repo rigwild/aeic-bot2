@@ -23,10 +23,10 @@ export default (message: Message) => {
   if (!commandsLowered[usedCommandLowered]) throw new Error(msgId.UNKNOWN_COMMAND(usedCommand))
 
   const selectedCommand = commandsLowered[usedCommandLowered]
-  // Remove the command
+  // Remove the command from string
   const argsStr = msg.substring(usedCommand.length).trim()
-  // Extract arguments separated by ` -- `
-  const args = argsStr ? argsStr.split(' -- ') : []
+  // Extract arguments separated by `--` and trim each of it
+  const args = (argsStr ? argsStr.split('--') : []).map(x => x.trim())
   // Check number of arguments is valid
   if (args.length < selectedCommand.meta.minArgs || (selectedCommand.meta.maxArgs && args.length > selectedCommand.meta.maxArgs))
     throw new Error(msgId.INVALID_COMMAND_ARGUMENT_NUMBER(usedCommand, args.length, selectedCommand.meta.minArgs, selectedCommand.meta.maxArgs))

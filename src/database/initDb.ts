@@ -1,0 +1,33 @@
+import { TpGroupModel, TpGroup } from './TpGroup'
+
+const initTpGroups = async () => {
+  const count = await TpGroupModel.countDocuments({})
+  if (count > 0) return
+
+  const groups: TpGroup[] = [
+    ['tp1a', 'dut1', 'td1'],
+    ['tp1b', 'dut1', 'td1'],
+    ['tp1c', 'dut1', 'td2'],
+    ['tp1d', 'dut1', 'td2'],
+    ['tp1e', 'dut1', 'td3'],
+    ['tp2a', 'dut2', 'td1'],
+    ['tp2b', 'dut2', 'td1'],
+    ['tp2c', 'dut2', 'td2'],
+    ['tp2d', 'dut2', 'td2'],
+  ].map(x => ({
+    name: x[0],
+    yearGroup: x[1],
+    tdGroup: x[2]
+  }))
+  await TpGroupModel.insertMany(groups)
+  console.log('TP groups were created in database.')
+}
+
+export default async () => {
+  try {
+    await initTpGroups()
+  }
+  catch (error) {
+    console.error(error)
+  }
+}
