@@ -12,12 +12,10 @@ export declare interface CommandMetadata {
   command: string
   minArgs: number
   maxArgs?: number
-  /** Command short description */
-  shortDescription?: string
   /** Command description */
-  description?: string
+  description: string
   /** Command usage example */
-  example?: string
+  examples: string[]
 }
 export declare interface Command {
   /** Command execution */

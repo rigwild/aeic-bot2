@@ -18,14 +18,9 @@ export default () => {
   })
 
   // Check if new message contained a command, then execute it
-  bot.on('message', async message => {
+  bot.on('message', message => {
     if (message.guild.id !== SERVER_ID || !message.content.trim().startsWith(COMMAND_TRIGGER)) return
-    try {
-      await runCommand(message)
-    }
-    catch (err) {
-      message.reply(err.message)
-    }
+    return runCommand(message)
   })
 
   // Send a message when a member joins the server

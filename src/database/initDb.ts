@@ -15,9 +15,9 @@ const initTpGroups = async () => {
     ['tp2c', 'dut2', 'td2'],
     ['tp2d', 'dut2', 'td2'],
   ].map(x => ({
-    name: x[0],
-    yearGroup: x[1],
-    tdGroup: x[2]
+    name: x[0].toLowerCase(),
+    yearGroup: x[1].toLowerCase(),
+    tdGroup: x[2].toLowerCase()
   }))
   await TpGroupModel.insertMany(groups)
   console.log('TP groups were created in database.')

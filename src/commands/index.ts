@@ -1,20 +1,20 @@
-import { COMMAND_TRIGGER } from '../config'
-import msgId from '../msgId'
-
-import aide from './aide'
-import test from './test'
 import { Message } from 'discord.js'
+
+import { COMMAND_TRIGGER, ARG_SEPARATOR } from '../config'
+import msgId from '../msgId'
+import aide from './list/aide'
+import ajouterDevoir from './list/ajouterDevoir'
 
 // Inject all available commands here
 export const commands = {
   aide,
-  test
+  ajouterDevoir
 }
 
 // Make all commands keys lowercase
 const commandsLowered = Object.fromEntries(Object.entries(commands).map(([k, v]) => [k.toLowerCase(), v]))
 
-export default (message: Message) => {
+export default async (message: Message) => {
   // Remove the command trigger
   const msg = message.content.substring(COMMAND_TRIGGER.length)
   // Check command exists
@@ -26,10 +26,15 @@ export default (message: Message) => {
   // Remove the command from string
   const argsStr = msg.substring(usedCommand.length).trim()
   // Extract arguments separated by `--` and trim each of it
-  const args = (argsStr ? argsStr.split('--') : []).map(x => x.trim())
+  const args = (argsStr ? argsStr.split(ARG_SEPARATOR) : []).map(x => x.trim())
   // Check number of arguments is valid
   if (args.length < selectedCommand.meta.minArgs || (selectedCommand.meta.maxArgs && args.length > selectedCommand.meta.maxArgs))
     throw new Error(msgId.INVALID_COMMAND_ARGUMENT_NUMBER(usedCommand, args.length, selectedCommand.meta.minArgs, selectedCommand.meta.maxArgs))
 
-  selectedCommand.run(message, ...args)
+  try {
+    await selectedCommand.run(message, ...args)
+  }
+  catch (err) {
+    message.reply(err.message)
+  }
 }
