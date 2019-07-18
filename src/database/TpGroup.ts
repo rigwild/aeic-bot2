@@ -1,16 +1,18 @@
 import mongoose, { Schema } from 'mongoose'
 
+export interface Homework {
+  subject: string
+  content: string
+  authorId: string
+  dueDate: Date
+  addedTimestamp?: Date
+}
+
 export interface TpGroup {
   name: string
   yearGroup: string
   tdGroup: string
-  homework?: [{
-    subject: string
-    content: string
-    authorId: string
-    dueDate: Date
-    addedTimestamp: Date
-  }]
+  homework?: Homework[]
 }
 
 export const TpGroupModel = mongoose.model('TpGroup', new Schema({
@@ -23,7 +25,7 @@ export const TpGroupModel = mongoose.model('TpGroup', new Schema({
     authorId: { type: String, required: true },
     dueDate: {
       type: Date,
-      default: () => new Date()
+      required: true
     },
     addedDate: {
       type: Date,
