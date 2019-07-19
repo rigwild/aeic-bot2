@@ -27,6 +27,7 @@ export default {
   AEIC_BOT_HELP,
   ...WELCOME,
   TP_GROUP_ROLE_ADDED: (tpGroup: string) => `Le rôle de groupe de TP \`${tpGroup}\` a été appliqué.`,
+  ASSO_GROUP_ROLE_ADDED: (assoGroup: string) => `Le rôle de groupe d'association \`${assoGroup}\` a été appliqué.`,
 
   NO_HOMEWORK: (tpGroup: string) => `Il n'y a aucun devoir **enregistré** pour le groupe de TP \`${tpGroup}\`.`,
   HOMEWORK_ADDED: (homework: Homework, tpGroup: string) => `Un devoir pour le \`${toHumanDate(homework.dueDate)}\` du cours \`${homework.subject}\` a été ajouté au groupe de TP \`${tpGroup}\`.\`\`\`${homework.content}\`\`\``,
@@ -43,7 +44,8 @@ export default {
   MISSING_ROLE: (role: string) => `Le rôle \`${role}\` est nécessaire pour exécuter cette commande. ${needHelp}`,
   MISSING_ROLE_SOME: (roles: string[]) => `Un des rôles \`${roles.toString()}\` est nécessaire pour exécuter cette commande. ${needHelp}`,
   UNKNOWN_GROUP_TD: (tdGroup: string, yearGroup: string) => `Le groupe de TD \`${tdGroup}\` du group d'année \`${yearGroup}\` n'existe pas. ${needHelp}`,
-  UNKNOWN_GROUP_TP: (tpGroup: string) => `Le groupe \`${tpGroup}\` n'existe pas. ${needHelp}`,
+  UNKNOWN_GROUP_TP: (tpGroup: string) => `Le groupe de TP \`${tpGroup}\` n'existe pas. ${needHelp}`,
+  UNKNOWN_GROUP_ASSO: (assoGroup: string) => `Le groupe d'association \`${assoGroup}\` n'existe pas. ${needHelp}`,
   UNKNOWN_CHANNEL: (channel: string) => `Le channel \`${channel}\` n'existe pas.`,
   UNKNOWN_COMMAND: (command: string) => `La commande \`${command}\` n'existe pas. ${needHelp}`,
   INVALID_COMMAND_ARGUMENT_NUMBER: (command: string, numberArgs: number, minArgs: number, maxArgs?: number) => `Le nombre d'arguments passés (${numberArgs}) pour la commande \`${command}\` est invalide. Le nombre minimum d'arguments est de ${minArgs} et le maximum de ${maxArgs || 'infini'}. ${needHelp}`

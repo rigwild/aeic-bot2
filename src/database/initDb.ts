@@ -19,6 +19,8 @@ export const defaultTpGroups: TpGroup[] = [
 
 export const defaultTpGroupsName = defaultTpGroups.map(x => x.name)
 
+export const defaultAssoGroupsName = ['omega', 'sigma', 'theta', 'delta']
+
 const initTpGroups = async () => {
   const count = await TpGroupModel.countDocuments({})
   if (count > 0) return
