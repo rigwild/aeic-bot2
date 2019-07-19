@@ -38,7 +38,8 @@ const command: Command = {
     const dateMin = new Date(Date.now() + -1 * 24 * 3600 * 1000)
     return message.reply(tpGroupData.homework
       .filter(aHomework => dateMin < aHomework.dueDate)
-      .map(aHomework => msgId.HOMEWORK_SHOW(aHomework)))
+      .map(aHomework => msgId.HOMEWORK_SHOW(aHomework))
+      .join('\n'))
   }
 }
 export default command

@@ -14,3 +14,5 @@ export const SERVER_ID = '476179989348483082'
 // export const SERVER_ID = '327121464996134922'
 export const DEV_DISCORD_ID = '411139773940629514'
 export const DOC_URI = 'https://rigwild.github.io/aeic-bot2 (TODO)'
+
+export const AUTO_REMINDER_CRON_TIME = '0 19 * * *'
