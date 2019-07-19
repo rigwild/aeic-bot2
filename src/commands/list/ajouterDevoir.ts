@@ -27,7 +27,7 @@ const command: Command = {
       throw new Error(msgId.MISSING_ROLE(tpGroup))
 
     // Check the TP group exists
-    if (!(await tpGroupExists(tpGroup)))
+    if (!tpGroupExists(tpGroup))
       throw new Error(msgId.UNKNOWN_GROUP_TP(tpGroup))
 
     // Check the dueDate is a valid date
@@ -49,7 +49,7 @@ const command: Command = {
       { runValidators: true, new: true })
 
     if (!addedHomework || !addedHomework.homework) return
-    return message.reply(msgId.HOMEWORK_ADDED(homework, tpGroup))
+    await message.reply(msgId.HOMEWORK_ADDED(homework, tpGroup))
   }
 }
 export default command

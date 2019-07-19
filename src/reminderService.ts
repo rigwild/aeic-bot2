@@ -37,8 +37,8 @@ export default () => new CronJob(AUTO_REMINDER_CRON_TIME, async () => {
 
       await channel.send(msg)
     }
-    catch (err) {
-      logger.error(err.message)
+    catch (error) {
+      logger.error(error)
     }
   }
   logger.info(`Reminder process ended`)

@@ -15,7 +15,7 @@ const command: Command = {
   },
 
   async run(message, ...args) {
-    message.reply(`This is a template command and should not be used. Passed arguments: ${args}`)
+    await message.reply(`This is a template command and should not be used. Passed arguments: ${args}`)
   }
 }
 export default command

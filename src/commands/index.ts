@@ -1,18 +1,20 @@
 import { Message } from 'discord.js'
 
-import { COMMAND_TRIGGER, ARG_SEPARATOR } from '../config'
+import { COMMAND_TRIGGER, ARG_SEPARATOR, logger } from '../config'
 import msgId from '../msgId'
 import aide from './list/aide'
 import ajouterDevoir from './list/ajouterDevoir'
 import ajouterDevoirTd from './list/ajouterDevoirTd'
 import afficherDevoir from './list/afficherDevoir'
+import choisirGroupeTp from './list/choisirGroupeTp'
 
 // Inject all available commands here
 export const commands = {
   aide,
   ajouterDevoir,
   ajouterDevoirTd,
-  afficherDevoir
+  afficherDevoir,
+  choisirGroupeTp
 }
 
 // Make all commands keys lowercase
@@ -38,7 +40,8 @@ export default async (message: Message) => {
 
     await selectedCommand.run(message, ...args)
   }
-  catch (err) {
-    message.reply(err.message)
+  catch (error) {
+    logger.error(error)
+    await message.reply(error.message)
   }
 }

@@ -26,22 +26,15 @@ const needHelp = `Rends-toi sur ${DOC_URI} pour obtenir de l'aide sur les comman
 export default {
   AEIC_BOT_HELP,
   ...WELCOME,
-  ROLE_GROUPE_INEXISTANT: `Le groupe de classe indiqué n'existe pas. ${needHelp}`,
-  ROLE_GROUPE_AJOUTE: 'Les rôles de groupe de classe ont été appliqués.',
-  ROLE_MAISON_INEXISTANT: `La maison indiquée n'existe pas. ${needHelp}`,
-  ROLE_MAISON_AJOUTE: 'Le rôle de maison a été appliqué.',
-  CHANNEL_CLASSE_SEULEMENT: `La commande "#toReplace#" n'est utilisable que dans le channel de ta classe. ${needHelp}`,
-  MANQUE_ARGUMENT: `Il manque des arguments à la commande "#toReplace#". ${needHelp}`,
-  ARGUMENT_INVALIDE: `Les arguments entrés pour la commande "#toReplace#" sont invalides. ${needHelp}`,
+  TP_GROUP_ROLE_ADDED: (tpGroup: string) => `Le rôle de groupe de TP \`${tpGroup}\` a été appliqué.`,
 
   NO_HOMEWORK: (tpGroup: string) => `Il n'y a aucun devoir **enregistré** pour le groupe de TP \`${tpGroup}\`.`,
   HOMEWORK_ADDED: (homework: Homework, tpGroup: string) => `Un devoir pour le \`${toHumanDate(homework.dueDate)}\` du cours \`${homework.subject}\` a été ajouté au groupe de TP \`${tpGroup}\`.\`\`\`${homework.content}\`\`\``,
   HOMEWORK_ADDED_VIA_TD: (homework: Homework, tpGroup: string, authorId: string) => `Un devoir pour le \`${toHumanDate(homework.dueDate)}\` du cours \`${homework.subject}\` a été ajouté au groupe de TP \`${tpGroup}\` par <@${authorId}> (ajout de devoir via groupe de TD).\`\`\`${homework.content}\`\`\``,
   HOMEWORK_SHOW: (homework: Homework) => `Pour le \`${toHumanDate(homework.dueDate)}\` du cours \`${homework.subject}\`\nAjouté le \`${toHumanDate(homework.addedDate)}\` par <@${homework.authorId}> \`\`\`${homework.content}\`\`\``,
 
-
-  PLANNING_VIDE: `Le planning pour ce groupe est vide. **Attention** ! Cela peut être un bug. ${needHelp}`,
-  COMMANDE_DEVELOPPEUR: `La commande "#toReplace#" est réservée au développeur du bot. <@${DEV_DISCORD_ID}>`,
+  // PLANNING_VIDE: `Le planning pour ce groupe est vide. **Attention** ! Cela peut être un bug. ${needHelp}`,
+  // COMMANDE_DEVELOPPEUR: `La commande "#toReplace#" est réservée au développeur du bot. <@${DEV_DISCORD_ID}>`,
 
   INVALID_DATE: `Le format de date est incorrect. ${needHelp}`,
   DATE_IN_PAST: `La date ne peut pas être dans le passé. ${needHelp}`,
@@ -53,7 +46,5 @@ export default {
   UNKNOWN_GROUP_TP: (tpGroup: string) => `Le groupe \`${tpGroup}\` n'existe pas. ${needHelp}`,
   UNKNOWN_CHANNEL: (channel: string) => `Le channel \`${channel}\` n'existe pas.`,
   UNKNOWN_COMMAND: (command: string) => `La commande \`${command}\` n'existe pas. ${needHelp}`,
-  INVALID_COMMAND_ARGUMENT_NUMBER: (command: string, numberArgs: number, minArgs: number, maxArgs?: number) => `Le nombre d'arguments passés (${numberArgs}) pour la commande \`${command}\` est invalide. Le nombre minimum d'arguments est de ${minArgs} et le maximum de ${maxArgs || 'infini'}. ${needHelp}`,
-  ERREUR_NON_DECRITE: `Une erreur non décrite s'est produite. Help <@${DEV_DISCORD_ID}> ! Commande : "#toReplace#".`,
-  ERREUR_NON_DECRITE_LOG: `Une erreur non décrite s'est produite. Help <@${DEV_DISCORD_ID}> ! Commande : "#toReplace#". \`\`\`#logMessage#\`\`\``
+  INVALID_COMMAND_ARGUMENT_NUMBER: (command: string, numberArgs: number, minArgs: number, maxArgs?: number) => `Le nombre d'arguments passés (${numberArgs}) pour la commande \`${command}\` est invalide. Le nombre minimum d'arguments est de ${minArgs} et le maximum de ${maxArgs || 'infini'}. ${needHelp}`
 }

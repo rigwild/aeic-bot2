@@ -34,7 +34,7 @@ export const start = () => new Promise(resolve => {
       await member.guild.defaultChannel.send(msgId.WELCOME_PUBLIC(member.id))
     }
     catch (error) {
-      logger.error(error.message)
+      logger.error(error)
     }
   })
 })

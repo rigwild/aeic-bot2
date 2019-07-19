@@ -15,7 +15,7 @@ const command: Command = {
   },
 
   async run(message) {
-    message.reply(msgId.AEIC_BOT_HELP)
+    await message.reply(msgId.AEIC_BOT_HELP)
   }
 }
 export default command

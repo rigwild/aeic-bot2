@@ -18,9 +18,14 @@ export const DOC_URI = 'https://rigwild.github.io/aeic-bot2 (TODO)'
 export const AUTO_REMINDER_CRON_TIME = '0 19 * * *'
 
 // Winston logger configuration
+const errorStackFormat = winston.format(info => info instanceof Error
+  ? Object.assign({}, info, { message: info.message, stack: info.stack })
+  : info)
+
 export const logger = winston.createLogger({
   level: 'info',
   format: winston.format.combine(
+    errorStackFormat(),
     winston.format.json(),
     winston.format.timestamp()
   ),

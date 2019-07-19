@@ -36,7 +36,7 @@ const command: Command = {
 
     // Show the homeworks in the channel, filtering to only future ones
     const dateMin = new Date(Date.now() + -1 * 24 * 3600 * 1000)
-    return message.reply(tpGroupData.homework
+    await message.reply(tpGroupData.homework
       .filter(aHomework => dateMin < aHomework.dueDate)
       .map(aHomework => msgId.HOMEWORK_SHOW(aHomework))
       .join('\n'))
