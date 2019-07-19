@@ -5,7 +5,7 @@ export interface Homework {
   content: string
   authorId: string
   dueDate: Date
-  addedTimestamp?: Date
+  addedDate?: Date
 }
 
 export interface TpGroup {

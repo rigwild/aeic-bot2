@@ -1,6 +1,6 @@
 import { TextChannel } from 'discord.js'
 import { Command } from '../types'
-import { isMessageInChannel, toHumanDate, hasAuthorRoleSome } from '../utils'
+import { isMessageInChannel, hasAuthorRoleSome } from '../utils'
 import msgId from '../../msgId'
 import { ARG_SEPARATOR as s, COMMAND_TRIGGER as t } from '../../config'
 import { TpGroupModel, Homework } from '../../database/TpGroup'
@@ -29,7 +29,7 @@ const command: Command = {
 
     // Check the message was sent in one of the TP groups channel
     if (!tpGroups.some(aTpGroup => isMessageInChannel(message, aTpGroup.name)))
-      throw new Error(msgId.NOT_IN_CHANNEL(tpGroupsName.join(', ')))
+      throw new Error(msgId.NOT_IN_CHANNEL(...tpGroupsName))
 
     // Check the author has one of the TP groups role
     if (!(await hasAuthorRoleSome(message, ...tpGroups.map(x => x.name))))
@@ -49,17 +49,16 @@ const command: Command = {
       content,
       dueDate: new Date(parsedDueDate)
     }
-    TpGroupModel.find
+
     await TpGroupModel.updateMany({ _id: { $in: tpGroups.map(x => x._id) } },
       { $push: { homework } },
       { runValidators: true, new: true })
 
     // Send a message to tp groups to notify
     const channels = message.guild.channels.filter(aChannel => tpGroupsName.includes(aChannel.name.toLowerCase()))
-
     for (const aChannel of channels.values()) {
       if (aChannel instanceof TextChannel)
-        await aChannel.send(`Un devoir pour le \`${toHumanDate(homework.dueDate)}\` du cours \`${homework.subject}\` a été ajouté au groupe de TP \`${aChannel.name}\` par <@${message.author.id}> (ajout de devoir via groupe de TD).\`\`\`${homework.content}\`\`\``)
+        await aChannel.send(msgId.HOMEWORK_ADDED_VIA_TD(homework, aChannel.name, message.author.id))
     }
   }
 }

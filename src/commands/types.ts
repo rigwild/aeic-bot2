@@ -5,7 +5,7 @@ export declare type CommandRunner = (
   message: Message,
   /** Received arguments */
   ...args: string[]
-) => Promise<void>
+) => Promise<any>
 
 export declare interface CommandMetadata {
   /** Command name */

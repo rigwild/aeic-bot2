@@ -42,4 +42,4 @@ export const hasAuthorRoleSome = async (message: Message, ...neededRoles: string
  * Transform a date object to a human-readable format
  * @param date Date to format
  */
-export const toHumanDate = (date: Date) => date.toLocaleDateString('fr-FR')
+export const toHumanDate = (date?: Date) => date && date.toLocaleDateString('fr-FR')

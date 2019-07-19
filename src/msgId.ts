@@ -1,4 +1,6 @@
 import { DEV_DISCORD_ID, DOC_URI } from './config'
+import { toHumanDate } from './commands/utils'
+import { Homework } from './database/TpGroup'
 
 const AEIC_BOT_HELP = `Pour des raisons de lisibilité du chat, les commandes sont répertoriées ici : ${DOC_URI}.
 Questions ? Suggestions ? MP le développeur de l'AEIC-BOT <@${DEV_DISCORD_ID}>.
@@ -31,14 +33,20 @@ export default {
   CHANNEL_CLASSE_SEULEMENT: `La commande "#toReplace#" n'est utilisable que dans le channel de ta classe. ${needHelp}`,
   MANQUE_ARGUMENT: `Il manque des arguments à la commande "#toReplace#". ${needHelp}`,
   ARGUMENT_INVALIDE: `Les arguments entrés pour la commande "#toReplace#" sont invalides. ${needHelp}`,
-  AUCUN_DEVOIR: `Il n'y a aucun devoir **enregistré** pour ce groupe. ${needHelp}`,
+
+  NO_HOMEWORK: (tpGroup: string) => `Il n'y a aucun devoir **enregistré** pour le groupe de TP \`${tpGroup}\`.`,
+  HOMEWORK_ADDED: (homework: Homework, tpGroup: string) => `Un devoir pour le \`${toHumanDate(homework.dueDate)}\` du cours \`${homework.subject}\` a été ajouté au groupe de TP \`${tpGroup}\`.\`\`\`${homework.content}\`\`\``,
+  HOMEWORK_ADDED_VIA_TD: (homework: Homework, tpGroup: string, authorId: string) => `Un devoir pour le \`${toHumanDate(homework.dueDate)}\` du cours \`${homework.subject}\` a été ajouté au groupe de TP \`${tpGroup}\` par <@${authorId}> (ajout de devoir via groupe de TD).\`\`\`${homework.content}\`\`\``,
+  HOMEWORK_SHOW: (homework: Homework) => `Pour le \`${toHumanDate(homework.dueDate)}\` du cours \`${homework.subject}\` - Ajouté le \`${toHumanDate(homework.addedDate)}\` par <@${homework.authorId}> \`\`\`${homework.content}\`\`\``,
+
+
   PLANNING_VIDE: `Le planning pour ce groupe est vide. **Attention** ! Cela peut être un bug. ${needHelp}`,
   COMMANDE_DEVELOPPEUR: `La commande "#toReplace#" est réservée au développeur du bot. <@${DEV_DISCORD_ID}>`,
 
   INVALID_DATE: `Le format de date est incorrect. ${needHelp}`,
   DATE_IN_PAST: `La date ne peut pas être dans le passé. ${needHelp}`,
 
-  NOT_IN_CHANNEL: (channel: string) => `La commande ne peut être exécutée que dans les channels : ${channel}. ${needHelp}`,
+  NOT_IN_CHANNEL: (...channel: string[]) => `La commande ne peut être exécutée que dans les channels : \`${channel.join(', ')}\`. ${needHelp}`,
   MISSING_ROLE: (role: string) => `Le rôle \`${role}\` est nécessaire pour exécuter cette commande. ${needHelp}`,
   MISSING_ROLE_SOME: (roles: string[]) => `Un des rôles \`${roles.toString()}\` est nécessaire pour exécuter cette commande. ${needHelp}`,
   UNKNOWN_GROUP_TD: (tdGroup: string, yearGroup: string) => `Le groupe de TD \`${tdGroup}\` du group d'année \`${yearGroup}\` n'existe pas. ${needHelp}`,

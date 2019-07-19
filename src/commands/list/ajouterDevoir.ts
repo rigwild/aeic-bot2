@@ -1,5 +1,5 @@
 import { Command } from '../types'
-import { tpGroupExists, hasAuthorRole, isMessageInChannel, toHumanDate } from '../utils'
+import { tpGroupExists, hasAuthorRole, isMessageInChannel } from '../utils'
 import msgId from '../../msgId'
 import { ARG_SEPARATOR as s, COMMAND_TRIGGER as t } from '../../config'
 import { TpGroupModel, Homework } from '../../database/TpGroup'
@@ -44,10 +44,12 @@ const command: Command = {
       content,
       dueDate: new Date(parsedDueDate)
     }
-    await TpGroupModel.findOneAndUpdate({ name: tpGroup.toLowerCase() },
+    const addedHomework = await TpGroupModel.findOneAndUpdate({ name: tpGroup.toLowerCase() },
       { $push: { homework } },
       { runValidators: true, new: true })
-    message.reply(`Un devoir pour le \`${toHumanDate(homework.dueDate)}\` du cours \`${homework.subject}\` a été ajouté au groupe de TP \`${tpGroup}\`.\`\`\`${homework.content}\`\`\``)
+
+    if (!addedHomework || !addedHomework.homework) return
+    return message.reply(msgId.HOMEWORK_ADDED(homework, tpGroup))
   }
 }
 export default command

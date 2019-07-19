@@ -5,12 +5,14 @@ import msgId from '../msgId'
 import aide from './list/aide'
 import ajouterDevoir from './list/ajouterDevoir'
 import ajouterDevoirTd from './list/ajouterDevoirTd'
+import afficherDevoir from './list/afficherDevoir'
 
 // Inject all available commands here
 export const commands = {
   aide,
   ajouterDevoir,
-  ajouterDevoirTd
+  ajouterDevoirTd,
+  afficherDevoir
 }
 
 // Make all commands keys lowercase
