@@ -9,7 +9,7 @@ const command: Command = {
     command: 'ajouterDevoir',
     minArgs: 4,
     maxArgs: 4,
-    description: 'Ajouter un devoir à un groupe',
+    description: 'Ajouter un devoir à un groupe de TP',
     examples: [
       // !ajouterDevoir tp1a -- 2020-04-24 -- Java -- TP Breakout
       `${t}ajouterDevoir tp1a ${s} 2020-04-24 ${s} Java ${s} TP Breakout`,
@@ -28,7 +28,7 @@ const command: Command = {
 
     // Check the TP group exists
     if (!(await tpGroupExists(tpGroup)))
-      throw new Error(msgId.UNKNOWN_GROUP(tpGroup))
+      throw new Error(msgId.UNKNOWN_GROUP_TP(tpGroup))
 
     // Check the dueDate is a valid date
     const parsedDueDate = Date.parse(dueDate)

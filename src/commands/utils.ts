@@ -14,15 +14,29 @@ export const tpGroupExists = async (tpGroup: string) => !!(await TpGroupModel.fi
  * @param channel Channel to check the message was sent to
  */
 export const isMessageInChannel = (message: Message, channel: string) =>
-  message.channel instanceof TextChannel && message.channel.name === channel
+  message.channel instanceof TextChannel && message.channel.name.toLowerCase() === channel.toLowerCase()
 
 /**
- * Check a message's author has a role. Case insensitive.
+ * Check a message's author has roles. Case insensitive.
  * @param message Received Discord message
- * @param role Role to find
+ * @param role Roles to check
  */
-export const hasAuthorRole = async (message: Message, role: string) =>
-  !!message.guild.member(message.author).roles.find(aRole => aRole.name.toLowerCase() === role.toLowerCase())
+export const hasAuthorRole = async (message: Message, ...neededRoles: string[]) => {
+  const memberRoles = await message.guild.member(message.author).roles
+  return neededRoles.every(aNeededRole =>
+    memberRoles.find(aMemberRole => aMemberRole.name.toLowerCase() === aNeededRole.toLowerCase()))
+}
+
+/**
+ * Check a message's author has one of some roles. Case insensitive.
+ * @param message Received Discord message
+ * @param role Roles to check
+ */
+export const hasAuthorRoleSome = async (message: Message, ...neededRoles: string[]) => {
+  const memberRoles = await message.guild.member(message.author).roles
+  return neededRoles.some(aNeededRole =>
+    memberRoles.find(aMemberRole => aMemberRole.name.toLowerCase() === aNeededRole.toLowerCase()))
+}
 
 /**
  * Transform a date object to a human-readable format

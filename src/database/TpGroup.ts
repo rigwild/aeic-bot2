@@ -15,7 +15,9 @@ export interface TpGroup {
   homework?: Homework[]
 }
 
-export const TpGroupModel = mongoose.model('TpGroup', new Schema({
+export type TpGroupDocument = TpGroup & mongoose.Document
+
+export const TpGroupModel = mongoose.model<TpGroupDocument>('TpGroup', new Schema({
   name: { type: String, required: true },
   yearGroup: { type: String, required: true },
   tdGroup: { type: String, required: true },
