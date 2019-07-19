@@ -1,7 +1,6 @@
 import Discord from 'discord.js'
 
-import { DISCORD_AUTH_TOKEN, COMMAND_TRIGGER, SERVER_ID } from './config'
-import reminderService from './reminderService'
+import { DISCORD_AUTH_TOKEN, COMMAND_TRIGGER, SERVER_ID, logger } from './config'
 import msgId from './msgId'
 import runCommand from './commands'
 
@@ -10,14 +9,14 @@ export const bot = new Discord.Client()
 
 /** Start the bot */
 export const start = () => new Promise(resolve => {
-  console.log('Starting AEIC-BOT...')
+  logger.info('Starting AEIC-BOT...')
 
   bot.login(DISCORD_AUTH_TOKEN)
 
   bot.on('ready', () => {
     const serverInfo = bot.guilds.find(x => x.id === SERVER_ID)
     if (!serverInfo) throw new Error(`The server ID=${SERVER_ID} was not found. Check the bot has access to it.`)
-    console.log(`Bot connected on the server "${serverInfo.name}" ID=${SERVER_ID}.`)
+    logger.info(`Bot connected on the server "${serverInfo.name}" ID=${SERVER_ID}.`)
     resolve()
   })
 
@@ -34,8 +33,8 @@ export const start = () => new Promise(resolve => {
       await member.send(msgId.WELCOME_DM)
       await member.guild.defaultChannel.send(msgId.WELCOME_PUBLIC(member.id))
     }
-    catch (err) {
-      console.error(err)
+    catch (error) {
+      logger.error(error.message)
     }
   })
 })

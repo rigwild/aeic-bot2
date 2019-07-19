@@ -1,4 +1,5 @@
 import { TpGroupModel, TpGroup } from './TpGroup'
+import { logger } from '../config'
 
 const initTpGroups = async () => {
   const count = await TpGroupModel.countDocuments({})
@@ -20,7 +21,7 @@ const initTpGroups = async () => {
     tdGroup: x[2].toLowerCase()
   }))
   await TpGroupModel.insertMany(groups)
-  console.log('TP groups were created in database.')
+  logger.info('TP groups were created in database.')
 }
 
 export default async () => {
@@ -28,6 +29,6 @@ export default async () => {
     await initTpGroups()
   }
   catch (error) {
-    console.error(error)
+    logger.error(error.message)
   }
 }

@@ -51,6 +51,7 @@ export default {
   MISSING_ROLE_SOME: (roles: string[]) => `Un des rôles \`${roles.toString()}\` est nécessaire pour exécuter cette commande. ${needHelp}`,
   UNKNOWN_GROUP_TD: (tdGroup: string, yearGroup: string) => `Le groupe de TD \`${tdGroup}\` du group d'année \`${yearGroup}\` n'existe pas. ${needHelp}`,
   UNKNOWN_GROUP_TP: (tpGroup: string) => `Le groupe \`${tpGroup}\` n'existe pas. ${needHelp}`,
+  UNKNOWN_CHANNEL: (channel: string) => `Le channel \`${channel}\` n'existe pas.`,
   UNKNOWN_COMMAND: (command: string) => `La commande \`${command}\` n'existe pas. ${needHelp}`,
   INVALID_COMMAND_ARGUMENT_NUMBER: (command: string, numberArgs: number, minArgs: number, maxArgs?: number) => `Le nombre d'arguments passés (${numberArgs}) pour la commande \`${command}\` est invalide. Le nombre minimum d'arguments est de ${minArgs} et le maximum de ${maxArgs || 'infini'}. ${needHelp}`,
   ERREUR_NON_DECRITE: `Une erreur non décrite s'est produite. Help <@${DEV_DISCORD_ID}> ! Commande : "#toReplace#".`,
