@@ -8,6 +8,7 @@ import ajouterDevoirTd from './list/ajouterDevoirTd'
 import afficherDevoir from './list/afficherDevoir'
 import choisirGroupeTp from './list/choisirGroupeTp'
 import choisirGroupeAsso from './list/choisirGroupeAsso'
+import afficherPlanning from './list/afficherPlanning'
 
 // Inject all available commands here
 export const commands = {
@@ -16,7 +17,8 @@ export const commands = {
   ajouterDevoirTd,
   afficherDevoir,
   choisirGroupeTp,
-  choisirGroupeAsso
+  choisirGroupeAsso,
+  afficherPlanning
 }
 
 // Make all commands keys lowercase

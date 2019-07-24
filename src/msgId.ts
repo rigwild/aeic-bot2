@@ -1,5 +1,5 @@
-import { DEV_DISCORD_ID, DOC_URI } from './config'
-import { toHumanDate } from './commands/utils'
+import { DEV_DISCORD_ID, DOC_URI, PLANNING_LINK } from './config'
+import { toHumanDate, toHumanDateTime, getDateWeek } from './commands/utils'
 import { Homework } from './database/TpGroup'
 
 const AEIC_BOT_HELP = `Pour des raisons de lisibilité du chat, les commandes sont répertoriées ici : ${DOC_URI}.
@@ -30,22 +30,24 @@ export default {
   ASSO_GROUP_ROLE_ADDED: (assoGroup: string) => `Le rôle de groupe d'association \`${assoGroup}\` a été appliqué.`,
 
   NO_HOMEWORK: (tpGroup: string) => `Il n'y a aucun devoir **enregistré** pour le groupe de TP \`${tpGroup}\`.`,
+  NO_PLANNING_GROUP: (group: string) => `Il n'y a aucun groupe de planning \`${group}\`. ${needHelp}`,
   HOMEWORK_ADDED: (homework: Homework, tpGroup: string) => `Un devoir pour le \`${toHumanDate(homework.dueDate)}\` du cours \`${homework.subject}\` a été ajouté au groupe de TP \`${tpGroup}\`.\`\`\`${homework.content}\`\`\``,
   HOMEWORK_ADDED_VIA_TD: (homework: Homework, tpGroup: string, authorId: string) => `Un devoir pour le \`${toHumanDate(homework.dueDate)}\` du cours \`${homework.subject}\` a été ajouté au groupe de TP \`${tpGroup}\` par <@${authorId}> (ajout de devoir via groupe de TD).\`\`\`${homework.content}\`\`\``,
-  HOMEWORK_SHOW: (homework: Homework) => `Pour le \`${toHumanDate(homework.dueDate)}\` du cours \`${homework.subject}\`\nAjouté le \`${toHumanDate(homework.addedDate)}\` par <@${homework.authorId}> \`\`\`${homework.content}\`\`\``,
-
-  // PLANNING_VIDE: `Le planning pour ce groupe est vide. **Attention** ! Cela peut être un bug. ${needHelp}`,
-  // COMMANDE_DEVELOPPEUR: `La commande "#toReplace#" est réservée au développeur du bot. <@${DEV_DISCORD_ID}>`,
+  HOMEWORK_SHOW: (homework: Homework) => `Pour le \`${toHumanDate(homework.dueDate)}\` du cours \`${homework.subject}\`\nAjouté le \`${homework.addedDate && toHumanDate(homework.addedDate)}\` par <@${homework.authorId}> \`\`\`${homework.content}\`\`\``,
+  PLANNING_SHOW: (group: string, lastUpdateDate: Date) => `Planning du groupe \`${group}\` pour la semaine \`${getDateWeek(lastUpdateDate)}\` - Dernière mise à jour : \`${toHumanDateTime(lastUpdateDate)}\` - Source : ${PLANNING_LINK}`,
 
   INVALID_DATE: `Le format de date est incorrect. ${needHelp}`,
   DATE_IN_PAST: `La date ne peut pas être dans le passé. ${needHelp}`,
 
   NOT_IN_CHANNEL: (...channel: string[]) => `La commande ne peut être exécutée que dans les channels : \`${channel.join(', ')}\`. ${needHelp}`,
+  NOT_IN_TP_CHANNEL: `La commande ne peut être exécutée que dans les channels de groupes de TP. ${needHelp}`,
   MISSING_ROLE: (role: string) => `Le rôle \`${role}\` est nécessaire pour exécuter cette commande. ${needHelp}`,
   MISSING_ROLE_SOME: (roles: string[]) => `Un des rôles \`${roles.toString()}\` est nécessaire pour exécuter cette commande. ${needHelp}`,
   UNKNOWN_GROUP_TD: (tdGroup: string, yearGroup: string) => `Le groupe de TD \`${tdGroup}\` du group d'année \`${yearGroup}\` n'existe pas. ${needHelp}`,
   UNKNOWN_GROUP_TP: (tpGroup: string) => `Le groupe de TP \`${tpGroup}\` n'existe pas. ${needHelp}`,
+  UNKNOWN_GROUP_TP_PLANNING_GROUP: (tpGroup: string) => `Le groupe de TP \`${tpGroup}\` ne possède pas de groupe de planning. ${needHelp}`,
   UNKNOWN_GROUP_ASSO: (assoGroup: string) => `Le groupe d'association \`${assoGroup}\` n'existe pas. ${needHelp}`,
+  UNKNOWN_GROUP_PLANNING: (planningGroup: string) => `Le groupe de planning \`${planningGroup}\` n'existe pas. ${needHelp}`,
   UNKNOWN_CHANNEL: (channel: string) => `Le channel \`${channel}\` n'existe pas.`,
   UNKNOWN_COMMAND: (command: string) => `La commande \`${command}\` n'existe pas. ${needHelp}`,
   INVALID_COMMAND_ARGUMENT_NUMBER: (command: string, numberArgs: number, minArgs: number, maxArgs?: number) => `Le nombre d'arguments passés (${numberArgs}) pour la commande \`${command}\` est invalide. Le nombre minimum d'arguments est de ${minArgs} et le maximum de ${maxArgs || 'infini'}. ${needHelp}`

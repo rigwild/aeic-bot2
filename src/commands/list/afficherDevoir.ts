@@ -32,7 +32,8 @@ const command: Command = {
         throw new Error(msgId.UNKNOWN_GROUP_TP(tpGroup))
       })
 
-    if (!tpGroupData || !tpGroupData.homework) return message.reply(msgId.NO_HOMEWORK(tpGroup))
+    if (!tpGroupData || !tpGroupData.homework)
+      throw new Error(msgId.NO_HOMEWORK(tpGroup))
 
     // Show the homeworks in the channel, filtering to only future ones
     const dateMin = new Date(Date.now() + -1 * 24 * 3600 * 1000)

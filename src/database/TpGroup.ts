@@ -12,6 +12,8 @@ export interface TpGroup {
   name: string
   yearGroup: string
   tdGroup: string
+  planningGroup?: string
+  remindChannel?: string
   homework?: Homework[]
 }
 
@@ -21,6 +23,8 @@ export const TpGroupModel = mongoose.model<TpGroupDocument>('TpGroup', new Schem
   name: { type: String, required: true },
   yearGroup: { type: String, required: true },
   tdGroup: { type: String, required: true },
+  planningGroup: String,
+  remindChannel: String,
   homework: [{
     subject: { type: String, required: true },
     content: { type: String, required: true },
