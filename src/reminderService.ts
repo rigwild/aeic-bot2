@@ -67,4 +67,4 @@ export default () => new CronJob(AUTO_REMINDER_CRON_TIME, async () => {
     }
   }
   logger.info(`Reminder process ended`)
-}, undefined, true, 'Europe/Paris', undefined, true)
+}, undefined, true, 'Europe/Paris', undefined, false)

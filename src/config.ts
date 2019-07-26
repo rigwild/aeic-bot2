@@ -39,5 +39,4 @@ export const DEV_DISCORD_ID = '411139773940629514'
 export const DOC_URI = 'https://git.io/aeic-bot2'
 export const PLANNING_LINK = 'https://planning-iut-calais.asauvage.fr'
 export const EXO_PLATFORM_LINK = 'iut.univ-littoral.fr'
-
 export const AUTO_REMINDER_CRON_TIME = '0 19 * * *'

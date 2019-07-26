@@ -6,6 +6,7 @@
     "doc": "docs"
   },
   "scripts": {
+    "start": "node dist/index.js",
     "build": "tsc",
     "doc": "rm -rf docs && node buildDocumentation.js"
   },
