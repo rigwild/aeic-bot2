@@ -11,6 +11,7 @@ import choisirGroupeTp from './list/choisirGroupeTp'
 import choisirGroupeAsso from './list/choisirGroupeAsso'
 import afficherPlanning from './list/afficherPlanning'
 import trouverPersonne from './list/trouverPersonne'
+import choisirGroupeAnnee from './list/choisirGroupeAnnee'
 
 // Inject all available commands here
 export const commands = {
@@ -21,7 +22,8 @@ export const commands = {
   choisirGroupeTp,
   choisirGroupeAsso,
   afficherPlanning,
-  trouverPersonne
+  trouverPersonne,
+  choisirGroupeAnnee
 }
 
 // Make all commands keys lowercase

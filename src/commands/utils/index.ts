@@ -8,13 +8,13 @@ import ExoPlatformLoader from './ExoPlatformLoader'
  * Check a TP group exists. Case insensitive.
  * @param tpGroup TP group to check existance
  */
-export const tpGroupExists = (tpGroup: string) => !!defaultTpGroupsName.find(aTpGroup => aTpGroup === tpGroup.toLowerCase())
+export const tpGroupExists = (tpGroup: string) => !!defaultTpGroupsName.find(aTpGroup => aTpGroup.toLowerCase() === tpGroup.toLowerCase())
 
 /**
  * Check a association group exists. Case insensitive.
  * @param assoGroup Association group to check existance
  */
-export const assoGroupExists = (assoGroup: string) => !!defaultAssoGroupsName.find(aAssoGroup => aAssoGroup === assoGroup.toLowerCase())
+export const assoGroupExists = (assoGroup: string) => !!defaultAssoGroupsName.find(aAssoGroup => aAssoGroup.toLowerCase() === assoGroup.toLowerCase())
 
 /**
  * Check a message was posted in a channel. Case insensitive.

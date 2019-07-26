@@ -30,6 +30,7 @@ export default {
   UNREACHABLE_HOST: (host: string) => `L'hôte ${host} n'est pas atteignable.`,
   REQUEST_LOADING: (request: string) => `La requête \`${request}\` est en cours de traitement. Les données récupérées par la requête seront mises en cache pour 4h afin d'accélérer les requêtes suivantes.`,
 
+  YEAR_GROUP_ROLE_ADDED: (yearGroup: string) => `Le rôle de groupe d'année \`${yearGroup}\` a été appliqué.`,
   TP_GROUP_ROLE_ADDED: (tpGroup: string) => `Le rôle de groupe de TP \`${tpGroup}\` a été appliqué.`,
   ASSO_GROUP_ROLE_ADDED: (assoGroup: string) => `Le rôle de groupe d'association \`${assoGroup}\` a été appliqué.`,
 
@@ -46,6 +47,7 @@ export default {
   NOT_IN_TP_CHANNEL: `La commande ne peut être exécutée que dans les channels de groupes de TP. ${needHelp}`,
   MISSING_ROLE: (role: string) => `Le rôle \`${role}\` est nécessaire pour exécuter cette commande. ${needHelp}`,
   MISSING_ROLE_SOME: (roles: string[]) => `Un des rôles \`${roles.toString()}\` est nécessaire pour exécuter cette commande. ${needHelp}`,
+  UNKNOWN_GROUP: (group: string) => `Le groupe \`${group}\` n'existe pas. ${needHelp}`,
   UNKNOWN_GROUP_TD: (tdGroup: string, yearGroup: string) => `Le groupe de TD \`${tdGroup}\` du group d'année \`${yearGroup}\` n'existe pas. ${needHelp}`,
   UNKNOWN_GROUP_TP: (tpGroup: string) => `Le groupe de TP \`${tpGroup}\` n'existe pas. ${needHelp}`,
   UNKNOWN_GROUP_TP_PLANNING_GROUP: (tpGroup: string) => `Le groupe de TP \`${tpGroup}\` ne possède pas de groupe de planning. ${needHelp}`,
