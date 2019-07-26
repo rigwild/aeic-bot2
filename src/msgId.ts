@@ -37,8 +37,6 @@ export default {
   NO_PLANNING_GROUP: (group: string) => `Il n'y a aucun groupe de planning \`${group}\`. ${needHelp}`,
   HOMEWORK_ADDED: (homework: Homework, tpGroup: string) => `Un devoir pour le \`${toHumanDate(homework.dueDate)}\` du cours \`${homework.subject}\` a été ajouté au groupe de TP \`${tpGroup}\`.\`\`\`${homework.content}\`\`\``,
   HOMEWORK_ADDED_VIA_TD: (homework: Homework, tpGroup: string, authorId: string) => `Un devoir pour le \`${toHumanDate(homework.dueDate)}\` du cours \`${homework.subject}\` a été ajouté au groupe de TP \`${tpGroup}\` par <@${authorId}> (ajout de devoir via groupe de TD).\`\`\`${homework.content}\`\`\``,
-  HOMEWORK_SHOW: (homework: Homework) => `Pour le \`${toHumanDate(homework.dueDate)}\` du cours \`${homework.subject}\`\nAjouté le \`${homework.addedDate && toHumanDate(homework.addedDate)}\` par <@${homework.authorId}> \`\`\`${homework.content}\`\`\``,
-  PLANNING_SHOW: (group: string, lastUpdateDate: Date) => `Planning du groupe \`${group}\` pour la semaine \`${getDateWeek(lastUpdateDate)}\` - Dernière mise à jour : \`${toHumanDateTime(lastUpdateDate)}\` - Source : ${PLANNING_LINK}.`,
 
   INVALID_DATE: `Le format de date est incorrect. ${needHelp}`,
   DATE_IN_PAST: `La date ne peut pas être dans le passé. ${needHelp}`,

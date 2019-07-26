@@ -2,7 +2,7 @@ import Discord from 'discord.js'
 
 import { DISCORD_AUTH_TOKEN, COMMAND_TRIGGER, SERVER_ID, logger } from './config'
 import msgId from './msgId'
-import runCommand from './commands'
+import { commandLoader } from './commands'
 
 // Create the bot instance
 export const bot = new Discord.Client()
@@ -23,7 +23,7 @@ export const start = () => new Promise(resolve => {
   // Check if new message contained a command, then execute it
   bot.on('message', message => {
     if (message.guild.id !== SERVER_ID || !message.content.trim().startsWith(COMMAND_TRIGGER)) return
-    return runCommand(message)
+    return commandLoader(message)
   })
 
   // Send a message when a member joins the server
