@@ -1,42 +1,65 @@
-# List of commands
- - [afficherDevoir](#afficherDevoir)
- - [afficherPlanning](#afficherPlanning)
- - [aide](#aide)
- - [ajouterDevoir](#ajouterDevoir)
- - [ajouterDevoirTd](#ajouterDevoirTd)
- - [choisirGroupeAnnee](#choisirGroupeAnnee)
- - [choisirGroupeAsso](#choisirGroupeAsso)
- - [choisirGroupeTp](#choisirGroupeTp)
- - [trouverPersonne](#trouverPersonne)
+# Table des matières
+ - [Tutoriel](#tutoriel)
+ - [Liste des commandes](#liste-des-commandes)
+   - [`!afficherDevoir`](#afficherDevoir)
+   - [`!afficherPlanning`](#afficherPlanning)
+   - [`!aide`](#aide)
+   - [`!ajouterDevoir`](#ajouterDevoir)
+   - [`!ajouterDevoirTd`](#ajouterDevoirTd)
+   - [`!choisirGroupeAnnee`](#choisirGroupeAnnee)
+   - [`!choisirGroupeAsso`](#choisirGroupeAsso)
+   - [`!choisirGroupeTp`](#choisirGroupeTp)
+   - [`!trouverPersonne`](#trouverPersonne)
 
 ---
 
-## afficherDevoir
-### Description
+## Tutoriel
+Pour lancer une commande, votre message doit commencer par `!`, suivi d'une commande existante.
+
+Une commande peut nécessiter des arguments. Si un seul est nécessaire, vous pouvez taper votre commande suivie par l'argument à renseigner :
+```sh
+!unExemple monArgument
+!unExemple ceci compte comme un seul argument
+```
+
+Dans le cas ou plusieurs arguments sont nécessaires, vous pouvez les séparer à l'aide de `--` :
+```sh
+!unExemple ceci compte comme un seul argument -- celui-ci est le deuxième argument
+```
+
+Les commandes et leurs arguments ne sont pas sensibles à la casse, les commandes suivantes provoqueront le même résultat :
+```sh
+!unExemple
+!UnexEmpLe
+```
+
+## Liste des commandes
+### `!afficherDevoir`
+#### Description
 Afficher les devoirs d'un groupe de TP
 
-### Arguments
+#### Arguments
 | Minimum | Maximum |
 | :-----: |  :----: |
 | 0 | 0 |
 
-### Example(s)
+#### Exemple(s)
 ```
 !afficherDevoir
 ```
 
 ---
 
-## afficherPlanning
-### Description
+### `!afficherPlanning`
+#### Description
 Afficher le planning d'un groupe. Voir : <a href="https://planning-iut-calais.asauvage.fr" target="_blank" rel="noopener">https://planning-iut-calais.asauvage.fr</a>
 
-### Arguments
+#### Arguments
 | Minimum | Maximum |
 | :-----: |  :----: |
 | 0 | 1 |
 
-### Example(s)
+#### Exemple(s)
 ```
 !afficherPlanning
 ```
@@ -55,32 +78,32 @@ Afficher le planning d'un groupe. Voir : <a href="https://planning-iut-calais.as
 
 ---
 
-## aide
-### Description
+### `!aide`
+#### Description
 Montrer le message d'aide du bot
 
-### Arguments
+#### Arguments
 | Minimum | Maximum |
 | :-----: |  :----: |
 | 0 | 0 |
 
-### Example(s)
+#### Exemple(s)
 ```
 !aide
 ```
 
 ---
 
-## ajouterDevoir
-### Description
+### `!ajouterDevoir`
+#### Description
 Ajouter un devoir à un groupe de TP
 
-### Arguments
+#### Arguments
 | Minimum | Maximum |
 | :-----: |  :----: |
 | 3 | 3 |
 
-### Example(s)
+#### Exemple(s)
 ```
 !ajouterDevoir 2020-04-24 -- Java -- TP Breakout
 ```
@@ -90,16 +113,16 @@ Ajouter un devoir à un groupe de TP
 
 ---
 
-## ajouterDevoirTd
-### Description
+### `!ajouterDevoirTd`
+#### Description
 Ajouter un devoir à un groupe de TD
 
-### Arguments
+#### Arguments
 | Minimum | Maximum |
 | :-----: |  :----: |
 | 5 | 5 |
 
-### Example(s)
+#### Exemple(s)
 ```
 !ajouterDevoirTd td1 -- dut1 -- 2020-04-24 -- Java -- TP Breakout
 ```
@@ -109,16 +132,16 @@ Ajouter un devoir à un groupe de TD
 
 ---
 
-## choisirGroupeAnnee
-### Description
+### `!choisirGroupeAnnee`
+#### Description
 Choisir le groupe d'année à rejoindre
 
-### Arguments
+#### Arguments
 | Minimum | Maximum |
 | :-----: |  :----: |
 | 1 | 1 |
 
-### Example(s)
+#### Exemple(s)
 ```
 !choisirGroupeAnnee 1ère année
 ```
@@ -137,16 +160,16 @@ Choisir le groupe d'année à rejoindre
 
 ---
 
-## choisirGroupeAsso
-### Description
+### `!choisirGroupeAsso`
+#### Description
 Choisir le groupe d'association à rejoindre
 
-### Arguments
+#### Arguments
 | Minimum | Maximum |
 | :-----: |  :----: |
 | 1 | 1 |
 
-### Example(s)
+#### Exemple(s)
 ```
 !choisirGroupeAsso asso1
 ```
@@ -156,16 +179,16 @@ Choisir le groupe d'association à rejoindre
 
 ---
 
-## choisirGroupeTp
-### Description
+### `!choisirGroupeTp`
+#### Description
 Choisir le groupe de TP à rejoindre
 
-### Arguments
+#### Arguments
 | Minimum | Maximum |
 | :-----: |  :----: |
 | 1 | 1 |
 
-### Example(s)
+#### Exemple(s)
 ```
 !choisirGroupeTp tp1a
 ```
@@ -175,16 +198,16 @@ Choisir le groupe de TP à rejoindre
 
 ---
 
-## trouverPersonne
-### Description
+### `!trouverPersonne`
+#### Description
 Trouver un utilisateur sur eXo Platform et afficher ses données
 
-### Arguments
+#### Arguments
 | Minimum | Maximum |
 | :-----: |  :----: |
 | 1 | 1 |
 
-### Example(s)
+#### Exemple(s)
 ```
 !trouverPersonne synave
 ```

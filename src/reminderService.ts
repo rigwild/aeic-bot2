@@ -1,7 +1,7 @@
 import { TextChannel } from 'discord.js'
 import { CronJob } from 'cron'
 
-import { AUTO_REMINDER_CRON_TIME, SERVER_ID, logger } from './config'
+import { AUTO_REMINDER_CRON_TIME, DISCORD_SERVER_ID, logger } from './config'
 import { bot } from './bot'
 import msgId from './msgId'
 import planningIutLoader from './commands/utils/PlanningIutLoader'
@@ -42,7 +42,7 @@ const planningRemind = async (channel: TextChannel, tpGroup: TpGroupDocument) =>
 export default () => new CronJob(AUTO_REMINDER_CRON_TIME, async () => {
   logger.info(`Reminder process started`)
   // Get the guild
-  const guild = bot.guilds.get(SERVER_ID)
+  const guild = bot.guilds.get(DISCORD_SERVER_ID)
   if (!guild) return
 
   // Get all TP groups documents
