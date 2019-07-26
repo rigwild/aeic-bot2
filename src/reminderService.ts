@@ -4,8 +4,9 @@ import { CronJob } from 'cron'
 import { AUTO_REMINDER_CRON_TIME, SERVER_ID, PLANNING_LINK, logger } from './config'
 import { bot } from './bot'
 import msgId from './msgId'
-import planningIut from './commands/utils/planningIut'
+import planningIutLoader from './commands/utils/PlanningIutLoader'
 import { TpGroupModel, TpGroupDocument } from './database/TpGroup'
+import { toHumanDate } from './commands/utils'
 
 /**
  * Remind a TP group of its homework
@@ -18,7 +19,7 @@ const homeworkRemind = (channel: TextChannel, tpGroup: TpGroupDocument) => {
   const homeworks = tpGroup.homework ? tpGroup.homework.filter(aHomework => dateMin < aHomework.dueDate) : []
 
   // Build the message that will be sent
-  return channel.send(`Rappel journalier des devoirs pour le groupe ${tpGroup.name} :\n${homeworks.length === 0
+  return channel.send(`Devoirs pour le groupe \`${tpGroup.name}\` :\n${homeworks.length === 0
     ? msgId.NO_HOMEWORK(tpGroup.name)
     : homeworks.map(aHomework => msgId.HOMEWORK_SHOW(aHomework)).join('\n')}`)
 }
@@ -30,8 +31,8 @@ const homeworkRemind = (channel: TextChannel, tpGroup: TpGroupDocument) => {
  */
 const planningRemind = async (channel: TextChannel, tpGroup: TpGroupDocument) => {
   if (!tpGroup.planningGroup) return
-  const planningData = (await planningIut.getGroup(tpGroup.planningGroup))[0]
-  return channel.send(`Rappel journalier du planning pour le groupe ${tpGroup.name} :\n${msgId.PLANNING_SHOW(tpGroup.name, new Date(planningData.screenDate))}`, {
+  const planningData = (await planningIutLoader.getGroup(tpGroup.planningGroup))[0]
+  return channel.send(`\n${msgId.PLANNING_SHOW(tpGroup.name, new Date(planningData.screenDate))}`, {
     file: `${PLANNING_LINK}${planningData.screenPath}`
   })
 }
@@ -57,14 +58,15 @@ export default () => new CronJob(AUTO_REMINDER_CRON_TIME, async () => {
       if (!channel || !(channel instanceof TextChannel))
         throw new Error(msgId.UNKNOWN_CHANNEL(aTpGroup.remindChannel))
 
-      // Remind of the planning
-      await planningRemind(channel, aTpGroup)
+      channel.send(`######## RAPPELS JOURNALIERS DU ${toHumanDate(new Date())} pour le groupe \`${aTpGroup.name}\` ########`)
       // Remind of the homework
       await homeworkRemind(channel, aTpGroup)
+      // Remind of the planning
+      await planningRemind(channel, aTpGroup)
     }
     catch (error) {
       logger.error(error)
     }
   }
   logger.info(`Reminder process ended`)
-}, undefined, true, 'Europe/Paris', undefined, true)
+}, undefined, true, 'Europe/Paris', undefined, false)

@@ -1,7 +1,7 @@
 import { TextChannel } from 'discord.js'
 
 import { Command } from '../types'
-import { hasAuthorRole, planningIut, tpGroupExists } from '../utils'
+import { hasAuthorRole, planningIutLoader, tpGroupExists } from '../utils'
 import msgId from '../../msgId'
 import { COMMAND_TRIGGER as t, PLANNING_LINK } from '../../config'
 import { TpGroupModel } from '../../database/TpGroup'
@@ -50,7 +50,10 @@ const command: Command = {
     // An argument was passed, check its planning
     else groupPlanningToLoad = args[0]
 
-    const planningData = (await planningIut.getGroup(groupPlanningToLoad))[0]
+    // Send a loading message in the channel if the request is not cached
+    if (!planningIutLoader.isCached()) await message.channel.send(msgId.REQUEST_LOADING('afficherPlanning'))
+
+    const planningData = (await planningIutLoader.getGroup(groupPlanningToLoad))[0]
     await message.reply(msgId.PLANNING_SHOW(groupPlanningToLoad, new Date(planningData.screenDate)), {
       file: `${PLANNING_LINK}${planningData.screenPath}`
     })

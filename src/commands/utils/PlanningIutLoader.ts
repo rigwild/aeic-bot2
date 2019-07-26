@@ -16,19 +16,28 @@ interface PlanningClasses {
   }
 }
 
-class PlanningIUT {
-  cache: PlanningClasses = { classes: {} }
-  cacheLastUpdate: Date | null = null
+class PlanningIutLoader {
+  private cache: PlanningClasses = { classes: {} }
+  private cacheLastUpdate: Date | null = null
+
+  /** Check if data was cached less than 4 hours ago */
+  isCached() { return !!this.cacheLastUpdate && this.cacheLastUpdate > new Date(Date.now() - 1000 * 60 * 60 * 4) }
+  /** Get last cache timestamp */
+  getCacheLastUpdate() { return this.cacheLastUpdate }
 
   /**
    * Load the IUT's planning. Will grab from cache and refresh it every 4 hours.
    */
   async loadPlanning(): Promise<PlanningClasses> {
-    if (!this.cacheLastUpdate || this.cacheLastUpdate < new Date(Date.now() - 1000 * 60 * 60 * 4)) {
-      const data = await fetch(`${PLANNING_LINK}/classes`).then(res => res.json())
+    if (!this.isCached()) {
+      const uri = `${PLANNING_LINK}/classes`
+      const data = await fetch(uri)
+        .then(res => res.json())
+        .catch(() => {
+          throw new Error(msgId.UNREACHABLE_HOST(uri))
+        })
       this.cache = data
       this.cacheLastUpdate = new Date()
-      return data
     }
     return this.cache
   }
@@ -47,4 +56,4 @@ class PlanningIUT {
   }
 }
 
-export default new PlanningIUT()
+export default new PlanningIutLoader()

@@ -1,7 +1,8 @@
 import { Message, TextChannel } from 'discord.js'
 
 import { defaultTpGroupsName, defaultAssoGroupsName } from '../../database/initDb'
-import planningIut from './planningIut'
+import planningIutLoader from './PlanningIutLoader'
+import ExoPlatformLoader from './ExoPlatformLoader'
 
 /**
  * Check a TP group exists. Case insensitive.
@@ -70,4 +71,10 @@ export const getDateWeek = (_date: Date) => {
   return 1 + Math.round(((date.getTime() - week1.getTime()) / 86400000 - 3 + (week1.getDay() + 6) % 7) / 7)
 }
 
-export { planningIut }
+/**
+ * Remove accents from a string
+ * @param str String to format
+ */
+export const removeAccents = (str: string) => str.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+
+export { planningIutLoader, ExoPlatformLoader }
