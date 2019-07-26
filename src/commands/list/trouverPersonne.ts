@@ -37,9 +37,9 @@ const command: Command = {
       embed.timestamp = ExoPlatformLoader.getCacheLastUpdate() || undefined
       embed.fields = users.map(aUser => ({
         name: aUser.fullname,
-        value: `${aUser.username} - ${aUser.email} - [Lien eXo](https://${EXO_PLATFORM_LINK}/portal/intranet/profile/${aUser.username})`
+        value: `${aUser.username} - ${aUser.email ? aUser.email : 'Pas d\'email'} - [Lien eXo](https://${EXO_PLATFORM_LINK}/portal/intranet/profile/${aUser.username})`
       }))
-      await message.reply(undefined, { embed })
+      await message.reply(embed)
     }
   }
 }

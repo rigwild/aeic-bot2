@@ -1,3 +1,5 @@
+import { TextChannel } from 'discord.js'
+
 import { Command } from '../types'
 import { tpGroupExists, hasAuthorRole, isMessageInChannel } from '../utils'
 import msgId from '../../msgId'
@@ -7,28 +9,27 @@ import { TpGroupModel, Homework } from '../../database/TpGroup'
 const command: Command = {
   meta: {
     command: 'ajouterDevoir',
-    minArgs: 4,
-    maxArgs: 4,
+    minArgs: 3,
+    maxArgs: 3,
     description: 'Ajouter un devoir à un groupe de TP',
     examples: [
-      // !ajouterDevoir tp1a -- 2020-04-24 -- Java -- TP Breakout
-      `${t}ajouterDevoir tp1a ${s} 2020-04-24 ${s} Java ${s} TP Breakout`,
-      `${t}ajouterDevoir tp2b ${s} 2020-01-18 ${s} Maths ${s} DS Ould-Said`
+      // !ajouterDevoir 2020-04-24 -- Java -- TP Breakout
+      `${t}ajouterDevoir 2020-04-24 ${s} Java ${s} TP Breakout`,
+      `${t}ajouterDevoir 2020-01-18 ${s} Maths ${s} DS Ould-Said`
     ]
   },
 
-  async run(message, ...[tpGroup, dueDate, subject, content]) {
-    // Check the message was sent in the TP group channel
-    if (!isMessageInChannel(message, tpGroup))
-      throw new Error(msgId.NOT_IN_CHANNEL(tpGroup))
+  async run(message, ...[dueDate, subject, content]) {
+    if (!(message.channel instanceof TextChannel)) return
+
+    const tpGroup = message.channel.name
+    // Check the message was sent in a TP group channel
+    if (!tpGroupExists(tpGroup))
+      throw new Error(msgId.NOT_IN_TP_CHANNEL)
 
     // Check the author has the TP group role
     if (!(await hasAuthorRole(message, tpGroup)))
       throw new Error(msgId.MISSING_ROLE(tpGroup))
-
-    // Check the TP group exists
-    if (!tpGroupExists(tpGroup))
-      throw new Error(msgId.UNKNOWN_GROUP_TP(tpGroup))
 
     // Check the dueDate is a valid date
     const parsedDueDate = Date.parse(dueDate)

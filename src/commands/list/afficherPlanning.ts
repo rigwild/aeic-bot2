@@ -1,10 +1,19 @@
-import { TextChannel } from 'discord.js'
+import { TextChannel, RichEmbed } from 'discord.js'
 
 import { Command } from '../types'
-import { hasAuthorRole, planningIutLoader, tpGroupExists } from '../utils'
+import { hasAuthorRole, planningIutLoader, tpGroupExists, getDateWeek } from '../utils'
 import msgId from '../../msgId'
 import { COMMAND_TRIGGER as t, PLANNING_LINK } from '../../config'
 import { TpGroupModel } from '../../database/TpGroup'
+
+export const buildPlanningEmbed = (group: string, planningData: { screenDate: string, screenPath: string }) => {
+  let embed = new RichEmbed()
+  embed.title = `Planning du groupe \`${group}\` pour la semaine \`${getDateWeek(new Date(planningData.screenDate))}\``
+  embed.footer = { text: 'Date de mise en cache', icon_url: 'https://planning-iut-calais.asauvage.fr/favicon/favicon-32x32.png' }
+  embed.timestamp = new Date(planningData.screenDate)
+  embed.image = { url: `${PLANNING_LINK}${planningData.screenPath}` }
+  return embed
+}
 
 const command: Command = {
   meta: {
@@ -14,6 +23,7 @@ const command: Command = {
     description: `Afficher le planning d\'un groupe. Voir : <a href="${PLANNING_LINK}" target="_blank" rel="noopener">${PLANNING_LINK}</a>`,
     examples: [
       // !afficherPlanning tp1a
+      `${t}afficherPlanning`,
       `${t}afficherPlanning tp1a`,
       `${t}afficherPlanning DUT1 TPA`,
       `${t}afficherPlanning DUT2 TD2`,
@@ -38,10 +48,6 @@ const command: Command = {
 
       // Get the TP's planning group
       const tpGroupData = await TpGroupModel.findOne({ name: group.toLowerCase() })
-        .exec()
-        .catch(() => {
-          throw new Error(msgId.UNKNOWN_GROUP_TP(group))
-        })
       if (!tpGroupData || !tpGroupData.planningGroup)
         throw new Error(msgId.UNKNOWN_GROUP_TP_PLANNING_GROUP(group))
 
@@ -54,9 +60,7 @@ const command: Command = {
     if (!planningIutLoader.isCached()) await message.channel.send(msgId.REQUEST_LOADING('afficherPlanning'))
 
     const planningData = (await planningIutLoader.getGroup(groupPlanningToLoad))[0]
-    await message.reply(msgId.PLANNING_SHOW(groupPlanningToLoad, new Date(planningData.screenDate)), {
-      file: `${PLANNING_LINK}${planningData.screenPath}`
-    })
+    await message.reply(buildPlanningEmbed(groupPlanningToLoad, planningData))
   }
 }
 export default command
