@@ -26,6 +26,10 @@ const needHelp = `Rends-toi sur ${DOC_URI} pour obtenir de l'aide sur les comman
 export default {
   AEIC_BOT_HELP,
   ...WELCOME,
+  INVALID_STR_SIZE: (str: string, min: number, max?: number) => `La chaîne de caractère \`${str}\` est d'une taille invalide. Sa taille doit être ${max ? `comprise entre \`${min}\` et \`${max}\`` : `au minimum de \`${min}\``} caractères.`,
+  UNREACHABLE_HOST: (host: string) => `L'hôte ${host} n'est pas atteignable.`,
+  REQUEST_LOADING: (request: string) => `La requête \`${request}\` est en cours de traitement. Les données récupérées par la requête seront mises en cache pour 4h afin d'accélérer les requêtes suivantes.`,
+
   TP_GROUP_ROLE_ADDED: (tpGroup: string) => `Le rôle de groupe de TP \`${tpGroup}\` a été appliqué.`,
   ASSO_GROUP_ROLE_ADDED: (assoGroup: string) => `Le rôle de groupe d'association \`${assoGroup}\` a été appliqué.`,
 
@@ -34,11 +38,12 @@ export default {
   HOMEWORK_ADDED: (homework: Homework, tpGroup: string) => `Un devoir pour le \`${toHumanDate(homework.dueDate)}\` du cours \`${homework.subject}\` a été ajouté au groupe de TP \`${tpGroup}\`.\`\`\`${homework.content}\`\`\``,
   HOMEWORK_ADDED_VIA_TD: (homework: Homework, tpGroup: string, authorId: string) => `Un devoir pour le \`${toHumanDate(homework.dueDate)}\` du cours \`${homework.subject}\` a été ajouté au groupe de TP \`${tpGroup}\` par <@${authorId}> (ajout de devoir via groupe de TD).\`\`\`${homework.content}\`\`\``,
   HOMEWORK_SHOW: (homework: Homework) => `Pour le \`${toHumanDate(homework.dueDate)}\` du cours \`${homework.subject}\`\nAjouté le \`${homework.addedDate && toHumanDate(homework.addedDate)}\` par <@${homework.authorId}> \`\`\`${homework.content}\`\`\``,
-  PLANNING_SHOW: (group: string, lastUpdateDate: Date) => `Planning du groupe \`${group}\` pour la semaine \`${getDateWeek(lastUpdateDate)}\` - Dernière mise à jour : \`${toHumanDateTime(lastUpdateDate)}\` - Source : ${PLANNING_LINK}`,
+  PLANNING_SHOW: (group: string, lastUpdateDate: Date) => `Planning du groupe \`${group}\` pour la semaine \`${getDateWeek(lastUpdateDate)}\` - Dernière mise à jour : \`${toHumanDateTime(lastUpdateDate)}\` - Source : ${PLANNING_LINK}.`,
 
   INVALID_DATE: `Le format de date est incorrect. ${needHelp}`,
   DATE_IN_PAST: `La date ne peut pas être dans le passé. ${needHelp}`,
 
+  NO_EXO_USER_FOUND: (request: string) => `Aucun utilisateur eXo Platform ne correspond à la recherche de nom complet, d'email et de nom d'utilisateur pour l'expression régulière \`/${request}/gi\`.`,
   NOT_IN_CHANNEL: (...channel: string[]) => `La commande ne peut être exécutée que dans les channels : \`${channel.join(', ')}\`. ${needHelp}`,
   NOT_IN_TP_CHANNEL: `La commande ne peut être exécutée que dans les channels de groupes de TP. ${needHelp}`,
   MISSING_ROLE: (role: string) => `Le rôle \`${role}\` est nécessaire pour exécuter cette commande. ${needHelp}`,
