@@ -10,7 +10,7 @@ export const defaultTpGroups: TpGroup[] = [
   ['tp2a', 'dut2', 'td1', 'DUT2 TPA', 'tp2a-remind'],
   ['tp2b', 'dut2', 'td1', 'DUT2 TPB', 'tp2b-remind'],
   ['tp2c', 'dut2', 'td2', 'DUT2 TPC', 'tp2c-remind'],
-  ['tp2d', 'dut2', 'td2', 'DUT2 TPD', 'tp2d-remind'],
+  ['tp2d', 'dut2', 'td2', 'DUT2 TPD', 'tp2d-remind']
 ].map(x => ({
   name: x[0].toLowerCase(),
   yearGroup: x[1].toLowerCase(),

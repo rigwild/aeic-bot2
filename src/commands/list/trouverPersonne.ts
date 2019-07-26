@@ -1,8 +1,9 @@
+import { RichEmbed } from 'discord.js'
+
 import { Command } from '../types'
 import { ExoPlatformLoader } from '../utils'
 import msgId from '../../msgId'
 import { COMMAND_TRIGGER as t, EXO_PLATFORM_LINK } from '../../config'
-import { RichEmbed } from 'discord.js'
 
 const command: Command = {
   meta: {

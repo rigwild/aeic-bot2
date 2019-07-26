@@ -1,12 +1,14 @@
 import { TextChannel } from 'discord.js'
 import { CronJob } from 'cron'
 
-import { AUTO_REMINDER_CRON_TIME, SERVER_ID, PLANNING_LINK, logger } from './config'
+import { AUTO_REMINDER_CRON_TIME, SERVER_ID, logger } from './config'
 import { bot } from './bot'
 import msgId from './msgId'
 import planningIutLoader from './commands/utils/PlanningIutLoader'
 import { TpGroupModel, TpGroupDocument } from './database/TpGroup'
 import { toHumanDate } from './commands/utils'
+import { buildHomeworkEmbed } from './commands/list/afficherDevoir'
+import { buildPlanningEmbed } from './commands/list/afficherPlanning'
 
 /**
  * Remind a TP group of its homework
@@ -16,12 +18,10 @@ import { toHumanDate } from './commands/utils'
 const homeworkRemind = (channel: TextChannel, tpGroup: TpGroupDocument) => {
   // Keep only homework that are due in the future
   const dateMin = new Date(Date.now() + -1 * 24 * 3600 * 1000)
-  const homeworks = tpGroup.homework ? tpGroup.homework.filter(aHomework => dateMin < aHomework.dueDate) : []
+  const homework = tpGroup.homework ? tpGroup.homework.filter(aHomework => dateMin < aHomework.dueDate) : []
 
   // Build the message that will be sent
-  return channel.send(`Devoirs pour le groupe \`${tpGroup.name}\` :\n${homeworks.length === 0
-    ? msgId.NO_HOMEWORK(tpGroup.name)
-    : homeworks.map(aHomework => msgId.HOMEWORK_SHOW(aHomework)).join('\n')}`)
+  return channel.send(buildHomeworkEmbed(tpGroup.name, homework))
 }
 
 /**
@@ -32,9 +32,7 @@ const homeworkRemind = (channel: TextChannel, tpGroup: TpGroupDocument) => {
 const planningRemind = async (channel: TextChannel, tpGroup: TpGroupDocument) => {
   if (!tpGroup.planningGroup) return
   const planningData = (await planningIutLoader.getGroup(tpGroup.planningGroup))[0]
-  return channel.send(`\n${msgId.PLANNING_SHOW(tpGroup.name, new Date(planningData.screenDate))}`, {
-    file: `${PLANNING_LINK}${planningData.screenPath}`
-  })
+  return channel.send(buildPlanningEmbed(tpGroup.name, planningData))
 }
 
 /**
@@ -69,4 +67,4 @@ export default () => new CronJob(AUTO_REMINDER_CRON_TIME, async () => {
     }
   }
   logger.info(`Reminder process ended`)
-}, undefined, true, 'Europe/Paris', undefined, false)
+}, undefined, true, 'Europe/Paris', undefined, true)

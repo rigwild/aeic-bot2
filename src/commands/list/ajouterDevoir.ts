@@ -1,7 +1,7 @@
 import { TextChannel } from 'discord.js'
 
 import { Command } from '../types'
-import { tpGroupExists, hasAuthorRole, isMessageInChannel } from '../utils'
+import { tpGroupExists, hasAuthorRole } from '../utils'
 import msgId from '../../msgId'
 import { ARG_SEPARATOR as s, COMMAND_TRIGGER as t } from '../../config'
 import { TpGroupModel, Homework } from '../../database/TpGroup'

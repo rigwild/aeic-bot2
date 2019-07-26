@@ -2,6 +2,7 @@ import { Message } from 'discord.js'
 
 import { COMMAND_TRIGGER, ARG_SEPARATOR, logger } from '../config'
 import msgId from '../msgId'
+
 import aide from './list/aide'
 import ajouterDevoir from './list/ajouterDevoir'
 import ajouterDevoirTd from './list/ajouterDevoirTd'
