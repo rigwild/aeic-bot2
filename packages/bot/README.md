@@ -1,7 +1,5 @@
-# aeic-bot2
-A bot to manage the student association's Discord server of IUT du Littoral Côte d'Opale at Calais.
-
-This is a successor of [rigwild/aeic-bot](https://github.com/rigwild/aeic-bot).
+# @aeic-bot2/bot
+Main Discord bot. This is a successor to [rigwild/aeic-bot](https://github.com/rigwild/aeic-bot).
 
 ## Install
 ```sh
@@ -55,4 +53,4 @@ If you want to contribute to this project, you can open an [issue](https://githu
 Feel free to open a [pull request](https://github.com/rigwild/aeic-bot2/pulls).
 
 ## License
-[The MIT license](./LICENSE)
+[The MIT license](../../LICENSE)

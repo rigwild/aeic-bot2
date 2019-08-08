@@ -1,5 +1,6 @@
 node_modules
 .env
+yarn-error.log
 server.log
 server.error.log
 dist/
