@@ -1,40 +1,7 @@
 {
+  "name": "root",
   "private": true,
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "directories": {
-    "doc": "docs"
-  },
-  "scripts": {
-    "start": "node dist/index.js",
-    "build": "tsc",
-    "doc": "rm -rf docs && node buildDocumentation.js"
-  },
-  "dependencies": {
-    "cron": "^1.7.1",
-    "discord.js": "^11.5.1",
-    "dotenv": "^8.0.0",
-    "exoplatform-api-wrapper": "^0.1.7",
-    "mongoose": "^5.6.4",
-    "node-fetch": "^2.6.0",
-    "winston": "^3.2.1"
-  },
   "devDependencies": {
-    "@types/cron": "^1.7.1",
-    "@types/dotenv": "^6.1.1",
-    "@types/mongoose": "^5.5.8",
-    "@types/node": "^12.6.6",
-    "@types/node-fetch": "^2.5.0",
-    "typescript": "^3.5.3"
-  },
-  "homepage": "https://github.com/rigwild/aeic-bot2#readme",
-  "bugs": {
-    "url": "https://github.com/rigwild/aeic-bot2/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/rigwild/aeic-bot2.git"
-  },
-  "author": "rigwild <contact@asauvage.fr> (https://asauvage.fr)",
-  "license": "MIT"
+    "lerna": "^3.16.4"
+  }
 }
