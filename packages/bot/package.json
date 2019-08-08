@@ -1,4 +1,6 @@
 {
+  "name": "@aeic-bot2/bot",
+  "version": "0.1.0",
   "private": true,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -7,6 +9,7 @@
   },
   "scripts": {
     "start": "node dist/index.js",
+    "start:ts": "ts-node src/index.ts",
     "build": "tsc",
     "doc": "rm -rf docs && node buildDocumentation.js"
   },

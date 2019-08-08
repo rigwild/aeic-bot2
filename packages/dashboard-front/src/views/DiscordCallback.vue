@@ -13,8 +13,7 @@
 
 <script>
 import Loader from '@/components/Loader'
-import { sendDiscordCallbackCode } from '../utils'
-import { mapMutations } from 'vuex'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'DiscordCallback',
@@ -32,7 +31,7 @@ export default {
       const code = location.search.replace('?code=', '')
       if (!code) throw new Error('No code was passed in url query')
 
-      await sendDiscordCallbackCode(code)
+      await this.sendDiscordCallbackCode(code)
       this.$router.replace({ name: 'Dashboard' })
       this.cleanUrl()
     }
@@ -49,6 +48,8 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['sendDiscordCallbackCode']),
+
     cleanUrl() {
       window.history.replaceState({}, document.title, window.location.pathname)
     }

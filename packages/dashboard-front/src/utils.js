@@ -1,6 +1,6 @@
 import store from './store'
 
-export const API_PREFIX = '//localhost:5000/api'
+export const API_PREFIX = process.env.VUE_APP_API_PREFIX
 export const API_ROUTES = {
   discordRedirect: `${API_PREFIX}/login/discordRedirect/`,
   discordCallback: code => `${API_PREFIX}/login/discordCallback/${code}`,
@@ -42,19 +42,3 @@ export const shortenCall = (route, body, method = body ? 'POST' : 'GET') => API_
   method,
   body: body ? JSON.stringify(body) : undefined
 })
-
-
-export const sendDiscordCallbackCode = code => shortenCall(API_ROUTES.discordCallback(code))
-  .then(res => store.commit('setLoggedIn', res))
-
-export const sendYearGroup = yearGroup => shortenCall(API_ROUTES.yearGroup, { yearGroup })
-  .then(res => {
-    store.commit('setRolesList', res.rolesList)
-    return res
-  })
-
-export const sendAssoGroup = assoGroup => shortenCall(API_ROUTES.assoGroup, { assoGroup })
-  .then(res => {
-    store.commit('setRolesList', res.rolesList)
-    return res
-  })

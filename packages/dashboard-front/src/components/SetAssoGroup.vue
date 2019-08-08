@@ -2,11 +2,13 @@
   <div class="container">
     <h2>Student association group</h2>
     <form @submit.prevent="sendForm">
-      <div class="form-group">
-        <label for="yearGroup">Year group</label>
-        <b-form-select v-model="selectedValue" :options="selectOptions" />
-      </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <fieldset :disabled="loading">
+        <div class="form-group">
+          <label for="yearGroup">Year group</label>
+          <b-form-select v-model="selectedValue" :options="selectOptions" />
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </fieldset>
     </form>
 
     <Promised :promise="promise" class="mt-2">
@@ -32,9 +34,8 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 import Loader from '@/components/Loader'
-import { sendAssoGroup } from '../utils'
 
 export default {
   components: {
@@ -43,6 +44,7 @@ export default {
   data() {
     return {
       promise: null,
+      loading: false,
 
       selectOptions: [
         { value: null, text: 'Select an option' },
@@ -61,12 +63,16 @@ export default {
     this.selectedValue = this.selectOptions.map(x => x.value).find(x => this.discordUser.roles.includes(x))
   },
   methods: {
+    ...mapActions(['sendAssoGroup']),
+
     async sendForm() {
       if (!this.selectedValue) {
         this.promise = Promise.reject(new Error('You must select an option.'))
         return
       }
-      this.promise = sendAssoGroup(this.selectedValue)
+      this.loading = true
+      this.promise = this.sendAssoGroup(this.selectedValue)
+        .finally(() => (this.loading = false))
     }
   }
 }

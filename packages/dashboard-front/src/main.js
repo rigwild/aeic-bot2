@@ -12,6 +12,9 @@ Vue.use(BootstrapVue)
 import { Promised } from 'vue-promised'
 Vue.component('Promised', Promised)
 
+if (!process.env.VUE_APP_API_PREFIX)
+  throw new Error('Missing environment variable.')
+
 Vue.config.productionTip = false
 
 new Vue({
