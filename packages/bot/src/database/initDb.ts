@@ -1,5 +1,4 @@
 import { TpGroupModel, TpGroup } from './TpGroup'
-import { logger } from '../config'
 
 export const defaultTpGroups: TpGroup[] = [
   ['tp1a', 'dut1', 'td1', 'DUT1 TPA', 'tp1a-remind'],
@@ -21,14 +20,15 @@ export const defaultTpGroups: TpGroup[] = [
 
 export const defaultTpGroupsName = defaultTpGroups.map(x => x.name)
 
-export const defaultAssoGroupsName = ['omega', 'sigma', 'theta', 'delta']
+export const defaultAssoGroupsName = ['omega', 'sigma', 'theta', 'delta'].map(x => x.toLowerCase())
+export const defaultYearGroupsName = ['1ère année', '2ème année FI', '2ème année APP'].map(x => x.toLowerCase())
 
 const initTpGroups = async () => {
   const count = await TpGroupModel.countDocuments({})
   if (count > 0) return
 
   await TpGroupModel.insertMany(defaultTpGroups)
-  logger.info('TP groups were created in database.')
+  console.info('TP groups were created in database.')
 }
 
 export default async () => {
@@ -36,6 +36,6 @@ export default async () => {
     await initTpGroups()
   }
   catch (error) {
-    logger.error(error)
+    console.error(error)
   }
 }

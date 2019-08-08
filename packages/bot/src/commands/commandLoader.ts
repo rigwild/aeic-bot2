@@ -1,6 +1,6 @@
 import { Message } from 'discord.js'
 
-import { COMMAND_TRIGGER, ARG_SEPARATOR, logger } from '../config'
+import { COMMAND_TRIGGER, ARG_SEPARATOR } from '../config'
 import msgId from '../msgId'
 
 import aide from './list/aide'
@@ -52,7 +52,7 @@ export default async (message: Message) => {
     await selectedCommand.run(message, ...args)
   }
   catch (error) {
-    logger.error(error)
+    console.error(error)
     await message.reply(error.message)
   }
 }

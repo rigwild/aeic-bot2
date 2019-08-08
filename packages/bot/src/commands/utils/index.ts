@@ -1,6 +1,6 @@
 import { Message, TextChannel } from 'discord.js'
 
-import { defaultTpGroupsName, defaultAssoGroupsName } from '../../database/initDb'
+import { defaultTpGroupsName, defaultAssoGroupsName, defaultYearGroupsName } from '../../database/initDb'
 import planningIutLoader from './PlanningIutLoader'
 import ExoPlatformLoader from './ExoPlatformLoader'
 
@@ -8,13 +8,19 @@ import ExoPlatformLoader from './ExoPlatformLoader'
  * Check a TP group exists. Case insensitive.
  * @param tpGroup TP group to check existance
  */
-export const tpGroupExists = (tpGroup: string) => !!defaultTpGroupsName.find(aTpGroup => aTpGroup.toLowerCase() === tpGroup.toLowerCase())
+export const tpGroupExists = (tpGroup: string) => !!defaultTpGroupsName.find(aTpGroup => aTpGroup === removeAccents(tpGroup).toLowerCase())
 
 /**
  * Check a association group exists. Case insensitive.
  * @param assoGroup Association group to check existance
  */
-export const assoGroupExists = (assoGroup: string) => !!defaultAssoGroupsName.find(aAssoGroup => aAssoGroup.toLowerCase() === assoGroup.toLowerCase())
+export const assoGroupExists = (assoGroup: string) => !!defaultAssoGroupsName.find(aAssoGroup => aAssoGroup === removeAccents(assoGroup).toLowerCase())
+
+/**
+ * Check a association group exists. Case insensitive.
+ * @param yearGroup Association group to check existance
+ */
+export const yearGroupExists = (yearGroup: string) => !!defaultYearGroupsName.find(aYearGroup => aYearGroup === removeAccents(yearGroup).toLowerCase())
 
 /**
  * Check a message was posted in a channel. Case insensitive.

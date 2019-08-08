@@ -10,6 +10,7 @@
     "dev": "nodemon --exec npm run server:start --ext js,ts"
   },
   "dependencies": {
+    "@aeic-bot2/bot": "*",
     "@hapi/boom": "^7.4.2",
     "btoa": "^1.2.1",
     "compression": "^1.7.4",
