@@ -11,12 +11,13 @@
     "start": "node dist/index.js",
     "start:ts": "ts-node src/index.ts",
     "build": "tsc",
+    "dev": "nodemon --exec npm run server:start --ext js,ts",
     "doc": "rm -rf docs && node buildDocumentation.js"
   },
   "dependencies": {
     "cron": "^1.7.1",
     "discord.js": "^11.5.1",
-    "dotenv": "^8.0.0",
+    "dotenv-safe": "^6.1.0",
     "exoplatform-api-wrapper": "^0.1.7",
     "mongoose": "^5.6.9",
     "node-fetch": "^2.6.0",
@@ -24,7 +25,7 @@
   },
   "devDependencies": {
     "@types/cron": "^1.7.1",
-    "@types/dotenv": "^6.1.1",
+    "@types/dotenv-safe": "^5.0.3",
     "@types/mongoose": "^5.5.12",
     "@types/node": "^12.7.1",
     "@types/node-fetch": "^2.5.0",

@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken'
 import fetch from 'node-fetch'
 import btoa from 'btoa'
 import boom from '@hapi/boom'
+import { User } from 'discord.js'
 
 import { DISCORD_REDIRECT_URI, DISCORD_CLIENT_ID, DISCORD_CLIENT_SECRET, SERVER_SECRET } from '../../config'
 import { asyncMiddleware } from '../utils'
@@ -29,7 +30,7 @@ router.get('/discordCallback/:code', asyncMiddleware(async (req, res) => {
   if (token.error) throw boom.badRequest(token.error_description)
 
   // Load user data
-  const me = await fetch('https://discordapp.com/api/users/@me', {
+  const me: User = await fetch('https://discordapp.com/api/users/@me', {
     headers: { Authorization: `Bearer ${token.access_token}` }
   }).then(_res => _res.json())
 

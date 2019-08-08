@@ -1,7 +1,7 @@
 # aeic-bot2
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/)
 
-A bot to manage the student association's Discord server of IUT du Littoral Côte d'Opale at Calais. This is a successor to [rigwild/aeic-bot](https://github.com/rigwild/aeic-bot)
+A bot to manage the student association's Discord server of IUT du Littoral Côte d'Opale at Calais. This is a successor to [rigwild/aeic-bot](https://github.com/rigwild/aeic-bot).
 
 ## Packages
 | Package | Description |

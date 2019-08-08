@@ -2,14 +2,13 @@ import express from 'express'
 import boom from '@hapi/boom'
 
 import { getGuild, getUser } from '../bot'
-import { asyncMiddleware, removeAccents } from '../utils'
+import { asyncMiddleware, removeAccents, checkRequiredParameters } from '../utils'
 
 const router = express.Router()
 
 router.post('/yearGroup', asyncMiddleware(async (req, res) => {
-  if (!req.body.yearGroup) throw boom.badRequest('Missing parameter')
+  const { yearGroup } = checkRequiredParameters(['yearGroup'], req.body)
 
-  const yearGroup = req.body.yearGroup
   const yearGroups = [
     '1ère année',
     '2ème année FI',
@@ -38,9 +37,7 @@ router.post('/yearGroup', asyncMiddleware(async (req, res) => {
 }))
 
 router.post('/assoGroup', asyncMiddleware(async (req, res) => {
-  if (!req.body.assoGroup) throw boom.badRequest('Missing parameter')
-
-  const assoGroup = req.body.assoGroup
+  const { assoGroup } = checkRequiredParameters(['assoGroup'], req.body)
   const assoGroups = ['omega', 'sigma', 'theta', 'delta'].map(x => removeAccents(x).toLowerCase())
 
   // Check the year group exists

@@ -1,17 +1,12 @@
 import Loki from 'lokijs'
 
-/**
- * @type {Loki}
- */
-export let dbInstance
+import { dbPath } from '../config'
 
-/**
- * @type {Collection<any>}
- */
-export let dataCollection
+export let dbInstance: Loki
+export let dataCollection: Collection<any>
 
 export const loadDb = () => new Promise((resolve) => {
-  dbInstance = new Loki('aeic-bot2-dashboard.db', {
+  dbInstance = new Loki(dbPath, {
     autoload: true,
     autosave: true,
     autosaveInterval: 4000,
@@ -25,4 +20,4 @@ export const loadDb = () => new Promise((resolve) => {
   })
 })
 
-export const addDbData = (token, discordUser) => dataCollection.insert({ token, discordUser })
+export const addDbData = (token: object, discordUser: object) => dataCollection.insert({ token, discordUser })

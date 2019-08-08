@@ -8,7 +8,6 @@
     "outDir": "./dist/",
     "strict": true,
     "alwaysStrict": true,
-    "types": ["node", "dotenv-save", "mongoose", "cron", "node-fetch"],
     "esModuleInterop": true
   },
   "include": [

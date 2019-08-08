@@ -1,5 +1,6 @@
 import boom from '@hapi/boom'
 import expressJwt from 'express-jwt'
+import { RequestHandler } from 'express'
 
 import { SERVER_SECRET } from '../config'
 import { dataCollection } from './db'
@@ -28,7 +29,7 @@ export const checkJwt = expressJwt({
  * Check the request does not contain a Authorization header.
  * @throws The Authorization header is set
  */
-export const checkNoJwt = (req, res, next) => {
+export const checkNoJwt: RequestHandler = (req, res, next) => {
   if (req.headers.authorization)
     throw boom.conflict('You can\'t access this resource with a authorization header token set.')
   next()

@@ -1,4 +1,5 @@
-import Discord from 'discord.js'
+import Discord, { Guild } from 'discord.js'
+
 import { DISCORD_AUTH_TOKEN, DISCORD_SERVER_ID } from '../config'
 
 // Create the bot instance
@@ -17,5 +18,5 @@ export const start = () => new Promise(resolve => {
   })
 })
 
-export const getGuild = () => bot.guilds.get(DISCORD_SERVER_ID)
-export const getUser = async userId => bot.fetchUser(userId).then(user => getGuild().member(user))
+export const getGuild = () => <Guild>bot.guilds.get(DISCORD_SERVER_ID)
+export const getUser = async (userId: string) => bot.fetchUser(userId).then(user => getGuild().member(user))

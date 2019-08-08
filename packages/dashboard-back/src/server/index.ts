@@ -1,13 +1,13 @@
 import express from 'express'
-import compression from 'compression'
-import helmet from 'helmet'
-import cors from 'cors'
+const compression = require('compression')
+const helmet = require('helmet')
+const cors = require('cors')
+const morgan = require('morgan')
 
 import routes from './routes'
 import { loadDb } from './db'
 import { SERVER_PORT } from '../config'
 import { errorHandler } from './utils'
-const morgan = require('morgan')
 
 const app = express()
 

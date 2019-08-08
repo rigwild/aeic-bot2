@@ -1,4 +1,6 @@
 import boom from '@hapi/boom'
+import { ErrorRequestHandler, RequestHandler, Request } from 'express'
+import { LoggedDiscordUserRequestHandler } from './types'
 
 /**
  * Call the error handler if a middleware function throw an error
@@ -6,24 +8,25 @@ import boom from '@hapi/boom'
  * @param {Function} fn original middleware function of the route
  * @returns {Promise<Function>} the same middleware function of the route but error handled
  */
-export const asyncMiddleware = fn => (req, res, next) => {
+export const asyncMiddleware = (fn: LoggedDiscordUserRequestHandler) => (req: any, res: any, next: any) => {
   Promise.resolve(fn(req, res, next)).catch(err => {
     next(err)
   })
 }
 
 // Middleware to handle middleware errors
-export const errorHandler = (err, req, res, next) => {
+export const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
   // Check whether the error is a boom error
   if (!err.isBoom) {
     // Check if error is invalid JSON body
-    if (err instanceof SyntaxError && err.status === 400 && err.hasOwnProperty('body'))
-      err = boom.badRequest(err)
+    if (err instanceof SyntaxError && err.hasOwnProperty('body'))
+      err = boom.badRequest(err.message)
     else if (err.name === 'UnauthorizedError')
       err = boom.unauthorized(err)
     else {
       // The error was not recognized, send a 500 HTTP error
       err = boom.internal(err)
+      err
     }
   }
 
@@ -46,20 +49,19 @@ export const errorHandler = (err, req, res, next) => {
 
 /**
  * Check the request contains all the required parameters
- *
- * @param {string[]} requiredParameters list of all required parameters
- * @param {object} parameters parameters provided in the request (req.query)
- * @returns {void}
- * @throws missing parameters
+ * @param requiredParameters List of all required parameters
+ * @param parameters Parameters provided in the request (req.query)
+ * @throws Missing parameters
  */
-export const checkRequiredParameters = (requiredParameters, parameters) => {
+export const checkRequiredParameters = (requiredParameters: string[], parameters: { [key: string]: string }): { [key: string]: string } => {
   if (!requiredParameters.every(aRequiredParameter => parameters.hasOwnProperty(aRequiredParameter)))
     throw boom.badRequest(`Missing parameter(s). Required parameters : ${requiredParameters.join(', ')}.`)
+  return parameters
 }
 
 /**
  * Remove accents from a string
- * @param {string} str String to format
- * @returns {string} Formatted string
+ * @param str String to format
+ * @returns Formatted string
  */
-export const removeAccents = str => str.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+export const removeAccents = (str: string) => str.normalize('NFD').replace(/[\u0300-\u036f]/g, '')

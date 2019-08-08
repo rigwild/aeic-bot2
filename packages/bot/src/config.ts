@@ -1,5 +1,5 @@
 import path from 'path'
-import dotenv from 'dotenv'
+import dotenvSafe from 'dotenv-safe'
 import winston from 'winston'
 
 // Winston logger configuration
@@ -26,25 +26,7 @@ export const logger = winston.createLogger({
 })
 
 // Load environment configuration
-dotenv.config({ path: path.resolve(__dirname, '..', '.env') })
-
-const requiredVariables = [
-  'COMMAND_TRIGGER',
-  'ARG_SEPARATOR',
-  'DEV_DISCORD_ID',
-  'DOC_URI',
-  'PLANNING_LINK',
-  'EXO_PLATFORM_LINK',
-  'AUTO_REMINDER_CRON_TIME',
-  'DISCORD_AUTH_TOKEN',
-  'DISCORD_SERVER_ID',
-  'MONGO_URI',
-  'EXO_PLATFORM_USERNAME',
-  'EXO_PLATFORM_PASSWORD'
-]
-
-if (!requiredVariables.every(x => process.env[x]))
-  throw new Error(`You must specify your configuration as environment variables to run the bot (${requiredVariables.join(', ')}).`)
+dotenvSafe.config({ path: path.resolve(__dirname, '..', '.env') })
 
 export const {
   COMMAND_TRIGGER,
