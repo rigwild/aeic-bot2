@@ -12,13 +12,6 @@ export const routes = [
     name: 'Home',
     component: Home,
     needLoggedIn: false,
-    needLoggedOut: false
-  },
-  {
-    path: '/login',
-    name: 'Login',
-    component: () => import('./views/Login.vue'),
-    needLoggedIn: false,
     needLoggedOut: true
   },
   {
@@ -46,11 +39,11 @@ router.beforeEach((to, from, next) => {
 
   // Redirect to login page if user is not logged in and want to go to a login-need page
   if (store.getters.isLoggedIn && needLoggedOut.includes(to.name))
-    return next({ name: 'Home' })
+    return next({ name: 'Dashboard' })
 
   // Redirect to home page if user is logged in and want to go to a no-login-need page
   if (!store.getters.isLoggedIn && needLoggedIn.includes(to.name))
-    return next({ name: 'Login' })
+    return next({ name: 'Home' })
 
   next()
 })

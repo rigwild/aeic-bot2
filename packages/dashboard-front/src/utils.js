@@ -1,20 +1,14 @@
 import store from './store'
 
 export const API_PREFIX = process.env.VUE_APP_API_PREFIX
-export const API_ROUTES = {
-  discordRedirect: `${API_PREFIX}/login/discordRedirect/`,
-  discordCallback: code => `${API_PREFIX}/login/discordCallback/${code}`,
-  yearGroup: `${API_PREFIX}/dashboard/yearGroup`,
-  assoGroup: `${API_PREFIX}/dashboard/assoGroup`
-}
 
 /**
  * Make a call to the API. Extracts the `data` property if call was successful.
- * @param {String} URI Request URI
+ * @param {String} route Request endpoint
  * @param {Object} options Fetch options object
  * @returns {Promise<Object>} The API's response
  */
-export const API_CALL = async (URI, options = {}) => {
+export const API_CALL = async (route, options = {}) => {
   if (!options.headers) options.headers = {}
 
   // Set JSON Content-Type
@@ -26,7 +20,7 @@ export const API_CALL = async (URI, options = {}) => {
   if (token) options.headers.authorization = `Bearer ${token}`
 
   // Do the actual request
-  return fetch(URI, options)
+  return fetch(`${API_PREFIX}${route}`, options)
     .then(async res => {
       // Add the JSON output to the HTTP response instance
       res.json = await res.json()
@@ -38,7 +32,10 @@ export const API_CALL = async (URI, options = {}) => {
     })
 }
 
-export const shortenCall = (route, body, method = body ? 'POST' : 'GET') => API_CALL(route, {
+export const API_CALL_SHORT = (route, body, method = body ? 'POST' : 'GET') => API_CALL(route, {
   method,
   body: body ? JSON.stringify(body) : undefined
 })
+
+export const toHumanDateTime = dateStr => new Date(dateStr).toLocaleString('fr-FR').replace('à', '-')
+export const toHumanDate = dateStr => new Date(dateStr).toLocaleDateString('fr-FR')

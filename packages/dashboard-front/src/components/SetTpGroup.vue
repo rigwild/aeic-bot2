@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h2>Student association group</h2>
+    <h2>TP group</h2>
     <form @submit.prevent="sendForm">
       <fieldset :disabled="loading">
         <div class="form-group">
@@ -34,6 +34,8 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
+import { defaultTpGroupsName } from '@aeic-bot2/bot/dist/database/initDb'
+
 import Loader from '@/components/Loader'
 
 export default {
@@ -47,10 +49,7 @@ export default {
 
       selectOptions: [
         { value: null, text: 'Select an option' },
-        { value: 'Omega', text: 'Omega' },
-        { value: 'Sigma', text: 'Sigma' },
-        { value: 'Theta', text: 'Theta' },
-        { value: 'Delta', text: 'Delta' }
+        ...defaultTpGroupsName.map(x => ({ value: x, text: x }))
       ],
       selectedValue: null
     }
@@ -62,7 +61,7 @@ export default {
     this.selectedValue = this.selectOptions.map(x => x.value).find(x => this.discordUser.roles.includes(x)) || null
   },
   methods: {
-    ...mapActions(['setAssoGroup']),
+    ...mapActions(['setTpGroup']),
 
     async sendForm() {
       if (!this.selectedValue) {
@@ -70,7 +69,7 @@ export default {
         return
       }
       this.loading = true
-      this.promise = this.setAssoGroup(this.selectedValue)
+      this.promise = this.setTpGroup(this.selectedValue)
         .finally(() => (this.loading = false))
     }
   }

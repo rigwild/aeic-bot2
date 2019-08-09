@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import createPersistedState from 'vuex-persistedstate'
+import { defaultTpGroupsName, defaultYearGroupsName, defaultAssoGroupsName } from '@aeic-bot2/bot/dist/database/initDb'
 
 import router from './router'
-import { shortenCall as API_CALL, API_ROUTES } from './utils'
+import { API_CALL_SHORT } from './utils'
 
 Vue.use(Vuex)
 
@@ -23,26 +24,40 @@ export default new Vuex.Store({
 
   actions: {
     async sendDiscordCallbackCode({ commit }, code) {
-      const res = await API_CALL(API_ROUTES.discordCallback(code))
-      commit('setLoggedIn', res)
+      const { token, discordUser } = await API_CALL_SHORT(`/login/discordCallback/${code}`)
+      commit('setLoggedIn', token)
+      commit('setDiscordUser', discordUser)
     },
 
-    async sendYearGroup({ commit }, yearGroup) {
-      const res = await API_CALL(API_ROUTES.yearGroup, { yearGroup })
+    async refreshDiscordUser({ commit }) {
+      const discordUser = await API_CALL_SHORT('/dashboard/discordUser')
+      commit('setDiscordUser', discordUser)
+    },
+
+    async setYearGroup({ commit }, yearGroup) {
+      const res = await API_CALL_SHORT('/dashboard/discordUser/yearGroup', { yearGroup }, 'PATCH')
       commit('setRolesList', res.rolesList)
       return res
     },
 
-    async sendAssoGroup({ commit }, assoGroup) {
-      const res = await API_CALL(API_ROUTES.assoGroup, { assoGroup })
+    async setTpGroup({ commit }, tpGroup) {
+      const res = await API_CALL_SHORT('/dashboard/discordUser/tpGroup', { tpGroup }, 'PATCH')
+      commit('setRolesList', res.rolesList)
+      return res
+    },
+
+    async setAssoGroup({ commit }, assoGroup) {
+      const res = await API_CALL_SHORT('/dashboard/discordUser/assoGroup', { assoGroup }, 'PATCH')
       commit('setRolesList', res.rolesList)
       return res
     }
   },
 
   mutations: {
-    setLoggedIn(state, { token, discordUser }) {
+    setLoggedIn(state, token) {
       state.token = token
+    },
+    setDiscordUser(state, discordUser) {
       state.discordUser = discordUser
     },
     setLoggedOut(state) {
@@ -63,6 +78,19 @@ export default new Vuex.Store({
     },
     discordFullPseudo(state) {
       return `${state.discordUser.username}#${state.discordUser.discriminator}`
+    },
+
+    currentTpGroup(state) {
+      if (!state.discordUser.roles) return
+      return state.discordUser.roles.find(x => defaultTpGroupsName.includes(x))
+    },
+    currentYearGroup(state) {
+      if (!state.discordUser.roles) return
+      return state.discordUser.roles.find(x => defaultYearGroupsName.includes(x))
+    },
+    currentAssoGroup(state) {
+      if (!state.discordUser.roles) return
+      return state.discordUser.roles.find(x => defaultAssoGroupsName.includes(x))
     }
   },
 

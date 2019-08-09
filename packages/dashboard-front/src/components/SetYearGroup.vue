@@ -4,7 +4,6 @@
     <form @submit.prevent="sendForm">
       <fieldset :disabled="loading">
         <div class="form-group">
-          <label for="yearGroup">Year group</label>
           <b-form-select v-model="selectedValue" :options="selectOptions" />
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
@@ -59,10 +58,10 @@ export default {
     ...mapState(['discordUser'])
   },
   mounted() {
-    this.selectedValue = this.selectOptions.map(x => x.value).find(x => this.discordUser.roles.includes(x))
+    this.selectedValue = this.selectOptions.map(x => x.value).find(x => this.discordUser.roles.includes(x)) || null
   },
   methods: {
-    ...mapActions(['sendYearGroup']),
+    ...mapActions(['setYearGroup']),
 
     async sendForm() {
       if (!this.selectedValue) {
@@ -70,7 +69,7 @@ export default {
         return
       }
       this.loading = true
-      this.promise = this.sendYearGroup(this.selectedValue)
+      this.promise = this.setYearGroup(this.selectedValue)
         .finally(() => (this.loading = false))
     }
   }
