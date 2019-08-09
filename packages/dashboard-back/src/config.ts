@@ -2,7 +2,10 @@ import path from 'path'
 import dotenvSafe from 'dotenv-safe'
 
 // Load environment configuration
-dotenvSafe.config({ path: path.resolve(__dirname, '..', '.env') })
+dotenvSafe.config({
+  path: path.resolve(__dirname, '..', '..', '..', '.env'),
+  example: path.resolve(__dirname, '..', '..', '..', '.env.example')
+})
 
 export const {
   SERVER_PORT,
@@ -12,7 +15,8 @@ export const {
   MONGO_URI,
   DISCORD_REDIRECT_URI,
   DISCORD_CLIENT_ID,
-  DISCORD_CLIENT_SECRET
+  DISCORD_CLIENT_SECRET,
+  PLANNING_LINK
 } = <{ [key: string]: string }>process.env
 
 export const dbPath = path.resolve(__dirname, '..', 'aeic-bot2-dashboard.db')
