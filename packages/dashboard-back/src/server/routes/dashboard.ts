@@ -1,9 +1,9 @@
 import express from 'express'
 import boom from '@hapi/boom'
 
-import { tpGroupExists, assoGroupExists, yearGroupExists, planningIutLoader, hasRole } from '@aeic-bot2/bot/src/commands/utils'
+import { tpGroupExists, assoGroupExists, yearGroupExists, planningIutLoader, hasRole, ExoPlatformLoader } from '@aeic-bot2/bot/src/commands/utils'
 import { defaultYearGroupsName, defaultAssoGroupsName, defaultTpGroupsName } from '@aeic-bot2/bot/src/database/initDb'
-import { TpGroupModel, TpGroupDocument } from '@aeic-bot2/bot/src/database/TpGroup'
+import { TpGroupModel, TpGroupDocument, Homework } from '@aeic-bot2/bot/src/database/TpGroup'
 
 import { getGuild, getGuildMember } from '../bot'
 import { asyncMiddleware, removeAccents, checkRequiredParameters } from '../utils'
@@ -127,6 +127,55 @@ router.get('/tpGroup/:tpGroup/homework', asyncMiddleware(async (req, res) => {
     })
   }
 
+  res.json({
+    data: homeworkResolvedAuthors
+  })
+}))
+
+// Add an homework to a TP group
+router.put('/tpGroup/:tpGroup/homework', asyncMiddleware(async (req, res) => {
+  const { tpGroup } = checkRequiredParameters(['tpGroup'], req.params)
+  const { homework: homeworkToAdd } = checkRequiredParameters<Homework>(['homework'], req.body)
+
+  // Check the tp group exists
+  if (!tpGroupExists(tpGroup))
+    throw boom.badRequest('Invalid TP group.')
+
+  // Check the dueDate is a valid date
+  const parsedDueDate = Date.parse(homeworkToAdd.dueDate.toString())
+  if (isNaN(parsedDueDate)) throw new Error('Invalid due date.')
+  if (parsedDueDate < Date.now())
+    throw boom.badRequest('The due date can not be in the past.')
+
+  // Get Discord Guild member data
+  const user = await getGuildMember(req.user.id)
+
+  // Check the member has the TP group role
+  if (!(await hasRole(user.roles, tpGroup)))
+    throw boom.forbidden('You need the TP group role to see this TP homework.')
+
+  // Delete the homework
+  let data = <TpGroupDocument>await TpGroupModel.findOneAndUpdate({ name: tpGroup }, {
+    $push: {
+      homework: homeworkToAdd
+    }
+  }, { new: true })
+  if (!data) {
+    console.error('Could not add an homework', data)
+    throw boom.notFound('The homework was not added.')
+  }
+
+  // Resolve homework authors Discord profiles
+  const homework = data.homework.toObject()
+  let homeworkResolvedAuthors = []
+  for (const anHomework of homework) {
+    const member = await getGuildMember(anHomework.authorId)
+    if (!member) return
+    homeworkResolvedAuthors.push({
+      ...anHomework,
+      author: extractMemberProfile(member)
+    })
+  }
 
   res.json({
     data: homeworkResolvedAuthors
@@ -151,7 +200,7 @@ router.delete('/tpGroup/:tpGroup/homework/:homeworkId', asyncMiddleware(async (r
 
   // Check the member has the TP group role
   if (!(await hasRole(user.roles, tpGroup)))
-    throw boom.forbidden('You need the TP group role to see this TP homework.')
+    throw boom.forbidden('You need the TP group role to edit this TP homework.')
 
   // Delete the homework
   const data = <TpGroupDocument>await TpGroupModel.findOneAndUpdate({ name: tpGroup, 'homework._id': homeworkId }, {
@@ -197,7 +246,15 @@ router.get('/tpGroup/:tpGroup/planning', asyncMiddleware(async (req, res) => {
   const planning = (await planningIutLoader.getGroup(planningGroup))
     .map(x => ({ ...x, screenPath: `${PLANNING_LINK}${x.screenPath}` }))
   res.json({
-    data: planning,
+    data: planning
+  })
+}))
+
+// Find someone on eXo Platform
+router.get('/eXoPlatform/:search', asyncMiddleware(async (req, res) => {
+  const { search } = checkRequiredParameters(['search'], req.params)
+  res.json({
+    data: await ExoPlatformLoader.searchUser(search)
   })
 }))
 

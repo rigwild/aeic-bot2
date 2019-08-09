@@ -54,7 +54,7 @@ export const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
  * @param parameters Parameters provided in the request (req.query)
  * @throws Missing parameters
  */
-export const checkRequiredParameters = (requiredParameters: string[], parameters: { [key: string]: string }): { [key: string]: string } => {
+export const checkRequiredParameters = <T = string>(requiredParameters: string[], parameters: { [key: string]: T }): { [key: string]: T } => {
   if (!requiredParameters.every(aRequiredParameter => parameters.hasOwnProperty(aRequiredParameter)))
     throw boom.badRequest(`Missing parameter(s). Required parameters : ${requiredParameters.join(', ')}.`)
   return parameters
