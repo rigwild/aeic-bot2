@@ -3,6 +3,11 @@
 
 A bot to manage the student association's Discord server of IUT du Littoral Côte d'Opale at Calais. This is a successor to [rigwild/aeic-bot](https://github.com/rigwild/aeic-bot).
 
+## Install all packages
+```sh
+lerna bootstrap
+```
+
 ## Packages
 | Package | Description |
 | ------- | ----------- |

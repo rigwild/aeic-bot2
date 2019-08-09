@@ -22,7 +22,6 @@
     "express-jwt": "^5.3.1",
     "helmet": "^3.20.0",
     "jsonwebtoken": "^8.5.1",
-    "lokijs": "^1.5.7",
     "morgan": "^1.9.1",
     "node-fetch": "^2.6.0"
   },
@@ -33,7 +32,6 @@
     "@types/express-jwt": "^0.0.42",
     "@types/hapi__boom": "^7.4.0",
     "@types/jsonwebtoken": "^8.3.3",
-    "@types/lokijs": "^1.5.2",
     "@types/node-fetch": "^2.5.0",
     "typescript": "^3.5.3"
   }

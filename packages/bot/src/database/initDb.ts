@@ -15,13 +15,14 @@ export const defaultTpGroups: TpGroup[] = [
   yearGroup: x[1].toLowerCase(),
   tdGroup: x[2].toLowerCase(),
   planningGroup: x[3],
-  remindChannel: x[4]
+  remindChannel: x[4],
+  homework: []
 }))
 
 export const defaultTpGroupsName = defaultTpGroups.map(x => x.name)
 
 export const defaultAssoGroupsName = ['omega', 'sigma', 'theta', 'delta'].map(x => x.toLowerCase())
-export const defaultYearGroupsName = ['1ère année', '2ème année FI', '2ème année APP'].map(x => x.toLowerCase())
+export const defaultYearGroupsName = ['1ere année', '2eme annee FI', '2eme annee APP'].map(x => x.toLowerCase())
 
 const initTpGroups = async () => {
   const count = await TpGroupModel.countDocuments({})

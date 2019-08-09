@@ -29,4 +29,4 @@ export const getGuild = () => <Guild>bot.guilds.get(DISCORD_SERVER_ID)
  * @param userId Targetted user ID
  * @returns Data of the Discord user
  */
-export const getUser = async (userId: string) => bot.fetchUser(userId).then(user => getGuild().member(user))
+export const getGuildMember = async (userId: string) => bot.fetchUser(userId).then(user => getGuild().member(user))

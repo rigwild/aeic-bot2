@@ -14,10 +14,10 @@ export interface TpGroup {
   tdGroup: string
   planningGroup?: string
   remindChannel?: string
-  homework?: Homework[]
+  homework: Homework[]
 }
 
-export type TpGroupDocument = TpGroup & mongoose.Document
+export type TpGroupDocument = TpGroup & mongoose.Document & { homework: mongoose.Types.Array<Homework> }
 
 export const TpGroupModel = mongoose.model<TpGroupDocument>('TpGroup', new Schema({
   name: { type: String, required: true },

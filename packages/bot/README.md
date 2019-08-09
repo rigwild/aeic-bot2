@@ -7,6 +7,7 @@ yarn
 ```
 
 ## Build
+Files will be builded to `./dist/`
 ```sh
 yarn build
 ```

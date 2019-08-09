@@ -18,5 +18,3 @@ export const {
   DISCORD_CLIENT_SECRET,
   PLANNING_LINK
 } = <{ [key: string]: string }>process.env
-
-export const dbPath = path.resolve(__dirname, '..', 'aeic-bot2-dashboard.db')

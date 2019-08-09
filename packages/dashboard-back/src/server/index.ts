@@ -7,7 +7,6 @@ const morgan = require('morgan')
 import connectMongoDb from '@aeic-bot2/bot/src/database'
 
 import routes from './routes'
-import { loadDb as loadLokiDb } from './db'
 import { SERVER_PORT } from '../config'
 import { errorHandler } from './utils'
 
@@ -34,9 +33,6 @@ app.use('/api', routes)
 app.use(errorHandler)
 
 export default async () => {
-  console.log('Loading the LokiJS database...')
-  await loadLokiDb()
-  console.log('The database was loaded.')
   await connectMongoDb()
 
   console.log('Starting the server...')
