@@ -4,8 +4,10 @@ const helmet = require('helmet')
 const cors = require('cors')
 const morgan = require('morgan')
 
+import connectMongoDb from '@aeic-bot2/bot/src/database'
+
 import routes from './routes'
-import { loadDb } from './db'
+import { loadDb as loadLokiDb } from './db'
 import { SERVER_PORT } from '../config'
 import { errorHandler } from './utils'
 
@@ -32,9 +34,11 @@ app.use('/api', routes)
 app.use(errorHandler)
 
 export default async () => {
-  console.log('Loading the database...')
-  await loadDb()
+  console.log('Loading the LokiJS database...')
+  await loadLokiDb()
   console.log('The database was loaded.')
+  await connectMongoDb()
+
   console.log('Starting the server...')
   app.listen(SERVER_PORT, () => console.log(`The server is listening on http://localhost:${SERVER_PORT}.`))
   return app

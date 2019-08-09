@@ -1,4 +1,4 @@
-import { Message, TextChannel } from 'discord.js'
+import { Message, TextChannel, Role, GuildMember } from 'discord.js'
 
 import { defaultTpGroupsName, defaultAssoGroupsName, defaultYearGroupsName } from '../../database/initDb'
 import planningIutLoader from './PlanningIutLoader'
@@ -31,19 +31,25 @@ export const isMessageInChannel = (message: Message, channel: string) =>
   message.channel instanceof TextChannel && message.channel.name.toLowerCase() === channel.toLowerCase()
 
 /**
+ * Check a collection of roles has every needed roles. Case insensitive.
+ * @param role Collection of roles to check
+ * @param neededRoles Roles to check
+ */
+export const hasRole = async (role: GuildMember['roles'], ...neededRoles: string[]) =>
+  neededRoles.every(aNeededRole =>
+    role.find(aMemberRole => aMemberRole.name.toLowerCase() === aNeededRole.toLowerCase()))
+
+/**
  * Check a message's author has roles. Case insensitive.
  * @param message Received Discord message
- * @param role Roles to check
+ * @param neededRoles Roles to check
  */
-export const hasAuthorRole = async (message: Message, ...neededRoles: string[]) => {
-  const memberRoles = await message.guild.member(message.author).roles
-  return neededRoles.every(aNeededRole =>
-    memberRoles.find(aMemberRole => aMemberRole.name.toLowerCase() === aNeededRole.toLowerCase()))
-}
+export const hasAuthorRole = async (message: Message, ...neededRoles: string[]) =>
+  hasRole(await message.guild.member(message.author).roles)
 
 /**
  * Check a message's author has one of some roles. Case insensitive.
- * @param message Received Discord message
+ * @param neededRoles Received Discord message
  * @param role Roles to check
  */
 export const hasAuthorRoleSome = async (message: Message, ...neededRoles: string[]) => {

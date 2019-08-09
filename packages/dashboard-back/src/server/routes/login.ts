@@ -43,7 +43,7 @@ router.get('/discordCallback/:code', asyncMiddleware(async (req, res) => {
 
   addDbData(token, me)
   const jwtToken = jwt.sign({
-    ...me
+    id: me.id
   }, SERVER_SECRET, { expiresIn: '7d' })
 
   res.json({

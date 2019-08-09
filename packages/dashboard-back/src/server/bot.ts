@@ -18,5 +18,15 @@ export const start = () => new Promise(resolve => {
   })
 })
 
+/**
+ * Fetch the Discord's guild the bot is watching
+ * @returns Data of the Discord guild
+ */
 export const getGuild = () => <Guild>bot.guilds.get(DISCORD_SERVER_ID)
+
+/**
+ * Fetch a Discord's guild member data
+ * @param userId Targetted user ID
+ * @returns Data of the Discord user
+ */
 export const getUser = async (userId: string) => bot.fetchUser(userId).then(user => getGuild().member(user))

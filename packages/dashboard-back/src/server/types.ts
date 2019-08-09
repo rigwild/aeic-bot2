@@ -1,6 +1,6 @@
-import express, { Request, Response, NextFunction } from 'express'
+import { Request, Response, NextFunction } from 'express'
 import { User } from 'discord.js'
 
 export declare interface LoggedDiscordUserRequestHandler {
-  (req: (Request & { user: User }), res: Response, next: NextFunction): any
+  (req: (Request & { user: { id: User['id'] } }), res: Response, next: NextFunction): any
 }

@@ -22,7 +22,7 @@ You can configure the bot and the dashboard back-end by setting environment vari
 | `COMMAND_TRIGGER` | String to use before a command to trigger it | `!` |
 | `ARG_SEPARATOR` | Command argument separator | `--` |
 | `DEV_DISCORD_ID` | Bot's developer Discord ID | `411139773940629514` |
-| `DOC_URI` | URI to the bot's commands documentation | `https://git.io/aeic-bot2` |
+| `DOC_URI` | URI to the bot's commands documentation | `https://git.io/aeic-bot2-docs` |
 | `PLANNING_LINK` | Link to a [rigwild/planning-iut-calais](https://github.com/rigwild/planning-iut-calais) server | `https://planning-iut-calais.asauvage.fr` |
 | `EXO_PLATFORM_LINK` | Link to an eXo Platform server | `iut.univ-littoral.fr` |
 | `AUTO_REMINDER_CRON_TIME` | Cron time configuration for the reminder service, defaults to everyday à 19:00 | `0 19 * * *` |

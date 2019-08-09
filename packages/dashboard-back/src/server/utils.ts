@@ -1,5 +1,6 @@
 import boom from '@hapi/boom'
-import { ErrorRequestHandler, RequestHandler, Request } from 'express'
+import { ErrorRequestHandler } from 'express'
+
 import { LoggedDiscordUserRequestHandler } from './types'
 
 /**
