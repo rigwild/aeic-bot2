@@ -47,7 +47,6 @@ export const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
   next()
 }
 
-
 /**
  * Check the request contains all the required parameters
  * @param requiredParameters List of all required parameters

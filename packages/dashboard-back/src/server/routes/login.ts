@@ -6,7 +6,7 @@ import boom from '@hapi/boom'
 
 import { DISCORD_REDIRECT_URI, DISCORD_CLIENT_ID, DISCORD_CLIENT_SECRET, SERVER_SECRET } from '../../config'
 import { asyncMiddleware } from '../utils'
-import { getDiscordUserProfile } from './_utils'
+import { getDiscordUserProfile } from '../bot'
 
 const router = express.Router()
 

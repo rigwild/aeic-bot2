@@ -4,9 +4,8 @@ import boom from '@hapi/boom'
 import { tpGroupExists, assoGroupExists, yearGroupExists } from '@aeic-bot2/bot/src/commands/utils'
 import { defaultYearGroupsName, defaultAssoGroupsName, defaultTpGroupsName } from '@aeic-bot2/bot/src/database/initDb'
 
-import { getGuild, getGuildMember } from '../../bot'
+import { getGuild, getGuildMember, getDiscordUserProfile } from '../../bot'
 import { asyncMiddleware, removeAccents, checkRequiredParameters } from '../../utils'
-import { getDiscordUserProfile } from '../_utils'
 
 const router = express.Router()
 

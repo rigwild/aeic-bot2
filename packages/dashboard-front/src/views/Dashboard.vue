@@ -12,6 +12,8 @@
     <hr>
     <Homework />
     <hr>
+    <Moodle />
+    <hr>
     <Planning />
     <hr>
     <ExoPlatform />
@@ -19,32 +21,26 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-
 import UserCard from '@/components/UserCard.vue'
-import Planning from '@/components/Planning.vue'
 import SetYearGroup from '@/components/SetYearGroup.vue'
 import SetTpGroup from '@/components/SetTpGroup.vue'
 import SetAssoGroup from '@/components/SetAssoGroup.vue'
 import Homework from '@/components/Homework.vue'
+import Moodle from '@/components/Moodle.vue'
+import Planning from '@/components/Planning.vue'
 import ExoPlatform from '@/components/ExoPlatform.vue'
 
 export default {
   name: 'Dashboard',
   components: {
     UserCard,
-    Planning,
     SetYearGroup,
     SetTpGroup,
     SetAssoGroup,
     Homework,
+    Moodle,
+    Planning,
     ExoPlatform
-  },
-  computed: {
-    ...mapState(['discordUser'])
-  },
-  async mounted() {
-
   }
 }
 </script>

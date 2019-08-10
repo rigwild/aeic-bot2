@@ -16,6 +16,10 @@ const defaultState = () => JSON.parse(JSON.stringify({
     id: null,
     avatar: null,
     roles: null
+  },
+  moodle: {
+    username: null,
+    password: null
   }
 }))
 
@@ -69,15 +73,25 @@ export default new Vuex.Store({
     setRolesList(state, rolesList) {
       if (!state.discordUser) return
       state.discordUser.roles = rolesList
+    },
+
+    setMoodleCredentials(state, { username, password }) {
+      state.moodle.username = username
+      state.moodle.password = password
+    },
+    unsaveMoodleCredentials(state) {
+      state.moodle = defaultState().moodle
     }
   },
-
   getters: {
     isLoggedIn(state) {
       return !!state.token
     },
     discordFullPseudo(state) {
       return `${state.discordUser.username}#${state.discordUser.discriminator}`
+    },
+    areMoodleCredentialsSaved(state) {
+      return state.moodle.username && state.moodle.password
     },
 
     currentTpGroup(state) {

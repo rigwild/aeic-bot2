@@ -4,10 +4,9 @@ import boom from '@hapi/boom'
 import { tpGroupExists, planningIutLoader, hasRole } from '@aeic-bot2/bot/src/commands/utils'
 import { TpGroupModel, TpGroupDocument, Homework } from '@aeic-bot2/bot/src/database/TpGroup'
 
-import { getGuildMember } from '../../bot'
+import { getGuildMember, extractMemberProfile } from '../../bot'
 import { asyncMiddleware, removeAccents, checkRequiredParameters } from '../../utils'
 import { PLANNING_LINK } from '../../../config'
-import { extractMemberProfile } from '../_utils'
 
 const router = express.Router()
 
