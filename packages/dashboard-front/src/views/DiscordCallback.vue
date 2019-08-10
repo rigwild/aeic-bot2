@@ -32,7 +32,7 @@ export default {
       if (!code) throw new Error('No code was passed in url query')
 
       await this.sendDiscordCallbackCode(code)
-      this.$router.replace({ name: 'Dashboard' })
+      this.$router.replace({ name: 'DashboardDiscord' })
       this.cleanUrl()
     }
     catch (err) {

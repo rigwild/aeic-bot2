@@ -2,13 +2,21 @@
   <div id="app">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
-        <router-link class="navbar-brand" to="/">aeic-bot2-dashboard</router-link>
+        <router-link class="navbar-brand" to="#" exact>aeic-bot2-dashboard</router-link>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarText">
+        <div v-if="isLoggedIn" class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <router-link to="/dashboard/discord" exact-active-class="active" class="nav-link">Discord</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link to="/dashboard/iut" exact-active-class="active" class="nav-link">IUT</router-link>
+            </li>
+          </ul>
           <ul class="navbar-nav ml-auto">
-            <li v-if="isLoggedIn" class="nav-item pointer">
+            <li class="nav-item pointer">
               <a class="nav-link" @click.prevent="setLoggedOut">({{ discordFullPseudo }}) - Logout</a>
             </li>
           </ul>
@@ -17,7 +25,9 @@
     </nav>
 
     <div class="container mt-2 mb-4">
-      <router-view />
+      <keep-alive>
+        <router-view />
+      </keep-alive>
     </div>
 
     <nav class="navbar navbar-expand-sm mt-5">
@@ -53,5 +63,11 @@ export default {
 <style>
 .pointer {
   cursor: pointer;
+}
+.scrollable {
+  overflow-x: hidden;
+  max-height: 500px;
+  border: 2px solid #F4F4F4;
+  overflow-y: scroll;
 }
 </style>

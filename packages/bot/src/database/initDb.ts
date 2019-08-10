@@ -22,7 +22,7 @@ export const defaultTpGroups: TpGroup[] = [
 export const defaultTpGroupsName = defaultTpGroups.map(x => x.name)
 
 export const defaultAssoGroupsName = ['omega', 'sigma', 'theta', 'delta'].map(x => x.toLowerCase())
-export const defaultYearGroupsName = ['1ere année', '2eme annee FI', '2eme annee APP'].map(x => x.toLowerCase())
+export const defaultYearGroupsName = ['1ere annee', '2eme annee FI', '2eme annee APP'].map(x => x.toLowerCase())
 
 const initTpGroups = async () => {
   const count = await TpGroupModel.countDocuments({})

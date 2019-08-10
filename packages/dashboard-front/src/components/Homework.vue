@@ -15,7 +15,7 @@
         </div>
       </template>
       <template v-slot="data">
-        <b-list-group v-if="data.length > 0" :key="data.length">
+        <b-list-group v-if="data.length > 0" :key="data.length" class="scrollable">
           <b-list-group-item v-for="(anHomework, index) in data" :key="`homework-${index}`" class="flex-column align-items-start">
             <div class="d-flex w-100 justify-content-between">
               <h5 class="mb-1">{{ anHomework.subject }}</h5>

@@ -14,7 +14,7 @@
         <div class="form-check">
           <input v-model="form.saveCredentials" class="form-check-input" type="checkbox" id="saveCredentials">
           <label class="form-check-label" for="saveCredentials">
-            Save Moodle credentials in your browser ? (They are sent to the server to log in to Moodle but they are not stored! 🔒)
+            Save Moodle credentials in your browser ? (They are sent to the server to log in to Moodle but <a href="https://github.com/rigwild/aeic-bot2/blob/master/packages/dashboard-back/src/server/routes/dashboard/moodle.ts" target="_blank" rel="noopener">they are not stored!</a> 🔒)
           </label>
         </div>
       </fieldset>

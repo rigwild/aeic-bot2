@@ -6,7 +6,7 @@ import { asyncMiddleware, checkRequiredParameters } from '../../utils'
 
 const router = express.Router()
 
-// Find someone on eXo Platform
+// Load a user's Moodle calendar
 router.post('/moodle', asyncMiddleware(async (req, res) => {
   const { username, password } = checkRequiredParameters(['username', 'password'], req.body)
 
