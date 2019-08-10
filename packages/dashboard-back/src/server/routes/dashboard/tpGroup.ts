@@ -1,98 +1,15 @@
 import express from 'express'
 import boom from '@hapi/boom'
 
-import { tpGroupExists, assoGroupExists, yearGroupExists, planningIutLoader, hasRole, ExoPlatformLoader } from '@aeic-bot2/bot/src/commands/utils'
-import { defaultYearGroupsName, defaultAssoGroupsName, defaultTpGroupsName } from '@aeic-bot2/bot/src/database/initDb'
+import { tpGroupExists, planningIutLoader, hasRole } from '@aeic-bot2/bot/src/commands/utils'
 import { TpGroupModel, TpGroupDocument, Homework } from '@aeic-bot2/bot/src/database/TpGroup'
 
-import { getGuild, getGuildMember } from '../bot'
-import { asyncMiddleware, removeAccents, checkRequiredParameters } from '../utils'
-import { PLANNING_LINK } from '../../config'
-import { getDiscordUserProfile, extractMemberProfile } from './_utils'
+import { getGuildMember } from '../../bot'
+import { asyncMiddleware, removeAccents, checkRequiredParameters } from '../../utils'
+import { PLANNING_LINK } from '../../../config'
+import { extractMemberProfile } from '../_utils'
 
 const router = express.Router()
-
-// Get a Discord user's profile
-router.get('/discordUser', asyncMiddleware(async (req, res) =>
-  ({ data: await getDiscordUserProfile(req.user.token) })))
-
-// Update a Discord user's year group
-router.patch('/discordUser/yearGroup', asyncMiddleware(async (req, res) => {
-  const { yearGroup } = checkRequiredParameters(['yearGroup'], req.body)
-
-  // Check the year group exists
-  if (!yearGroupExists(yearGroup))
-    throw boom.badRequest('Invalid year group.')
-
-  // Delete other year groups roles and add the new one
-  const guild = getGuild()
-  const user = await getGuildMember(req.user.id)
-  const roleToAdd = guild.roles.find(aRole => removeAccents(aRole.name).toLowerCase() === removeAccents(yearGroup).toLowerCase())
-  if (!roleToAdd) throw boom.notFound('The new role to add does not exist on the Discord server. No roles were removed from the user.')
-  const rolesToDelete = user.roles.filter(aRole => !!defaultYearGroupsName.find(aYearGroup => aYearGroup === removeAccents(aRole.name).toLowerCase()))
-  await user.removeRoles(rolesToDelete)
-  await user.addRole(roleToAdd)
-
-  res.json({
-    data: {
-      addedRole: roleToAdd.name,
-      deletedRoles: rolesToDelete.map(x => x.name),
-      rolesList: user.roles.map(x => x.name)
-    }
-  })
-}))
-
-// Update a Discord user's TP group
-router.patch('/discordUser/tpGroup', asyncMiddleware(async (req, res) => {
-  const { tpGroup } = checkRequiredParameters(['tpGroup'], req.body)
-
-  // Check the year group exists
-  if (!tpGroupExists(tpGroup))
-    throw boom.badRequest('Invalid TP group.')
-
-  // Delete other TP groups roles and add the new one
-  const guild = getGuild()
-  const user = await getGuildMember(req.user.id)
-  const roleToAdd = guild.roles.find(aRole => removeAccents(aRole.name).toLowerCase() === removeAccents(tpGroup).toLowerCase())
-  if (!roleToAdd) throw boom.notFound('The new role to add does not exist on the Discord server. No roles were removed from the user.')
-  const rolesToDelete = user.roles.filter(aRole => !!defaultTpGroupsName.find(aTpGroup => aTpGroup === removeAccents(aRole.name).toLowerCase()))
-  await user.removeRoles(rolesToDelete)
-  await user.addRole(roleToAdd)
-
-  res.json({
-    data: {
-      addedRole: roleToAdd.name,
-      deletedRoles: rolesToDelete.map(x => x.name),
-      rolesList: user.roles.map(x => x.name)
-    }
-  })
-}))
-
-// Update a Discord user's association group
-router.patch('/discordUser/assoGroup', asyncMiddleware(async (req, res) => {
-  const { assoGroup } = checkRequiredParameters(['assoGroup'], req.body)
-
-  // Check the asso group exists
-  if (!assoGroupExists(assoGroup))
-    throw boom.badRequest('Invalid association group.')
-
-  // Delete other year groups roles and add the new one
-  const guild = getGuild()
-  const user = await getGuildMember(req.user.id)
-  const roleToAdd = guild.roles.find(aRole => removeAccents(aRole.name).toLowerCase() === removeAccents(assoGroup).toLowerCase())
-  if (!roleToAdd) throw boom.notFound('The new role to add does not exist on the Discord server. No roles were removed from the user.')
-  const rolesToDelete = user.roles.filter(aRole => !!defaultAssoGroupsName.find(aAssoGroup => aAssoGroup === removeAccents(aRole.name).toLowerCase()))
-  await user.removeRoles(rolesToDelete)
-  await user.addRole(roleToAdd)
-
-  res.json({
-    data: {
-      addedRole: roleToAdd.name,
-      deletedRoles: rolesToDelete.map(x => x.name),
-      rolesList: user.roles.map(x => x.name)
-    }
-  })
-}))
 
 // Get the list of homework for a TP group
 router.get('/tpGroup/:tpGroup/homework', asyncMiddleware(async (req, res) => {
@@ -182,7 +99,6 @@ router.put('/tpGroup/:tpGroup/homework', asyncMiddleware(async (req, res) => {
   })
 }))
 
-
 // Delete an homework based on its ID
 router.delete('/tpGroup/:tpGroup/homework/:homeworkId', asyncMiddleware(async (req, res) => {
   const { tpGroup, homeworkId } = checkRequiredParameters(['tpGroup', 'homeworkId'], req.params)
@@ -247,14 +163,6 @@ router.get('/tpGroup/:tpGroup/planning', asyncMiddleware(async (req, res) => {
     .map(x => ({ ...x, screenPath: `${PLANNING_LINK}${x.screenPath}` }))
   res.json({
     data: planning
-  })
-}))
-
-// Find someone on eXo Platform
-router.get('/eXoPlatform/:search', asyncMiddleware(async (req, res) => {
-  const { search } = checkRequiredParameters(['search'], req.params)
-  res.json({
-    data: await ExoPlatformLoader.searchUser(search)
   })
 }))
 
