@@ -1,6 +1,6 @@
-import { config, msgId, utilsCore } from '@aeic-bot2/core'
+import { removeAccents } from '@aeic-bot2/common'
+import { config, msgId } from '@aeic-bot2/core'
 const { COMMAND_TRIGGER: t } = config
-const { removeAccents } = utilsCore
 
 import { Command } from '../types'
 

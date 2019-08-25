@@ -36,6 +36,3 @@ export const API_CALL_SHORT = (route, body, method = body ? 'POST' : 'GET') => A
   method,
   body: body ? JSON.stringify(body) : undefined
 })
-
-export const toHumanDateTime = dateStr => new Date(dateStr).toLocaleString('fr-FR').replace('à', '-')
-export const toHumanDate = dateStr => new Date(dateStr).toLocaleDateString('fr-FR')

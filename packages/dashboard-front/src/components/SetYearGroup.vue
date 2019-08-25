@@ -34,6 +34,8 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
+import { defaultYearGroupsNameReal } from '@aeic-bot2/common'
+
 import Loader from '@/components/Loader'
 
 export default {
@@ -47,9 +49,7 @@ export default {
 
       selectOptions: [
         { value: null, text: 'Select an option' },
-        { value: '1ère année', text: '1ère année' },
-        { value: '2ème année FI', text: '2ème année FI' },
-        { value: '2ème année APP', text: '2ème année APP' }
+        ...defaultYearGroupsNameReal.map(x => ({ value: x, text: x }))
       ],
       selectedValue: null
     }

@@ -8,10 +8,9 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "@aeic-bot2/bot": "*",
+    "@aeic-bot2/common": "*",
     "bootstrap": "^4.3.1",
     "bootstrap-vue": "^2.0.0-rc.27",
-    "dotenv-safe": "^6.1.0",
     "vue": "^2.6.10",
     "vue-promised": "^1.2.1",
     "vue-router": "^3.1.2",

@@ -22,7 +22,7 @@ import SetAssoGroup from '@/components/SetAssoGroup.vue'
 import Homework from '@/components/Homework.vue'
 
 export default {
-  name: 'Dashboard',
+  name: 'DashboardDiscord',
   components: {
     UserCard,
     SetYearGroup,

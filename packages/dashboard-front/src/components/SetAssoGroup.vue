@@ -34,6 +34,8 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
+import { defaultAssoGroupsNameReal } from '@aeic-bot2/common'
+
 import Loader from '@/components/Loader'
 
 export default {
@@ -47,10 +49,7 @@ export default {
 
       selectOptions: [
         { value: null, text: 'Select an option' },
-        { value: 'Omega', text: 'Omega' },
-        { value: 'Sigma', text: 'Sigma' },
-        { value: 'Theta', text: 'Theta' },
-        { value: 'Delta', text: 'Delta' }
+        ...defaultAssoGroupsNameReal.map(x => ({ value: x, text: x }))
       ],
       selectedValue: null
     }

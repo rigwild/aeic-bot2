@@ -6,9 +6,10 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "prepublish": "npm run build"
+    "prepublish": "tsc"
   },
   "dependencies": {
+    "@aeic-bot2/common": "*",
     "discord.js": "^11.5.1",
     "dotenv-safe": "^8.1.0",
     "exoplatform-api-wrapper": "^0.1.7",

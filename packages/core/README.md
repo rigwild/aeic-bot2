@@ -1,5 +1,11 @@
 # @aeic-bot2/core
-Monorepo common utils.
+Monorepo core components.
+
+Contains:
+ - Database handler
+ - Discord bot handler
+ - ExoPlatform loader and cache handler
+ - Planning IUT Calais loader and cache handler
 
 ## Install
 ```sh

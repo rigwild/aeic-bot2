@@ -1,7 +1,7 @@
+import { Homework } from '@aeic-bot2/common'
 import { config, msgId, utilsCore, TpGroupModel } from '@aeic-bot2/core'
 const { COMMAND_TRIGGER: t, ARG_SEPARATOR: s } = config
 const { tpGroupExists, hasAuthorRole } = utilsCore
-import { Homework } from '@aeic-bot2/core/dist/types'
 
 import { Command } from '../types'
 

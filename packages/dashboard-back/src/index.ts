@@ -1,5 +1,6 @@
+import { botStart } from '@aeic-bot2/core'
+
 import startServer from './server'
-import { start as botStart } from './server/bot'
 
 const setup = async () => {
   await botStart()

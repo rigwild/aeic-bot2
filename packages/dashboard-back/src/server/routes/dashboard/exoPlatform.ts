@@ -1,6 +1,8 @@
 import express from 'express'
 
-import { ExoPlatformLoader } from '@aeic-bot2/bot/src/commands/utils'
+import { utilsCore } from '@aeic-bot2/core'
+const { ExoPlatformLoader } = utilsCore
+
 import { asyncMiddleware, checkRequiredParameters } from '../../utils'
 
 const router = express.Router()

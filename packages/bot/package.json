@@ -15,6 +15,7 @@
     "doc": "rm -rf docs && node buildDocumentation.js"
   },
   "dependencies": {
+    "@aeic-bot2/common": "*",
     "@aeic-bot2/core": "*",
     "cron": "^1.7.1"
   },

@@ -1,6 +1,6 @@
+import { toHumanDate, Homework } from '@aeic-bot2/common'
+
 import { DEV_DISCORD_ID, DOC_URI } from './config'
-import { toHumanDate } from './utils'
-import { Homework } from './database/TpGroup'
 
 const AEIC_BOT_HELP = `Pour des raisons de lisibilité du chat, les commandes sont répertoriées ici : ${DOC_URI}.
 Questions ? Suggestions ? MP le développeur de l'AEIC-BOT <@${DEV_DISCORD_ID}>.

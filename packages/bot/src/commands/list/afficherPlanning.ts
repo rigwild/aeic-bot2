@@ -1,8 +1,9 @@
 import { RichEmbed } from '@aeic-bot2/core/dist/types'
 
+import { getDateWeek } from '@aeic-bot2/common'
 import { config, msgId, utilsCore, TpGroupModel } from '@aeic-bot2/core'
 const { COMMAND_TRIGGER: t, PLANNING_LINK } = config
-const { hasAuthorRole, planningIutLoader, tpGroupExists, getDateWeek } = utilsCore
+const { hasAuthorRole, planningIutLoader, tpGroupExists } = utilsCore
 
 import { Command } from '../types'
 

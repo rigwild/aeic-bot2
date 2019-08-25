@@ -1,10 +1,11 @@
-import { TextChannel } from '@aeic-bot2/core/dist/types'
 import { CronJob } from 'cron'
 
+import { toHumanDate } from '@aeic-bot2/common'
 import { config, bot, msgId, utilsCore } from '@aeic-bot2/core'
 import { TpGroupModel, TpGroupDocument } from '@aeic-bot2/core/dist/database/TpGroup'
 const { AUTO_REMINDER_CRON_TIME, DISCORD_SERVER_ID } = config
-const { toHumanDate, planningIutLoader } = utilsCore
+const { planningIutLoader } = utilsCore
+import { TextChannel } from '@aeic-bot2/core/dist/types'
 
 import { buildHomeworkEmbed } from './commands/list/afficherDevoir'
 import { buildPlanningEmbed } from './commands/list/afficherPlanning'

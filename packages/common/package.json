@@ -1,0 +1,14 @@
+{
+  "name": "@aeic-bot2/common",
+  "version": "0.1.0",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepublish": "tsc"
+  },
+  "devDependencies": {
+    "typescript": "^3.5.3"
+  }
+}

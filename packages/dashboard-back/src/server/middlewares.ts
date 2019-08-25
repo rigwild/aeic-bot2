@@ -2,10 +2,8 @@ import boom from '@hapi/boom'
 import expressJwt from 'express-jwt'
 import { RequestHandler } from 'express'
 
-import { SERVER_SECRET } from '../config'
-
-// Turning of valid-jsdoc rule for this file
-/* eslint valid-jsdoc: 0 */
+import { config } from '@aeic-bot2/core'
+const { SERVER_SECRET } = config
 
 /**
  * Check the request contains a valid JWT.

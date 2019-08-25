@@ -1,8 +1,9 @@
 import ExoPlatformWrapper from 'exoplatform-api-wrapper'
-
 import { User } from 'exoplatform-api-wrapper/dist/types/User'
+
+import { removeAccents } from '@aeic-bot2/common'
+
 import { EXO_PLATFORM_LINK, EXO_PLATFORM_USERNAME, EXO_PLATFORM_PASSWORD } from '../config'
-import { removeAccents } from '.'
 import msgId from '../msgId'
 
 class ExoPlatformLoader {

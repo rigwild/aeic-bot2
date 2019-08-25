@@ -40,6 +40,7 @@
 
 <script>
 import { mapState, mapMutations, mapGetters } from 'vuex'
+
 import Loader from '@/components/Loader'
 import { API_CALL_SHORT } from '@/utils'
 

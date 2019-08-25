@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import createPersistedState from 'vuex-persistedstate'
-import { defaultTpGroupsName, defaultYearGroupsName, defaultAssoGroupsName } from '@aeic-bot2/bot/dist/database/initDb'
+import { defaultTpGroupsName, defaultYearGroupsName, defaultAssoGroupsName } from '@aeic-bot2/common'
 
 import router from './router'
 import { API_CALL_SHORT } from './utils'

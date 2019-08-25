@@ -4,10 +4,10 @@ const helmet = require('helmet')
 const cors = require('cors')
 const morgan = require('morgan')
 
-import connectMongoDb from '@aeic-bot2/bot/src/database'
+import { connectDb, config } from '@aeic-bot2/core'
+const { SERVER_PORT } = config
 
 import routes from './routes'
-import { SERVER_PORT } from '../config'
 import { errorHandler } from './utils'
 
 const app = express()
@@ -33,7 +33,7 @@ app.use('/api', routes)
 app.use(errorHandler)
 
 export default async () => {
-  await connectMongoDb()
+  await connectDb()
 
   console.log('Starting the server...')
   app.listen(SERVER_PORT, () => console.log(`The server is listening on http://localhost:${SERVER_PORT}.`))

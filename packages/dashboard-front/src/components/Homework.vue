@@ -19,7 +19,7 @@
           <b-list-group-item v-for="(anHomework, index) in data" :key="`homework-${index}`" class="flex-column align-items-start">
             <div class="d-flex w-100 justify-content-between">
               <h5 class="mb-1">{{ anHomework.subject }}</h5>
-              <small>Added the {{ toHumanDateTime(anHomework.addedDate) }}</small>
+              <small>Added the {{ toHumanDateTime(new Date(anHomework.addedDate)) }}</small>
             </div>
 
             <p class="mb-1">{{ anHomework.content }}</p>
@@ -27,7 +27,7 @@
             <div class="d-flex w-100 justify-content-between">
               <div>
                 <small>
-                  Due date: {{ toHumanDate(anHomework.dueDate) }}
+                  Due date: {{ toHumanDate(new Date(anHomework.dueDate)) }}
                   <a @click.prevent="toDeleteId = anHomework._id" class="text-danger pointer">Delete</a>
                 </small>
               </div>
@@ -71,8 +71,10 @@
 
 <script>
 import { mapState, mapGetters } from 'vuex'
+import { toHumanDate, toHumanDateTime } from '@aeic-bot2/common'
+
+import { API_CALL_SHORT } from '@/utils'
 import Loader from '@/components/Loader'
-import { API_CALL_SHORT, toHumanDate, toHumanDateTime } from '@/utils'
 
 export default {
   components: {

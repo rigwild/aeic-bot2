@@ -4,7 +4,9 @@ import fetch from 'node-fetch'
 import btoa from 'btoa'
 import boom from '@hapi/boom'
 
-import { DISCORD_REDIRECT_URI, DISCORD_CLIENT_ID, DISCORD_CLIENT_SECRET, SERVER_SECRET } from '../../config'
+import { config } from '@aeic-bot2/core'
+const { DISCORD_REDIRECT_URI, DISCORD_CLIENT_ID, DISCORD_CLIENT_SECRET, SERVER_SECRET } = config
+
 import { asyncMiddleware } from '../utils'
 import { getDiscordUserProfile } from '../bot'
 

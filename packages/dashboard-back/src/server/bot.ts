@@ -1,24 +1,9 @@
-import Discord, { Guild, User, GuildMember } from 'discord.js'
 import fetch from 'node-fetch'
 import boom from '@hapi/boom'
 
-import { DISCORD_AUTH_TOKEN, DISCORD_SERVER_ID } from '../config'
-
-// Create the bot instance
-export const bot = new Discord.Client()
-
-export const start = () => new Promise(resolve => {
-  console.log('Starting AEIC-BOT...')
-
-  bot.login(DISCORD_AUTH_TOKEN)
-
-  bot.on('ready', () => {
-    const serverInfo = bot.guilds.find(x => x.id === DISCORD_SERVER_ID)
-    if (!serverInfo) throw new Error(`The server ID=${DISCORD_SERVER_ID} was not found. Check the bot has access to it.`)
-    console.log(`Bot connected on the server "${serverInfo.name}" ID=${DISCORD_SERVER_ID}.`)
-    resolve()
-  })
-})
+import { bot, config } from '@aeic-bot2/core'
+const { DISCORD_SERVER_ID } = config
+import { Guild, User, GuildMember } from '@aeic-bot2/core/dist/types'
 
 /**
  * Fetch the Discord's guild the bot is watching

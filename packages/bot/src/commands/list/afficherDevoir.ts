@@ -1,9 +1,9 @@
-import { TextChannel, RichEmbed } from '@aeic-bot2/core/dist/types'
+import { RichEmbed } from '@aeic-bot2/core/dist/types'
 
+import { toHumanDateTime, toHumanDate, Homework } from '@aeic-bot2/common'
 import { config, msgId, utilsCore, TpGroupModel } from '@aeic-bot2/core'
 const { COMMAND_TRIGGER: t } = config
-const { hasAuthorRole, tpGroupExists, toHumanDateTime, toHumanDate } = utilsCore
-import { Homework } from '@aeic-bot2/core/dist/types'
+const { hasAuthorRole, tpGroupExists } = utilsCore
 
 import { Command } from '../types'
 

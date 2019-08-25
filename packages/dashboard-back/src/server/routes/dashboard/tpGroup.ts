@@ -1,12 +1,16 @@
 import express from 'express'
 import boom from '@hapi/boom'
 
-import { tpGroupExists, planningIutLoader, hasRole } from '@aeic-bot2/bot/src/commands/utils'
-import { TpGroupModel, TpGroupDocument, Homework } from '@aeic-bot2/bot/src/database/TpGroup'
+import { Homework } from '@aeic-bot2/common'
+
+import { utilsCore, config } from '@aeic-bot2/core'
+const { tpGroupExists, planningIutLoader, hasRole } = utilsCore
+const { PLANNING_LINK } = config
+import { TpGroupModel } from '@aeic-bot2/core'
+import { TpGroupDocument } from '@aeic-bot2/core/dist/types'
 
 import { getGuildMember, extractMemberProfile } from '../../bot'
 import { asyncMiddleware, removeAccents, checkRequiredParameters } from '../../utils'
-import { PLANNING_LINK } from '../../../config'
 
 const router = express.Router()
 

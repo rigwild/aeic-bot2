@@ -1,21 +1,5 @@
 import mongoose, { Schema } from 'mongoose'
-
-export interface Homework {
-  subject: string
-  content: string
-  authorId: string
-  dueDate: Date
-  addedDate?: Date
-}
-
-export interface TpGroup {
-  name: string
-  yearGroup: string
-  tdGroup: string
-  planningGroup?: string
-  remindChannel?: string
-  homework: Homework[]
-}
+import { TpGroup, Homework } from '@aeic-bot2/common'
 
 export type TpGroupDocument = TpGroup & mongoose.Document & { homework: mongoose.Types.Array<Homework> }
 

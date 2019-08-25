@@ -34,7 +34,7 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
-import { defaultTpGroupsName } from '@aeic-bot2/bot/dist/database/initDb'
+import { defaultTpGroupsName } from '@aeic-bot2/common'
 
 import Loader from '@/components/Loader'
 

@@ -38,8 +38,10 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { toHumanDateTime } from '@aeic-bot2/common'
+
 import Loader from '@/components/Loader'
-import { API_CALL_SHORT, toHumanDateTime } from '@/utils'
+import { API_CALL_SHORT } from '@/utils'
 
 export default {
   components: {
