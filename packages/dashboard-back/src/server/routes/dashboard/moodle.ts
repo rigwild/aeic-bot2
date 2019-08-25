@@ -58,7 +58,6 @@ router.post('/moodle', asyncMiddleware(async (req, res) => {
   </style>`
 
   const calendar = `<html><head>${calendarCSS}</head><body>${calendarHTML2}</body></html>`
-  console.log(calendar)
   res.json({
     data: calendar
   })
