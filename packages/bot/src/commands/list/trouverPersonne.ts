@@ -41,7 +41,7 @@ const command: Command = {
         name: aUser.fullname,
         value: `${aUser.username} - ${aUser.email ? aUser.email : 'Pas d\'email'} - [Lien eXo](https://${EXO_PLATFORM_LINK}/portal/intranet/profile/${aUser.username})`
       }))
-      await message.reply(embed)
+      await message.reply({ embed })
     }
   }
 }

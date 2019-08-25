@@ -17,18 +17,10 @@
   "dependencies": {
     "@aeic-bot2/core": "*",
     "cron": "^1.7.1",
-    "discord.js": "^11.5.1",
-    "dotenv-safe": "^6.1.0",
-    "exoplatform-api-wrapper": "^0.1.7",
-    "mongoose": "^5.6.9",
-    "node-fetch": "^2.6.0"
+    "discord.js": "^11.5.1"
   },
   "devDependencies": {
     "@types/cron": "^1.7.1",
-    "@types/dotenv-safe": "^5.0.3",
-    "@types/mongoose": "^5.5.12",
-    "@types/node": "^12.7.1",
-    "@types/node-fetch": "^2.5.0",
     "typescript": "^3.5.3"
   }
 }

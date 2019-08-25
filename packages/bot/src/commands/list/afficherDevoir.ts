@@ -52,7 +52,7 @@ const command: Command = {
     if (homework.length === 0)
       throw new Error(msgId.NO_HOMEWORK(tpGroup))
 
-    await message.reply(buildHomeworkEmbed(tpGroup, homework))
+    await message.reply({ embed: buildHomeworkEmbed(tpGroup, homework) })
   }
 }
 export default command

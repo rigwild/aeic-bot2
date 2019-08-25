@@ -60,7 +60,7 @@ const command: Command = {
     if (!planningIutLoader.isCached()) await message.channel.send(msgId.REQUEST_LOADING('afficherPlanning'))
 
     const planningData = (await planningIutLoader.getGroup(groupPlanningToLoad))[0]
-    await message.reply(buildPlanningEmbed(groupPlanningToLoad, planningData))
+    await message.reply({ embed: buildPlanningEmbed(groupPlanningToLoad, planningData) })
   }
 }
 export default command

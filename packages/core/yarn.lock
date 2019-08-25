@@ -31,7 +31,7 @@
     "@types/bson" "*"
     "@types/node" "*"
 
-"@types/mongoose@^5.5.12":
+"@types/mongoose@^5.5.13":
   version "5.5.13"
   resolved "https://registry.yarnpkg.com/@types/mongoose/-/mongoose-5.5.13.tgz#f76215bb4848a85eb4f1cb50b051a6f4dd3a019b"
   integrity sha512-k7Kxk5gugsZhkl7euWH1p6lmIdh9W8AsQgX0cO7kaihBie/P3ywU8LFMqo9ey6frdHBlGVaNICTeFZ/pZ6s5Lg==
@@ -46,7 +46,7 @@
   dependencies:
     "@types/node" "*"
 
-"@types/node@*", "@types/node@^12.7.1":
+"@types/node@*", "@types/node@^12.7.2":
   version "12.7.2"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.7.2.tgz#c4e63af5e8823ce9cc3f0b34f7b998c2171f0c44"
   integrity sha512-dyYO+f6ihZEtNPDcWNR1fkoTDf3zAK3lAABDze3mz6POyIercH0lEUawUFXlG8xaQZmm1yEBON/4TsYv/laDYg==
@@ -91,17 +91,17 @@ discord.js@^11.5.1:
     tweetnacl "^1.0.0"
     ws "^6.0.0"
 
-dotenv-safe@^6.1.0:
-  version "6.1.0"
-  resolved "https://registry.yarnpkg.com/dotenv-safe/-/dotenv-safe-6.1.0.tgz#df6e72ced7d5bcfd9d870c9f656962a02197337b"
-  integrity sha512-O02OUTS+XmoRNZR4kRjJ9jlUGvQoXpMeTVVEBc8hUtgvPTgVZpsZH7TOocq4RVDpPrs2xGPwj6gIWjqRX+ErHA==
+dotenv-safe@^8.1.0:
+  version "8.1.0"
+  resolved "https://registry.yarnpkg.com/dotenv-safe/-/dotenv-safe-8.1.0.tgz#9046f1c9b70183d49275c0b6c383db37f432b346"
+  integrity sha512-ONrR6gKNtaaQxV1GUvlLB4jHXtEixUe0a+x5QdnYdKJKelg9J/Kv6hPHXYBJqgJ6HBrEFtS2g2NcB6Hx78/l/Q==
   dependencies:
-    dotenv "^6.1.0"
+    dotenv "^8.1.0"
 
-dotenv@^6.1.0:
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-6.2.0.tgz#941c0410535d942c8becf28d3f357dbd9d476064"
-  integrity sha512-HygQCKUBSFl8wKQZBSemMywRWcEDNidvNbjGVyZu3nbZ8qq9ubiPoGLMdRDpfSrpkkm9BXYFkpKxxFX38o/76w==
+dotenv@^8.1.0:
+  version "8.1.0"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-8.1.0.tgz#d811e178652bfb8a1e593c6dd704ec7e90d85ea2"
+  integrity sha512-GUE3gqcDCaMltj2++g6bRQ5rBJWtkWTmqmD0fo1RnnMuUqHNCt2oTPeDnS9n6fKYvlhn7AeBkb38lymBtWBQdA==
 
 exoplatform-api-wrapper@^0.1.7:
   version "0.1.7"
@@ -152,7 +152,7 @@ mongoose-legacy-pluralize@1.0.2:
   resolved "https://registry.yarnpkg.com/mongoose-legacy-pluralize/-/mongoose-legacy-pluralize-1.0.2.tgz#3ba9f91fa507b5186d399fb40854bff18fb563e4"
   integrity sha512-Yo/7qQU4/EyIS8YDFSeenIvXxZN+ld7YdV9LqFVQJzTLye8unujAWPZ4NWKfFA+RNjh+wvTWKY9Z3E5XM6ZZiQ==
 
-mongoose@^5.6.9:
+mongoose@^5.6.10:
   version "5.6.10"
   resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-5.6.10.tgz#0758b7ae7d6f9654e994cc1aa41efc63e35e131b"
   integrity sha512-lxWvF4Vl2118K2nZTj+QAEEmNBCbmUAcmF/roe8d+68Np4RXKEQvmpqm1c3aIlE9AVMp//eKB8IfXr38ZHe0Zw==
