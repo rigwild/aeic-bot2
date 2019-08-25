@@ -1,4 +1,4 @@
-import { TextChannel } from 'discord.js'
+import { TextChannel } from '@aeic-bot2/core/dist/types'
 import { CronJob } from 'cron'
 
 import { config, bot, msgId, utilsCore } from '@aeic-bot2/core'
@@ -52,10 +52,11 @@ export default () => new CronJob(AUTO_REMINDER_CRON_TIME, async () => {
 
       // Check the TP group remind channel exists
       const channel = guild.channels.find(aChannel => aChannel.name === aTpGroup.remindChannel)
+
       if (!channel || !(channel instanceof TextChannel))
         throw new Error(msgId.UNKNOWN_CHANNEL(aTpGroup.remindChannel))
 
-      channel.send(`######## RAPPELS JOURNALIERS DU ${toHumanDate(new Date())} pour le groupe \`${aTpGroup.name}\` ########`)
+      channel.send(`RAPPELS JOURNALIERS DU ${toHumanDate(new Date())} pour le groupe \`${aTpGroup.name}\``)
       // Remind of the homework
       await homeworkRemind(channel, aTpGroup)
       // Remind of the planning
@@ -65,5 +66,5 @@ export default () => new CronJob(AUTO_REMINDER_CRON_TIME, async () => {
       console.error(error)
     }
   }
-  console.info(`Reminder process ended`)
+  console.info('Reminder process ended')
 }, undefined, true, 'Europe/Paris', undefined, false)

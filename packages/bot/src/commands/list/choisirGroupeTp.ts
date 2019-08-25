@@ -17,7 +17,7 @@ const command: Command = {
     ]
   },
 
-  async run(message, ...[tpGroup]) {
+  async run(message, tpGroup) {
     // Check the TP group exists
     if (!tpGroupExists(tpGroup))
       throw new Error(msgId.UNKNOWN_GROUP_TP(tpGroup))

@@ -1,4 +1,4 @@
-import { RichEmbed } from 'discord.js'
+import { RichEmbed } from '@aeic-bot2/core/dist/types'
 
 import { config, msgId, utilsCore } from '@aeic-bot2/core'
 const { COMMAND_TRIGGER: t, EXO_PLATFORM_LINK } = config
@@ -23,7 +23,7 @@ const command: Command = {
     ]
   },
 
-  async run(message, ...[search]) {
+  async run(message, search) {
     // Send a loading message in the channel if the request is not cached
     if (!ExoPlatformLoader.isCached()) await message.channel.send(msgId.REQUEST_LOADING(`/${search}/gi`))
 

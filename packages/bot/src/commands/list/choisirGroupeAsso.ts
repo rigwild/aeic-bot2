@@ -17,7 +17,7 @@ const command: Command = {
     ]
   },
 
-  async run(message, ...[assoGroup]) {
+  async run(message, assoGroup) {
     // Check the association group exists
     if (!assoGroupExists(assoGroup))
       throw new Error(msgId.UNKNOWN_GROUP_ASSO(assoGroup))

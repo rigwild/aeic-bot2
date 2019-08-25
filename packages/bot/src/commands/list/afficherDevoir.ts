@@ -1,4 +1,4 @@
-import { TextChannel, RichEmbed } from 'discord.js'
+import { TextChannel, RichEmbed } from '@aeic-bot2/core/dist/types'
 
 import { config, msgId, utilsCore, TpGroupModel } from '@aeic-bot2/core'
 const { COMMAND_TRIGGER: t } = config
@@ -28,8 +28,6 @@ const command: Command = {
   },
 
   async run(message) {
-    if (!(message.channel instanceof TextChannel)) return
-
     const tpGroup = message.channel.name
 
     // Check the message was sent in a TP group channel

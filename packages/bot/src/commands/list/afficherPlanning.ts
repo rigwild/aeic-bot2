@@ -1,4 +1,4 @@
-import { TextChannel, RichEmbed } from 'discord.js'
+import { RichEmbed } from '@aeic-bot2/core/dist/types'
 
 import { config, msgId, utilsCore, TpGroupModel } from '@aeic-bot2/core'
 const { COMMAND_TRIGGER: t, PLANNING_LINK } = config
@@ -32,8 +32,6 @@ const command: Command = {
   },
 
   async run(message, ...args) {
-    if (!(message.channel instanceof TextChannel)) return
-
     let groupPlanningToLoad
     // No arguments passed, check the channel name the command was sent in
     if (args.length === 0) {

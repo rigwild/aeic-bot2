@@ -1,8 +1,10 @@
-import { Message } from 'discord.js'
+import { Message, TextChannel } from '@aeic-bot2/core/dist/types'
+
+export declare type DiscordMessageForcedTextChannel = Message & { channel: TextChannel }
 
 export declare type CommandRunner = (
   /** Received Discord message object */
-  message: Message,
+  message: DiscordMessageForcedTextChannel,
   /** Received arguments */
   ...args: string[]
 ) => Promise<any>

@@ -1,7 +1,7 @@
-import { Message } from 'discord.js'
-
 import { msgId, config } from '@aeic-bot2/core'
 const { COMMAND_TRIGGER, ARG_SEPARATOR } = config
+
+import { DiscordMessageForcedTextChannel } from './types'
 
 import aide from './list/aide'
 import ajouterDevoir from './list/ajouterDevoir'
@@ -29,7 +29,7 @@ export const commands = {
 // Make all commands keys lowercase
 const commandsLowered = Object.fromEntries(Object.entries(commands).map(([k, v]) => [k.toLowerCase(), v]))
 
-export default async (message: Message) => {
+export default async (message: DiscordMessageForcedTextChannel) => {
   try {
     // Remove the command trigger
     const msg = message.content.substring(COMMAND_TRIGGER.length)

@@ -16,8 +16,7 @@
   },
   "dependencies": {
     "@aeic-bot2/core": "*",
-    "cron": "^1.7.1",
-    "discord.js": "^11.5.1"
+    "cron": "^1.7.1"
   },
   "devDependencies": {
     "@types/cron": "^1.7.1",

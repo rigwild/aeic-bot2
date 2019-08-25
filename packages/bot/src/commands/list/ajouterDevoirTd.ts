@@ -1,4 +1,4 @@
-import { TextChannel } from 'discord.js'
+import { TextChannel } from '@aeic-bot2/core/dist/types'
 
 import { config, msgId, utilsCore, TpGroupModel } from '@aeic-bot2/core'
 const { COMMAND_TRIGGER: t, ARG_SEPARATOR: s } = config
@@ -20,9 +20,9 @@ const command: Command = {
     ]
   },
 
-  async run(message, ...[tdGroup, yearGroup, dueDate, subject, content]) {
+  async run(message, tdGroup, yearGroup, dueDate, subject, content) {
     // Get the list of TPs in a TD group
-    const tpGroups = (await TpGroupModel.find({ tdGroup, yearGroup }))
+    const tpGroups = await TpGroupModel.find({ tdGroup, yearGroup })
     const tpGroupsName = tpGroups.map(x => x.name.toLowerCase())
 
     // Check some TP groups were found

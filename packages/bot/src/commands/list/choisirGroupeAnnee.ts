@@ -20,7 +20,7 @@ const command: Command = {
     ]
   },
 
-  async run(message, ...[yearGroup]) {
+  async run(message, yearGroup) {
     const yearGroups = [
       '1ère année',
       '2ème année FI',

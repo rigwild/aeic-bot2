@@ -1,5 +1,3 @@
-import { TextChannel } from 'discord.js'
-
 import { config, msgId, utilsCore, TpGroupModel } from '@aeic-bot2/core'
 const { COMMAND_TRIGGER: t, ARG_SEPARATOR: s } = config
 const { tpGroupExists, hasAuthorRole } = utilsCore
@@ -20,9 +18,7 @@ const command: Command = {
     ]
   },
 
-  async run(message, ...[dueDate, subject, content]) {
-    if (!(message.channel instanceof TextChannel)) return
-
+  async run(message, dueDate, subject, content) {
     const tpGroup = message.channel.name
     // Check the message was sent in a TP group channel
     if (!tpGroupExists(tpGroup))
