@@ -1,5 +1,6 @@
-import { start as botStart } from './bot'
-import connectDb from './database'
+import { connectDb } from '@aeic-bot2/core'
+
+import botStart from './bot'
 import reminderService from './reminderService'
 
 const setup = async () => {

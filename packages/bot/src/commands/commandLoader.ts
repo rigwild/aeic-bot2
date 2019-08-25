@@ -1,7 +1,7 @@
 import { Message } from 'discord.js'
 
-import { COMMAND_TRIGGER, ARG_SEPARATOR } from '../config'
-import msgId from '../msgId'
+import { msgId, config } from '@aeic-bot2/core'
+const { COMMAND_TRIGGER, ARG_SEPARATOR } = config
 
 import aide from './list/aide'
 import ajouterDevoir from './list/ajouterDevoir'

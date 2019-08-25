@@ -1,5 +1,7 @@
+import { config } from '@aeic-bot2/core'
+const { COMMAND_TRIGGER: t, ARG_SEPARATOR: s } = config
+
 import { Command } from '../types'
-import { COMMAND_TRIGGER as t, ARG_SEPARATOR as s } from '../../config'
 
 const command: Command = {
   meta: {

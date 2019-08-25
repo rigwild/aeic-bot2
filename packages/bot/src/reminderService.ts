@@ -1,12 +1,11 @@
 import { TextChannel } from 'discord.js'
 import { CronJob } from 'cron'
 
-import { AUTO_REMINDER_CRON_TIME, DISCORD_SERVER_ID } from './config'
-import { bot } from './bot'
-import msgId from './msgId'
-import planningIutLoader from './commands/utils/PlanningIutLoader'
-import { TpGroupModel, TpGroupDocument } from './database/TpGroup'
-import { toHumanDate } from './commands/utils'
+import { config, bot, msgId, utilsCore } from '@aeic-bot2/core'
+import { TpGroupModel, TpGroupDocument } from '@aeic-bot2/core/dist/database/TpGroup'
+const { AUTO_REMINDER_CRON_TIME, DISCORD_SERVER_ID } = config
+const { toHumanDate, planningIutLoader } = utilsCore
+
 import { buildHomeworkEmbed } from './commands/list/afficherDevoir'
 import { buildPlanningEmbed } from './commands/list/afficherPlanning'
 

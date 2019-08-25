@@ -1,7 +1,8 @@
+import { config, msgId, utilsCore } from '@aeic-bot2/core'
+const { COMMAND_TRIGGER: t } = config
+const { removeAccents } = utilsCore
+
 import { Command } from '../types'
-import { COMMAND_TRIGGER as t } from '../../config'
-import msgId from '../../msgId'
-import { removeAccents } from '../utils'
 
 const command: Command = {
   meta: {

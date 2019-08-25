@@ -1,7 +1,8 @@
+import { config, msgId, utilsCore } from '@aeic-bot2/core'
+const { COMMAND_TRIGGER: t } = config
+const { tpGroupExists } = utilsCore
+
 import { Command } from '../types'
-import { COMMAND_TRIGGER as t } from '../../config'
-import { tpGroupExists } from '../utils'
-import msgId from '../../msgId'
 
 const command: Command = {
   meta: {

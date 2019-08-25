@@ -1,10 +1,11 @@
 import { TextChannel, RichEmbed } from 'discord.js'
 
+import { config, msgId, utilsCore, TpGroupModel } from '@aeic-bot2/core'
+const { COMMAND_TRIGGER: t } = config
+const { hasAuthorRole, tpGroupExists, toHumanDateTime, toHumanDate } = utilsCore
+import { Homework } from '@aeic-bot2/core/dist/types'
+
 import { Command } from '../types'
-import { hasAuthorRole, tpGroupExists, toHumanDateTime, toHumanDate } from '../utils'
-import msgId from '../../msgId'
-import { COMMAND_TRIGGER as t } from '../../config'
-import { TpGroupModel, Homework } from '../../database/TpGroup'
 
 export const buildHomeworkEmbed = (tpGroup: string, homework: Homework[]) => new RichEmbed({
   title: `Devoirs du groupe \`${tpGroup}\``,

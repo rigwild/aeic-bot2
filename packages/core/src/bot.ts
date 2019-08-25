@@ -6,7 +6,7 @@ import { DISCORD_AUTH_TOKEN, DISCORD_SERVER_ID } from './config'
 export const bot = new Discord.Client()
 
 /** Start the bot */
-export const start = () => new Promise(resolve => {
+export const botStart = (): Promise<void> => new Promise(resolve => {
   console.info('Starting AEIC-BOT2 ...')
 
   bot.login(DISCORD_AUTH_TOKEN)

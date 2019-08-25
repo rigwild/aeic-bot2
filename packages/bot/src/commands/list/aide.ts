@@ -1,6 +1,7 @@
+import { config, msgId } from '@aeic-bot2/core'
+const { COMMAND_TRIGGER: t } = config
+
 import { Command } from '../types'
-import msgId from '../../msgId'
-import { COMMAND_TRIGGER as t } from '../../config'
 
 const command: Command = {
   meta: {

@@ -1,10 +1,10 @@
 import { TextChannel, RichEmbed } from 'discord.js'
 
+import { config, msgId, utilsCore, TpGroupModel } from '@aeic-bot2/core'
+const { COMMAND_TRIGGER: t, PLANNING_LINK } = config
+const { hasAuthorRole, planningIutLoader, tpGroupExists, getDateWeek } = utilsCore
+
 import { Command } from '../types'
-import { hasAuthorRole, planningIutLoader, tpGroupExists, getDateWeek } from '../utils'
-import msgId from '../../msgId'
-import { COMMAND_TRIGGER as t, PLANNING_LINK } from '../../config'
-import { TpGroupModel } from '../../database/TpGroup'
 
 export const buildPlanningEmbed = (group: string, planningData: { screenDate: string, screenPath: string }) => {
   let embed = new RichEmbed()

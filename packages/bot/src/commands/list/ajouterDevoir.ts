@@ -1,10 +1,11 @@
 import { TextChannel } from 'discord.js'
 
+import { config, msgId, utilsCore, TpGroupModel } from '@aeic-bot2/core'
+const { COMMAND_TRIGGER: t, ARG_SEPARATOR: s } = config
+const { tpGroupExists, hasAuthorRole } = utilsCore
+import { Homework } from '@aeic-bot2/core/dist/types'
+
 import { Command } from '../types'
-import { tpGroupExists, hasAuthorRole } from '../utils'
-import msgId from '../../msgId'
-import { ARG_SEPARATOR as s, COMMAND_TRIGGER as t } from '../../config'
-import { TpGroupModel, Homework } from '../../database/TpGroup'
 
 const command: Command = {
   meta: {
