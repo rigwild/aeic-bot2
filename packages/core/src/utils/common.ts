@@ -1,8 +1,6 @@
-import { Message, TextChannel, Role, GuildMember } from 'discord.js'
+import { Message, TextChannel, GuildMember } from 'discord.js'
 
-import { defaultTpGroupsName, defaultAssoGroupsName, defaultYearGroupsName } from '../../database/initDb'
-import planningIutLoader from './PlanningIutLoader'
-import ExoPlatformLoader from './ExoPlatformLoader'
+import { defaultTpGroupsName, defaultAssoGroupsName, defaultYearGroupsName } from '../database/initDb'
 
 /**
  * Check a TP group exists. Case insensitive.
@@ -88,5 +86,3 @@ export const getDateWeek = (_date: Date) => {
  * @param str String to format
  */
 export const removeAccents = (str: string) => str.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-
-export { planningIutLoader, ExoPlatformLoader }

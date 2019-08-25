@@ -1,7 +1,7 @@
 import fetch from 'node-fetch'
 
-import { PLANNING_LINK } from '../../config'
-import msgId from '../../msgId'
+import { PLANNING_LINK } from '../config'
+import msgId from '../msgId'
 
 interface PlanningClasses {
   classes: {

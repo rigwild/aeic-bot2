@@ -1,5 +1,5 @@
 import { DEV_DISCORD_ID, DOC_URI } from './config'
-import { toHumanDate } from './commands/utils'
+import { toHumanDate } from './utils'
 import { Homework } from './database/TpGroup'
 
 const AEIC_BOT_HELP = `Pour des raisons de lisibilité du chat, les commandes sont répertoriées ici : ${DOC_URI}.

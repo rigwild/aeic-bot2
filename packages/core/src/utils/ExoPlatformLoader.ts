@@ -1,9 +1,9 @@
 import ExoPlatformWrapper from 'exoplatform-api-wrapper'
 
 import { User } from 'exoplatform-api-wrapper/dist/types/User'
-import { EXO_PLATFORM_LINK, EXO_PLATFORM_USERNAME, EXO_PLATFORM_PASSWORD } from '../../config'
+import { EXO_PLATFORM_LINK, EXO_PLATFORM_USERNAME, EXO_PLATFORM_PASSWORD } from '../config'
 import { removeAccents } from '.'
-import msgId from '../../msgId'
+import msgId from '../msgId'
 
 class ExoPlatformLoader {
   private cache: User[] = []
