@@ -20,7 +20,8 @@ const defaultState = () => JSON.parse(JSON.stringify({
   moodle: {
     username: null,
     password: null
-  }
+  },
+  ine: null
 }))
 
 export default new Vuex.Store({
@@ -81,6 +82,13 @@ export default new Vuex.Store({
     },
     unsaveMoodleCredentials(state) {
       state.moodle = defaultState().moodle
+    },
+
+    setIne(state, { ine }) {
+      state.ine = ine
+    },
+    unsaveIne(state) {
+      state.ine = defaultState().ine
     }
   },
   getters: {

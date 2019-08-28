@@ -68,6 +68,6 @@ export default {
   overflow-x: hidden;
   max-height: 500px;
   border: 2px solid #F4F4F4;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 </style>

@@ -61,7 +61,7 @@
         </div>
         <div class="form-group">
           Due date
-          <input v-model="newHomework.dueDate" type="date" class="form-control" placeholder="Due date">
+          <input v-model="newHomework.dueDate" type="date" class="form-control" placeholder="Due date" :min="new Date().toISOString().split('T')[0]">
         </div>
         <button type="submit" class="btn btn-primary">Add</button>
       </fieldset>

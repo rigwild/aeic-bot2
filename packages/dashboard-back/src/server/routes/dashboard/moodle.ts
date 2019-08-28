@@ -48,16 +48,32 @@ router.post('/moodle', asyncMiddleware(async (req, res) => {
   if (!calendarHTML || calendarHTML.length === 0) throw boom.internal()
   const calendarHTML2 = calendarHTML[0]
 
-  const calendarCSS = `<link rel="stylesheet" type="text/css" href="http://iic0e.univ-littoral.fr/moodle/theme/yui_combo.php?3.9.1/build/cssreset/cssreset-min.css&3.9.1/build/cssfonts/cssfonts-min.css&3.9.1/build/cssgrids/cssgrids-min.css&3.9.1/build/cssbase/cssbase-min.css" />
+  const calendarHead = `<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="http://iic0e.univ-littoral.fr/moodle/theme/yui_combo.php?3.9.1/build/cssreset/cssreset-min.css&3.9.1/build/cssfonts/cssfonts-min.css&3.9.1/build/cssgrids/cssgrids-min.css&3.9.1/build/cssbase/cssbase-min.css" />
   <link rel="stylesheet" type="text/css" href="http://iic0e.univ-littoral.fr/moodle/theme/styles.php/educator/1481619224/all" />
   <style>
-  * { font-family: helvetica, arial, sans-serif; }
-  .calendarmonth { height: 100%; padding: 0; margin: 0; }
-  body { height: 100%; padding: 0; overflow: hidden; margin: 0; background: white; }
-  th.header { border: 1px solid #f4f4f4; background-color: #e7e7e7; }
+    * {
+      font-family: helvetica, arial, sans-serif;
+    }
+    .calendarmonth {
+      height: 100%;
+      padding: 0;
+      margin: 0;
+    }
+    body {
+      height: 100%;
+      padding: 0;
+      overflow: hidden;
+      margin: 0;
+      background: white;
+    }
+    th.header {
+      border: 1px solid #f4f4f4;
+      background-color: #e7e7e7;
+    }
   </style>`
 
-  const calendar = `<html><head>${calendarCSS}</head><body>${calendarHTML2}</body></html>`
+  const calendar = `<html><head>${calendarHead}</head><body>${calendarHTML2}</body></html>`
   res.json({
     data: calendar
   })
