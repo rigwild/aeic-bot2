@@ -81,7 +81,7 @@ export default {
     async checkApiUp() {
       this.isBackCheckLoading = true
       await fetch(`${API_PREFIX}/checkUp`)
-        .then(() => (this.isBackUp = true))
+        .then(res => (this.isBackUp = res.status === 200))
         .catch(() => (this.isBackUp = false))
         .finally(() => (this.isBackCheckLoading = false))
     }
