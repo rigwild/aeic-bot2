@@ -53,7 +53,7 @@ You can configure the dashboard front-end by setting environment variables. Copy
 
 | Configuration option | Description | Default value |
 | -------------------- | ----------- | ------------- |
-| `VUE_APP_API_PREFIX` | Dashboard back-end URI | `https://dashboard-back-end.com/api` |
+| `VUE_APP_API_PREFIX` | Dashboard back-end URI | `/api` |
 
 ## Contributing
 If you want to contribute to this project, you can open an [issue](https://github.com/rigwild/aeic-bot2/issues) detailing your suggestions or bugs.

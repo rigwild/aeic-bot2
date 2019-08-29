@@ -1,6 +1,6 @@
 import store from './store'
 
-export const API_PREFIX = process.env.VUE_APP_API_PREFIX
+export const API_PREFIX = process.env.VUE_APP_API_PREFIX || '/api'
 
 /**
  * Make a call to the API. Extracts the `data` property if call was successful.

@@ -27,7 +27,7 @@ app.use(morgan('dev'))
 app.use(express.json())
 
 // Serve the API
-app.use('/api', routes)
+app.use(routes)
 
 // Error handler
 app.use(errorHandler)
