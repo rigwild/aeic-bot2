@@ -10,6 +10,7 @@ const getLatestSemester = (ine: string): Promise<string> => new Promise((resolve
   const req = request('https://extra.univ-littoral.fr/abs/index.php', {
     method: 'POST',
     secureProtocol: 'TLSv1_method',
+    ciphers: 'AES128-SHA',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded'
     }
@@ -38,6 +39,7 @@ const getMarks = (ine: string, semesterStr: string): Promise<string> => new Prom
   const req = request('https://extra.univ-littoral.fr/abs/index.php', {
     method: 'POST',
     secureProtocol: 'TLSv1_method',
+    ciphers: 'AES128-SHA',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded'
     }

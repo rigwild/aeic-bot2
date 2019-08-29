@@ -12,7 +12,7 @@
     "@aeic-bot2/common": "*",
     "discord.js": "^11.5.1",
     "dotenv-safe": "^8.1.0",
-    "exoplatform-api-wrapper": "^0.1.7",
+    "exoplatform-api-wrapper": "^0.1.8",
     "mongoose": "^5.6.10",
     "node-fetch": "^2.6.0"
   },
