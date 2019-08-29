@@ -36,7 +36,7 @@ Les commandes et leurs arguments ne sont pas sensibles à la casse, les commande
 ## Liste des commandes
 ### `!afficherDevoir`
 #### Description
-Afficher les devoirs d'un groupe de TP
+Afficher les devoirs d'un groupe de TP. **Commande à utiliser dans un channel de TP**.
 
 #### Arguments
 | Minimum | Maximum |
@@ -52,7 +52,7 @@ Afficher les devoirs d'un groupe de TP
 
 ### `!afficherPlanning`
 #### Description
-Afficher le planning d'un groupe. Voir : <a href="https://planning-iut-calais.asauvage.fr" target="_blank" rel="noopener">https://planning-iut-calais.asauvage.fr</a>
+Afficher le planning d'un groupe. **Commande utilisable sans paramètres dans un channel de TP**. Voir : <a href="https://planning-iut-calais.asauvage.fr" target="_blank" rel="noopener">https://planning-iut-calais.asauvage.fr</a>.
 
 #### Arguments
 | Minimum | Maximum |
@@ -80,7 +80,7 @@ Afficher le planning d'un groupe. Voir : <a href="https://planning-iut-calais.as
 
 ### `!aide`
 #### Description
-Montrer le message d'aide du bot
+Montrer le message d'aide du bot.
 
 #### Arguments
 | Minimum | Maximum |
@@ -96,7 +96,7 @@ Montrer le message d'aide du bot
 
 ### `!ajouterDevoir`
 #### Description
-Ajouter un devoir à un groupe de TP
+Ajouter un devoir à un groupe de TP. **Commande à utiliser dans un channel de TP**.
 
 #### Arguments
 | Minimum | Maximum |
@@ -115,7 +115,7 @@ Ajouter un devoir à un groupe de TP
 
 ### `!ajouterDevoirTd`
 #### Description
-Ajouter un devoir à un groupe de TD
+Ajouter un devoir à un groupe de TD (le devoir sera ajouté à chaque groupes de TP présents dans le groupe de TD).
 
 #### Arguments
 | Minimum | Maximum |
@@ -134,7 +134,7 @@ Ajouter un devoir à un groupe de TD
 
 ### `!choisirGroupeAnnee`
 #### Description
-Choisir le groupe d'année à rejoindre
+Choisir le groupe d'année à rejoindre. Utiliser `remove` pour le retirer.
 
 #### Arguments
 | Minimum | Maximum |
@@ -157,12 +157,21 @@ Choisir le groupe d'année à rejoindre
 ```
 !choisirGroupeAnnee 2eme annee app
 ```
+```
+!choisirGroupeAnnee licence pro
+```
+```
+!choisirGroupeAnnee ancetre
+```
+```
+!choisirGroupeAnnee remove
+```
 
 ---
 
 ### `!choisirGroupeAsso`
 #### Description
-Choisir le groupe d'association à rejoindre
+Choisir le groupe d'association étudiante à rejoindre. Utiliser `remove` pour le retirer.
 
 #### Arguments
 | Minimum | Maximum |
@@ -171,17 +180,26 @@ Choisir le groupe d'association à rejoindre
 
 #### Exemple(s)
 ```
-!choisirGroupeAsso asso1
+!choisirGroupeAsso delta
 ```
 ```
-!choisirGroupeAsso asso2
+!choisirGroupeAsso beta
+```
+```
+!choisirGroupeAsso omega
+```
+```
+!choisirGroupeAsso theta
+```
+```
+!choisirGroupeAsso remove
 ```
 
 ---
 
 ### `!choisirGroupeTp`
 #### Description
-Choisir le groupe de TP à rejoindre
+Choisir le groupe de TP à rejoindre. Utiliser `remove` pour le retirer.
 
 #### Arguments
 | Minimum | Maximum |
@@ -193,7 +211,34 @@ Choisir le groupe de TP à rejoindre
 !choisirGroupeTp tp1a
 ```
 ```
+!choisirGroupeTp tp1b
+```
+```
+!choisirGroupeTp tp1c
+```
+```
+!choisirGroupeTp tp1d
+```
+```
+!choisirGroupeTp tp1e
+```
+```
+!choisirGroupeTp tp2a
+```
+```
 !choisirGroupeTp tp2b
+```
+```
+!choisirGroupeTp tp2c
+```
+```
+!choisirGroupeTp tp2d
+```
+```
+!choisirGroupeTp licencepro
+```
+```
+!choisirGroupeTp remove
 ```
 
 ---

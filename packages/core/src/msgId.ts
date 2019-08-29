@@ -16,8 +16,9 @@ Pour éviter de gêner les autres membres avec mes longs messages, pense à m'ut
 Tu peux afficher la liste de mes commandes en utilisant la commande \`!aide\`. :book:
 Il est par exemple possible de choisir ton groupe de classe, voir ton planning ou encore trouver quelqu'un sur ExoPlatform (et plein d'autres trucs).
 Commence par choisir ton groupe de classe et ta maison d'asso (**sur le serveur discord AEIC**) :ok_hand:
-\`!choisirGroupe tp1a\` ("tp" + Année d'étude + Groupe TP)
-\`!choisirMaison omega\` (Omega, Theta, Sigma ou Delta)
+\`!choisirGroupeTAnnee dut1\` ("dut" + Année d'étude)
+\`!choisirGroupeTp tp1a\` ("tp" + Année d'étude + Groupe TP)
+\`!choisirMaison choisirGroupeAsso\` (Omega, Theta, Sigma ou Delta)
 
 Si tu as la flemme de taper des commandes, il y a une interface qui te permet de tout gérer simplement : ${DASHBOARD_URI}. :ok_hand:
 

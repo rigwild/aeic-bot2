@@ -1,7 +1,7 @@
 const { promises: fs } = require('fs')
 const { resolve: r } = require('path')
 const { commands } = require('./dist/commands')
-const { ARG_SEPARATOR, COMMAND_TRIGGER } = require('./dist/config')
+const { ARG_SEPARATOR, COMMAND_TRIGGER } = require('../core/dist/config')
 
 const docsPath = r(__dirname, 'docs')
 
