@@ -12,7 +12,7 @@ const command: Command = {
     command: 'ajouterDevoirTd',
     minArgs: 5,
     maxArgs: 5,
-    description: 'Ajouter un devoir à un groupe de TD',
+    description: 'Ajouter un devoir à un groupe de TD (le devoir sera ajouté à chaque groupes de TP présents dans le groupe de TD).',
     examples: [
       // !ajouterDevoirTd td1 -- dut1 -- 2020-04-24 -- Java -- TP Breakout
       `${t}ajouterDevoirTd td1 ${s} dut1 ${s} 2020-04-24 ${s} Java ${s} TP Breakout`,

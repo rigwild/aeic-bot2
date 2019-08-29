@@ -10,7 +10,7 @@ const command: Command = {
     command: 'ajouterDevoir',
     minArgs: 3,
     maxArgs: 3,
-    description: 'Ajouter un devoir à un groupe de TP',
+    description: 'Ajouter un devoir à un groupe de TP. **Commande à utiliser dans un channel de TP**.',
     examples: [
       // !ajouterDevoir 2020-04-24 -- Java -- TP Breakout
       `${t}ajouterDevoir 2020-04-24 ${s} Java ${s} TP Breakout`,

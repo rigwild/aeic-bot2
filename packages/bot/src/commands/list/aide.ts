@@ -8,7 +8,7 @@ const command: Command = {
     command: 'aide',
     minArgs: 0,
     maxArgs: 0,
-    description: 'Montrer le message d\'aide du bot',
+    description: 'Montrer le message d\'aide du bot.',
     examples: [
       // !aide
       `${t}aide`

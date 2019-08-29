@@ -4,6 +4,7 @@ This is a tutorial to deploy every components of the monorepo.
 ## Summary
 - [Summary](#summary)
 - [General instructions](#general-instructions)
+  * [Prerequisites](#prerequisites)
   * [Install](#install)
   * [Build all](#build-all)
 - [Configuration](#configuration)
@@ -19,6 +20,11 @@ This is a tutorial to deploy every components of the monorepo.
     + [Using PM2](#using-pm2-1)
 
 ## General instructions
+### Prerequisites
+ - [Node.js v12+](https://nodejs.org)
+ - [Yarn](https://yarnpkg.com)
+ - [Lerna](https://github.com/lerna/lerna)
+
 ### Install
  - Install dependencies
  - Build `@aeic-bot2/core` and `@aeic-bot2/common`
@@ -45,6 +51,7 @@ You can configure the bot and the dashboard back-end by setting environment vari
 | `ARG_SEPARATOR` | Command argument separator | `--` |
 | `DEV_DISCORD_ID` | Bot's developer Discord ID | `411139773940629514` |
 | `DOC_URI` | URI to the bot's commands documentation | `https://git.io/aeic-bot2-docs` |
+| `DASHBOARD_URI` | URI to the dashboard | `https://aeic-bot2.asauvage.fr` |
 | `PLANNING_LINK` | Link to a [rigwild/planning-iut-calais](https://github.com/rigwild/planning-iut-calais) server | `https://planning-iut-calais.asauvage.fr` |
 | `EXO_PLATFORM_LINK` | Link to an eXo Platform server | `iut.univ-littoral.fr` |
 | `AUTO_REMINDER_CRON_TIME` | Cron time configuration for the reminder service, defaults to everyday à 19:00 | `0 19 * * *` |

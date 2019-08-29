@@ -1,22 +1,27 @@
 import { toHumanDate, Homework } from '@aeic-bot2/common'
 
-import { DEV_DISCORD_ID, DOC_URI } from './config'
+import { DEV_DISCORD_ID, DOC_URI, DASHBOARD_URI } from './config'
 
 const AEIC_BOT_HELP = `Pour des raisons de lisibilité du chat, les commandes sont répertoriées ici : ${DOC_URI}.
+Pense à utiliser ton dashboard. Il te permet d'utiliser simplement les commandes (en plus, il y a des outils pour l'iut !) : ${DASHBOARD_URI} :ok_hand: 
 Questions ? Suggestions ? MP le développeur de l'AEIC-BOT <@${DEV_DISCORD_ID}>.
 Repository GitHub du bot : https://github.com/rigwild/aeic-bot2.`
 
 const WELCOME = {
   WELCOME_DM: `**Ce message est automatique, je ne peux pas répondre aux messages privés.** :sweat_smile:
 Bienvenue sur le Discord de l'**AEIC** ! Je suis l'**AEIC-BOT**. :robot:
+
 Mes commandes te seront peut être utiles. Elles sont à utiliser **sur le serveur Discord de l'AEIC.**
 Pour éviter de gêner les autres membres avec mes longs messages, pense à m'utiliser dans le channel <#486230915593273344>. :eyes:
 Tu peux afficher la liste de mes commandes en utilisant la commande \`!aide\`. :book:
-Il est par exemple possible de choisir ton groupe de classe, voir ton planning ou encore trouver le mail d'un prof (Et plein d'autres trucs).
+Il est par exemple possible de choisir ton groupe de classe, voir ton planning ou encore trouver quelqu'un sur ExoPlatform (et plein d'autres trucs).
 Commence par choisir ton groupe de classe et ta maison d'asso (**sur le serveur discord AEIC**) :ok_hand:
-\`!choisirGroupe tp1a\` ("tp" + Année d'étude + Groupe TP / OU ulco / OU invité)
+\`!choisirGroupe tp1a\` ("tp" + Année d'étude + Groupe TP)
 \`!choisirMaison omega\` (Omega, Theta, Sigma ou Delta)
-Allez, j'arrête mon spam ! :nerd: Tu peux voir l'ensemble de mes commandes sur ce site : ${DOC_URI}.`,
+
+Si tu as la flemme de taper des commandes, il y a une interface qui te permet de tout gérer simplement : ${DASHBOARD_URI}. :ok_hand:
+
+Allez, j'arrête mon spam ! :nerd: Tu peux voir l'ensemble de mes commandes ici : ${DOC_URI}.`,
 
   WELCOME_PUBLIC: (userId: string) => `Bienvenue sur le Discord de l'AEIC <@${userId}> ! Je t'ai envoyé un message privé pour t'expliquer mon fonctionnement. :wink:`
 }

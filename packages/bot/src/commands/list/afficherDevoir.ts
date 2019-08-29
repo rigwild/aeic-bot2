@@ -20,7 +20,7 @@ const command: Command = {
     command: 'afficherDevoir',
     minArgs: 0,
     maxArgs: 0,
-    description: 'Afficher les devoirs d\'un groupe de TP',
+    description: 'Afficher les devoirs d\'un groupe de TP. **Commande à utiliser dans un channel de TP**.',
     examples: [
       // !afficherDevoir
       `${t}afficherDevoir`

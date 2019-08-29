@@ -50,7 +50,7 @@
       </template>
     </Promised>
 
-    <form @submit.prevent="addHomework" class="mt-4">
+    <form v-if="currentTpGroup" @submit.prevent="addHomework" class="mt-4">
       <h4>Add a new homework</h4>
       <fieldset :disabled="loading">
         <div class="form-group">

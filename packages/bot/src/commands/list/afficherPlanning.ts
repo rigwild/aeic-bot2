@@ -21,7 +21,7 @@ const command: Command = {
     command: 'afficherPlanning',
     minArgs: 0,
     maxArgs: 1,
-    description: `Afficher le planning d\'un groupe. Voir : <a href="${PLANNING_LINK}" target="_blank" rel="noopener">${PLANNING_LINK}</a>`,
+    description: `Afficher le planning d\'un groupe. **Commande utilisable sans paramètres dans un channel de TP**. Voir : <a href="${PLANNING_LINK}" target="_blank" rel="noopener">${PLANNING_LINK}</a>.`,
     examples: [
       // !afficherPlanning tp1a
       `${t}afficherPlanning`,

@@ -10,7 +10,8 @@ export const defaultTpGroups: TpGroup[] = [
   ['tp2a', 'dut2', 'td1', 'DUT2 TPA', 'tp2a-remind'],
   ['tp2b', 'dut2', 'td1', 'DUT2 TPB', 'tp2b-remind'],
   ['tp2c', 'dut2', 'td2', 'DUT2 TPC', 'tp2c-remind'],
-  ['tp2d', 'dut2', 'td2', 'DUT2 TPD', 'tp2d-remind']
+  ['tp2d', 'dut2', 'td2', 'DUT2 TPD', 'tp2d-remind'],
+  ['licencepro', 'dut3', 'td1', 'DUT3 LP', 'lp-remind']
 ].map(x => ({
   name: x[0],
   yearGroup: x[1],
@@ -25,5 +26,5 @@ export const defaultTpGroupsName = defaultTpGroups.map(x => x.name)
 export const defaultAssoGroupsNameReal = ['Omega', 'Sigma', 'Theta', 'Delta']
 export const defaultAssoGroupsName = defaultAssoGroupsNameReal.map(x => removeAccents(x.toLowerCase()))
 
-export const defaultYearGroupsNameReal = ['1ère année', '2ème année FI', '2ème année APP']
+export const defaultYearGroupsNameReal = ['1ère année', '2ème année FI', '2ème année APP', 'Licence Pro', 'Ancêtre']
 export const defaultYearGroupsName = defaultYearGroupsNameReal.map(x => removeAccents(x.toLowerCase()))

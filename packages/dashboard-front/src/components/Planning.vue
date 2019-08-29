@@ -65,7 +65,7 @@ export default {
     getPlanning() {
       const tpGroup = this.currentTpGroup
       if (!tpGroup) {
-        Promise.reject(new Error('You need to be in a TP group to see its planning.'))
+        this.promise = Promise.reject(new Error('You need to be in a TP group to see its planning.'))
         return
       }
       this.promise = API_CALL_SHORT(`/dashboard/tpGroup/${tpGroup}/planning`)

@@ -49,6 +49,7 @@ export default {
 
       selectOptions: [
         { value: null, text: 'Select an option' },
+        { value: 'remove', text: 'Remove student association group' },
         ...defaultAssoGroupsNameReal.map(x => ({ value: x, text: x }))
       ],
       selectedValue: null

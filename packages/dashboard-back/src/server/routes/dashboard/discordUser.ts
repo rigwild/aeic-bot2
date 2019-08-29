@@ -18,6 +18,20 @@ router.get('/discordUser', asyncMiddleware(async (req, res) =>
 router.patch('/discordUser/yearGroup', asyncMiddleware(async (req, res) => {
   const { yearGroup } = checkRequiredParameters(['yearGroup'], req.body)
 
+  // Remove year group role
+  if (yearGroup === 'remove') {
+    const user = await getGuildMember(req.user.id)
+    const rolesToDelete = user.roles.filter(aRole => yearGroupExists(aRole.name))
+    await user.removeRoles(rolesToDelete)
+    return res.json({
+      data: {
+        addedRole: null,
+        deletedRoles: rolesToDelete.map(x => x.name),
+        rolesList: user.roles.map(x => x.name)
+      }
+    })
+  }
+
   // Check the year group exists
   if (!yearGroupExists(yearGroup))
     throw boom.badRequest('Invalid year group.')
@@ -44,6 +58,20 @@ router.patch('/discordUser/yearGroup', asyncMiddleware(async (req, res) => {
 router.patch('/discordUser/tpGroup', asyncMiddleware(async (req, res) => {
   const { tpGroup } = checkRequiredParameters(['tpGroup'], req.body)
 
+  // Remove TP group role
+  if (tpGroup === 'remove') {
+    const user = await getGuildMember(req.user.id)
+    const rolesToDelete = user.roles.filter(aRole => tpGroupExists(aRole.name))
+    await user.removeRoles(rolesToDelete)
+    return res.json({
+      data: {
+        addedRole: null,
+        deletedRoles: rolesToDelete.map(x => x.name),
+        rolesList: user.roles.map(x => x.name)
+      }
+    })
+  }
+
   // Check the year group exists
   if (!tpGroupExists(tpGroup))
     throw boom.badRequest('Invalid TP group.')
@@ -69,6 +97,20 @@ router.patch('/discordUser/tpGroup', asyncMiddleware(async (req, res) => {
 // Update a Discord user's association group
 router.patch('/discordUser/assoGroup', asyncMiddleware(async (req, res) => {
   const { assoGroup } = checkRequiredParameters(['assoGroup'], req.body)
+
+  // Remove student association group role
+  if (assoGroup === 'remove') {
+    const user = await getGuildMember(req.user.id)
+    const rolesToDelete = user.roles.filter(aRole => assoGroupExists(aRole.name))
+    await user.removeRoles(rolesToDelete)
+    return res.json({
+      data: {
+        addedRole: null,
+        deletedRoles: rolesToDelete.map(x => x.name),
+        rolesList: user.roles.map(x => x.name)
+      }
+    })
+  }
 
   // Check the asso group exists
   if (!assoGroupExists(assoGroup))

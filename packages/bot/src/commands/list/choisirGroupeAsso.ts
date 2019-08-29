@@ -9,15 +9,25 @@ const command: Command = {
     command: 'choisirGroupeAsso',
     minArgs: 1,
     maxArgs: 1,
-    description: 'Choisir le groupe d\'association à rejoindre',
+    description: 'Choisir le groupe d\'association étudiante à rejoindre. Utiliser `remove` pour le retirer.',
     examples: [
-      // !choisirGroupeAsso asso1
-      `${t}choisirGroupeAsso asso1`,
-      `${t}choisirGroupeAsso asso2`
+      // !choisirGroupeAsso beta
+      `${t}choisirGroupeAsso delta`,
+      `${t}choisirGroupeAsso beta`,
+      `${t}choisirGroupeAsso omega`,
+      `${t}choisirGroupeAsso theta`,
+      `${t}choisirGroupeAsso remove`
     ]
   },
 
   async run(message, assoGroup) {
+    // Remove Asso group role
+    if (assoGroup === 'remove') {
+      const author = await message.guild.member(message.author)
+      await author.removeRoles(author.roles.filter(aRole => assoGroupExists(aRole.name)))
+      return
+    }
+
     // Check the association group exists
     if (!assoGroupExists(assoGroup))
       throw new Error(msgId.UNKNOWN_GROUP_ASSO(assoGroup))

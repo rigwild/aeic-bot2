@@ -9,15 +9,31 @@ const command: Command = {
     command: 'choisirGroupeTp',
     minArgs: 1,
     maxArgs: 1,
-    description: 'Choisir le groupe de TP à rejoindre',
+    description: 'Choisir le groupe de TP à rejoindre. Utiliser `remove` pour le retirer.',
     examples: [
       // !choisirGroupeTp tp1a
       `${t}choisirGroupeTp tp1a`,
-      `${t}choisirGroupeTp tp2b`
+      `${t}choisirGroupeTp tp1b`,
+      `${t}choisirGroupeTp tp1c`,
+      `${t}choisirGroupeTp tp1d`,
+      `${t}choisirGroupeTp tp1e`,
+      `${t}choisirGroupeTp tp2a`,
+      `${t}choisirGroupeTp tp2b`,
+      `${t}choisirGroupeTp tp2c`,
+      `${t}choisirGroupeTp tp2d`,
+      `${t}choisirGroupeTp licencepro`,
+      `${t}choisirGroupeTp remove`
     ]
   },
 
   async run(message, tpGroup) {
+    // Remove TP group role
+    if (tpGroup === 'remove') {
+      const author = await message.guild.member(message.author)
+      await author.removeRoles(author.roles.filter(aRole => tpGroupExists(aRole.name)))
+      return
+    }
+
     // Check the TP group exists
     if (!tpGroupExists(tpGroup))
       throw new Error(msgId.UNKNOWN_GROUP_TP(tpGroup))
