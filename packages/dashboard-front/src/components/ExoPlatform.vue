@@ -7,7 +7,7 @@
     <form @submit.prevent="sendForm">
       <fieldset :disabled="loading">
         <div class="form-group">
-          <input v-model="search" type="text" class="form-control" placeholder="Search term (string, regular expression) ...">
+          <input v-model="search" type="text" class="form-control" placeholder="Search term (string, regular expression - 'antoine sauvage' or '.*age') ...">
         </div>
         <button type="submit" class="btn btn-primary">Search</button>
       </fieldset>
@@ -84,7 +84,7 @@ export default {
       promise: null,
       loading: false,
 
-      search: 'antoine sauvage'
+      search: ''
     }
   },
   methods: {

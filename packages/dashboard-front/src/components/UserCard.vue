@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div v-if="discordUser.id" class="container">
     <h2>Discord user</h2>
 
     <div class="row justify-content-md-center">
