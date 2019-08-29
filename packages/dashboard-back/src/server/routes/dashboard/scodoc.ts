@@ -61,6 +61,7 @@ const getMarks = (ine: string, semesterStr: string): Promise<string> => new Prom
           .replace(/\<img src.*?\>/g, '')
           .replace(/\<td class=\"note_bold\">\&nbsp\<\/td\>/, '<td class="note_bold">Date</td>')
           .replace(/\<a href=\"#\" id=\"toggler\"\>[\s\S]*?\<\/a\>/, '')
+          .replace(/onclick/g, '_onclick')
         resolve(marks)
       }
       catch {
@@ -80,7 +81,7 @@ router.get('/scodoc/:ine', asyncMiddleware(async (req, res) => {
   // Load marks
   const semesterStr = await getLatestSemester(ine)
   const marks = await getMarks(ine, semesterStr)
-  console.log(marks)
+
   // Custom HTML head
   const marksHead = `<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <style>

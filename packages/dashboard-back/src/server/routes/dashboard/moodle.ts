@@ -49,14 +49,14 @@ router.post('/moodle', asyncMiddleware(async (req, res) => {
   const calendarHTML2 = calendarHTML[0]
 
   const calendarHead = `<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <link rel="stylesheet" type="text/css" href="http://iic0e.univ-littoral.fr/moodle/theme/yui_combo.php?3.9.1/build/cssreset/cssreset-min.css&3.9.1/build/cssfonts/cssfonts-min.css&3.9.1/build/cssgrids/cssgrids-min.css&3.9.1/build/cssbase/cssbase-min.css" />
-  <link rel="stylesheet" type="text/css" href="http://iic0e.univ-littoral.fr/moodle/theme/styles.php/educator/1481619224/all" />
   <style>
     * {
       font-family: helvetica, arial, sans-serif;
     }
-    .calendarmonth {
+    table {
       height: 100%;
+      width: 100%;
+      border-collapse: collapse;
       padding: 0;
       margin: 0;
     }
@@ -67,9 +67,21 @@ router.post('/moodle', asyncMiddleware(async (req, res) => {
       margin: 0;
       background: white;
     }
+    td, th {
+      text-align: center;
+      border: 1px #E3DFD4 solid;
+      border-collapse: collapse;
+    }
+    td {
+      height: 5em;
+    }
     th.header {
+      height: 2em;
       border: 1px solid #f4f4f4;
       background-color: #e7e7e7;
+    }
+    td.day.today {
+      border: 2px solid #6b6b6b;
     }
   </style>`
 
