@@ -1,40 +1,41 @@
 # Table des matières
  - [Tutoriel](#tutoriel)
  - [Liste des commandes](#liste-des-commandes)
-   - [`!afficherDevoir`](#afficherDevoir)
-   - [`!afficherPlanning`](#afficherPlanning)
-   - [`!aide`](#aide)
-   - [`!ajouterDevoir`](#ajouterDevoir)
-   - [`!ajouterDevoirTd`](#ajouterDevoirTd)
-   - [`!choisirGroupeAnnee`](#choisirGroupeAnnee)
-   - [`!choisirGroupeAsso`](#choisirGroupeAsso)
-   - [`!choisirGroupeTp`](#choisirGroupeTp)
-   - [`!trouverPersonne`](#trouverPersonne)
+   - [`.afficherDevoir`](#afficherDevoir)
+   - [`.afficherPlanning`](#afficherPlanning)
+   - [`.aide`](#aide)
+   - [`.ajouterDevoir`](#ajouterDevoir)
+   - [`.ajouterDevoirTd`](#ajouterDevoirTd)
+   - [`.choisirGroupeAnnee`](#choisirGroupeAnnee)
+   - [`.choisirGroupeAsso`](#choisirGroupeAsso)
+   - [`.choisirGroupeTp`](#choisirGroupeTp)
+   - [`.trouverPersonne`](#trouverPersonne)
+   - [`.zAdminRolePrune`](#zAdminRolePrune)
 
 ---
 
 ## Tutoriel
-Pour lancer une commande, votre message doit commencer par `!`, suivi d'une commande existante.
+Pour lancer une commande, votre message doit commencer par `.`, suivi d'une commande existante.
 
 Une commande peut nécessiter des arguments. Si un seul est nécessaire, vous pouvez taper votre commande suivie par l'argument à renseigner :
 ```sh
-!unExemple monArgument
-!unExemple ceci compte comme un seul argument
+.unExemple monArgument
+.unExemple ceci compte comme un seul argument
 ```
 
 Dans le cas ou plusieurs arguments sont nécessaires, vous pouvez les séparer à l'aide de `--` :
 ```sh
-!unExemple ceci compte comme un seul argument -- celui-ci est le deuxième argument
+.unExemple ceci compte comme un seul argument -- celui-ci est le deuxième argument
 ```
 
 Les commandes et leurs arguments ne sont pas sensibles à la casse, les commandes suivantes provoqueront le même résultat :
 ```sh
-!unExemple
-!UnexEmpLe
+.unExemple
+.UnexEmpLe
 ```
 
 ## Liste des commandes
-### `!afficherDevoir`
+### `.afficherDevoir`
 #### Description
 Afficher les devoirs d'un groupe de TP. **Commande à utiliser dans un channel de TP**.
 
@@ -45,12 +46,12 @@ Afficher les devoirs d'un groupe de TP. **Commande à utiliser dans un channel d
 
 #### Exemple(s)
 ```
-!afficherDevoir
+.afficherDevoir
 ```
 
 ---
 
-### `!afficherPlanning`
+### `.afficherPlanning`
 #### Description
 Afficher le planning d'un groupe. **Commande utilisable sans paramètres dans un channel de TP**. Voir : <a href="https://planning-iut-calais.asauvage.fr" target="_blank" rel="noopener">https://planning-iut-calais.asauvage.fr</a>.
 
@@ -61,24 +62,24 @@ Afficher le planning d'un groupe. **Commande utilisable sans paramètres dans un
 
 #### Exemple(s)
 ```
-!afficherPlanning
+.afficherPlanning
 ```
 ```
-!afficherPlanning tp1a
+.afficherPlanning tp1a
 ```
 ```
-!afficherPlanning DUT1 TPA
+.afficherPlanning DUT1 TPA
 ```
 ```
-!afficherPlanning DUT2 TD2
+.afficherPlanning DUT2 TD2
 ```
 ```
-!afficherPlanning Apprentis info S4
+.afficherPlanning Apprentis info S4
 ```
 
 ---
 
-### `!aide`
+### `.aide`
 #### Description
 Montrer le message d'aide du bot.
 
@@ -89,12 +90,12 @@ Montrer le message d'aide du bot.
 
 #### Exemple(s)
 ```
-!aide
+.aide
 ```
 
 ---
 
-### `!ajouterDevoir`
+### `.ajouterDevoir`
 #### Description
 Ajouter un devoir à un groupe de TP. **Commande à utiliser dans un channel de TP**.
 
@@ -105,15 +106,15 @@ Ajouter un devoir à un groupe de TP. **Commande à utiliser dans un channel de 
 
 #### Exemple(s)
 ```
-!ajouterDevoir 2020-04-24 -- Java -- TP Breakout
+.ajouterDevoir 2020-04-24 -- Java -- TP Breakout
 ```
 ```
-!ajouterDevoir 2020-01-18 -- Maths -- DS Ould-Said
+.ajouterDevoir 2020-01-18 -- Maths -- DS Ould-Said
 ```
 
 ---
 
-### `!ajouterDevoirTd`
+### `.ajouterDevoirTd`
 #### Description
 Ajouter un devoir à un groupe de TD (le devoir sera ajouté à chaque groupes de TP présents dans le groupe de TD).
 
@@ -124,15 +125,15 @@ Ajouter un devoir à un groupe de TD (le devoir sera ajouté à chaque groupes d
 
 #### Exemple(s)
 ```
-!ajouterDevoirTd td1 -- dut1 -- 2020-04-24 -- Java -- TP Breakout
+.ajouterDevoirTd td1 -- dut1 -- 2020-04-24 -- Java -- TP Breakout
 ```
 ```
-!ajouterDevoirTd td1 -- dut2 -- 2020-01-18 -- Maths -- DS Ould-Said
+.ajouterDevoirTd td1 -- dut2 -- 2020-01-18 -- Maths -- DS Ould-Said
 ```
 
 ---
 
-### `!choisirGroupeAnnee`
+### `.choisirGroupeAnnee`
 #### Description
 Choisir le groupe d'année à rejoindre. Utiliser `remove` pour le retirer.
 
@@ -143,33 +144,30 @@ Choisir le groupe d'année à rejoindre. Utiliser `remove` pour le retirer.
 
 #### Exemple(s)
 ```
-!choisirGroupeAnnee 1ère année
+.choisirGroupeAnnee 1ère année
 ```
 ```
-!choisirGroupeAnnee 1ere annee
+.choisirGroupeAnnee 1ere annee
 ```
 ```
-!choisirGroupeAnnee 2ème année FI
+.choisirGroupeAnnee 2ème année FI
 ```
 ```
-!choisirGroupeAnnee 2ème année APP
+.choisirGroupeAnnee 2ème année APP
 ```
 ```
-!choisirGroupeAnnee 2eme annee app
+.choisirGroupeAnnee licence pro
 ```
 ```
-!choisirGroupeAnnee licence pro
+.choisirGroupeAnnee ancetre
 ```
 ```
-!choisirGroupeAnnee ancetre
-```
-```
-!choisirGroupeAnnee remove
+.choisirGroupeAnnee remove
 ```
 
 ---
 
-### `!choisirGroupeAsso`
+### `.choisirGroupeAsso`
 #### Description
 Choisir le groupe d'association étudiante à rejoindre. Utiliser `remove` pour le retirer.
 
@@ -180,24 +178,24 @@ Choisir le groupe d'association étudiante à rejoindre. Utiliser `remove` pour 
 
 #### Exemple(s)
 ```
-!choisirGroupeAsso delta
+.choisirGroupeAsso delta
 ```
 ```
-!choisirGroupeAsso beta
+.choisirGroupeAsso beta
 ```
 ```
-!choisirGroupeAsso omega
+.choisirGroupeAsso omega
 ```
 ```
-!choisirGroupeAsso theta
+.choisirGroupeAsso theta
 ```
 ```
-!choisirGroupeAsso remove
+.choisirGroupeAsso remove
 ```
 
 ---
 
-### `!choisirGroupeTp`
+### `.choisirGroupeTp`
 #### Description
 Choisir le groupe de TP à rejoindre. Utiliser `remove` pour le retirer.
 
@@ -208,44 +206,44 @@ Choisir le groupe de TP à rejoindre. Utiliser `remove` pour le retirer.
 
 #### Exemple(s)
 ```
-!choisirGroupeTp tp1a
+.choisirGroupeTp 1tpa
 ```
 ```
-!choisirGroupeTp tp1b
+.choisirGroupeTp 1tpb
 ```
 ```
-!choisirGroupeTp tp1c
+.choisirGroupeTp 1tpc
 ```
 ```
-!choisirGroupeTp tp1d
+.choisirGroupeTp 1tpd
 ```
 ```
-!choisirGroupeTp tp1e
+.choisirGroupeTp 1tpe
 ```
 ```
-!choisirGroupeTp tp2a
+.choisirGroupeTp 2tpa
 ```
 ```
-!choisirGroupeTp tp2b
+.choisirGroupeTp 2tpb
 ```
 ```
-!choisirGroupeTp tp2c
+.choisirGroupeTp 2tpc
 ```
 ```
-!choisirGroupeTp tp2d
+.choisirGroupeTp 2app
 ```
 ```
-!choisirGroupeTp licencepro
+.choisirGroupeTp licencepro
 ```
 ```
-!choisirGroupeTp remove
+.choisirGroupeTp remove
 ```
 
 ---
 
-### `!trouverPersonne`
+### `.trouverPersonne`
 #### Description
-Trouver un utilisateur sur eXo Platform et afficher ses données
+Trouver un utilisateur sur eXo Platform et afficher ses données.
 
 #### Arguments
 | Minimum | Maximum |
@@ -254,20 +252,45 @@ Trouver un utilisateur sur eXo Platform et afficher ses données
 
 #### Exemple(s)
 ```
-!trouverPersonne synave
+.trouverPersonne synave
 ```
 ```
-!trouverPersonne antoine sauvage
+.trouverPersonne antoine sauvage
 ```
 ```
-!trouverPersonne contact@asauvage.fr
+.trouverPersonne contact@asauvage.fr
 ```
 ```
-!trouverPersonne act@asauvage.f
+.trouverPersonne act@asauvage.f
 ```
 ```
-!trouverPersonne ^antoine
+.trouverPersonne ^antoine
 ```
 ```
-!trouverPersonne @gmail.com
+.trouverPersonne @gmail.com
+```
+
+---
+
+### `.zAdminRolePrune`
+#### Description
+Retirer un rôle à tous les membres qui le possèdent (exemple : vider un groupe de classe en fin d'année). **Nécessite la permission administrateur**.
+
+#### Arguments
+| Minimum | Maximum |
+| :-----: |  :----: |
+| 1 | 1 |
+
+#### Exemple(s)
+```
+.zAdminRolePrune 2tpb
+```
+```
+.zAdminRolePrune 1ère année
+```
+```
+.zAdminRolePrune licence pro
+```
+```
+.zAdminRolePrune omega
 ```

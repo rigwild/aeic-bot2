@@ -19,13 +19,13 @@
         <div class="container text-center mb-3">
           <div class="weekNumber">Week  1</div>
           <a :href="data[0].screenPath" target="_blank" rel="noopener"><b-img :src="data[0].screenPath" fluid alt="Planning week 1" /></a>
-          <div class="weekLastUpdate">Last update: {{ toHumanDateTime(data[0].screenDate) }}</div>
+          <div class="weekLastUpdate">Last update: {{ toHumanDateTime(new Date(data[0].screenDate)) }}</div>
         </div>
         <div class="row">
           <div v-for="(cutData, index) in data.slice(1)" :key="index" class="col-md-4 text-center">
             <div class="weekNumber">Week {{ index + 2 }}</div>
             <a :href="cutData.screenPath" target="_blank" rel="noopener"><b-img :src="cutData.screenPath" fluid :alt="`Planning week ${index + 1}`" /></a>
-            <div class="weekLastUpdate">Last update: {{ toHumanDateTime(cutData.screenDate) }}</div>
+            <div class="weekLastUpdate">Last update: {{ toHumanDateTime(new Date(cutData.screenDate)) }}</div>
           </div>
         </div>
       </template>

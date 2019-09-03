@@ -57,7 +57,7 @@ const command: Command = {
     else groupPlanningToLoad = args[0]
 
     // Send a loading message in the channel if the request is not cached
-    if (!planningIutLoader.isCached()) await message.channel.send(msgId.REQUEST_LOADING('afficherPlanning'))
+    if (!planningIutLoader.isCached()) await message.channel.send(msgId.REQUEST_LOADING_THEN_CACHED('afficherPlanning'))
 
     const planningData = (await planningIutLoader.getGroup(groupPlanningToLoad))[0]
     await message.reply({ embed: buildPlanningEmbed(groupPlanningToLoad, planningData) })

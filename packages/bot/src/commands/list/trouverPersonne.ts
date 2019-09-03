@@ -11,7 +11,7 @@ const command: Command = {
     command: 'trouverPersonne',
     minArgs: 1,
     maxArgs: 1,
-    description: `Trouver un utilisateur sur eXo Platform et afficher ses données`,
+    description: `Trouver un utilisateur sur eXo Platform et afficher ses données.`,
     examples: [
       // !trouverPersonne synave
       `${t}trouverPersonne synave`,
@@ -25,7 +25,7 @@ const command: Command = {
 
   async run(message, search) {
     // Send a loading message in the channel if the request is not cached
-    if (!ExoPlatformLoader.isCached()) await message.channel.send(msgId.REQUEST_LOADING(`/${search}/gi`))
+    if (!ExoPlatformLoader.isCached()) await message.channel.send(msgId.REQUEST_LOADING_THEN_CACHED(`/${search}/gi`))
 
     // Search for the users
     const users = await ExoPlatformLoader.searchUser(search)

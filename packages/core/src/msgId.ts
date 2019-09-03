@@ -1,6 +1,6 @@
 import { toHumanDate, Homework } from '@aeic-bot2/common'
 
-import { DEV_DISCORD_ID, DOC_URI, DASHBOARD_URI } from './config'
+import { COMMAND_TRIGGER, DEV_DISCORD_ID, DOC_URI, DASHBOARD_URI } from './config'
 
 const AEIC_BOT_HELP = `Pour des raisons de lisibilité du chat, les commandes sont répertoriées ici : ${DOC_URI}.
 Pense à utiliser ton dashboard. Il te permet d'utiliser simplement les commandes (en plus, il y a des outils pour l'iut !) : ${DASHBOARD_URI} :ok_hand: 
@@ -16,9 +16,9 @@ Pour éviter de gêner les autres membres avec mes longs messages, pense à m'ut
 Tu peux afficher la liste de mes commandes en utilisant la commande \`!aide\`. :book:
 Il est par exemple possible de choisir ton groupe de classe, voir ton planning ou encore trouver quelqu'un sur ExoPlatform (et plein d'autres trucs).
 Commence par choisir ton groupe de classe et ta maison d'asso (**sur le serveur discord AEIC**) :ok_hand:
-\`!choisirGroupeTAnnee dut1\` ("dut" + Année d'étude)
-\`!choisirGroupeTp tp1a\` ("tp" + Année d'étude + Groupe TP)
-\`!choisirMaison choisirGroupeAsso\` (Omega, Theta, Sigma ou Delta)
+\`${COMMAND_TRIGGER}choisirGroupeAnnee dut1\` ("dut" + Année d'étude)
+\`${COMMAND_TRIGGER}choisirGroupeTp 1tpa\` (Année d'étude + "tp" + Groupe TP)
+\`${COMMAND_TRIGGER}choisirGroupeAsso delta\` (Omega, Theta, Sigma ou Delta)
 
 Si tu as la flemme de taper des commandes, il y a une interface qui te permet de tout gérer simplement : ${DASHBOARD_URI}. :ok_hand:
 
@@ -27,16 +27,18 @@ Allez, j'arrête mon spam ! :nerd: Tu peux voir l'ensemble de mes commandes ici 
   WELCOME_PUBLIC: (userId: string) => `Bienvenue sur le Discord de l'AEIC <@${userId}> ! Je t'ai envoyé un message privé pour t'expliquer mon fonctionnement. :wink:`
 }
 
-const needHelp = `Rends-toi sur ${DOC_URI} pour obtenir de l'aide sur les commandes.`
+const needHelp = `Rends-toi sur ${DOC_URI} pour obtenir de l'aide sur les commandes.
+Si t'as la flemme, tu peux toujours utiliser le dashboard ${DASHBOARD_URI} :eyes: ${DASHBOARD_URI}`
 
 export default {
   AEIC_BOT_HELP,
   ...WELCOME,
   INVALID_STR_SIZE: (str: string, min: number, max?: number) => `La chaîne de caractère \`${str}\` est d'une taille invalide. Sa taille doit être ${max ? `comprise entre \`${min}\` et \`${max}\`` : `au minimum de \`${min}\``} caractères.`,
   UNREACHABLE_HOST: (host: string) => `L'hôte ${host} n'est pas atteignable.`,
-  REQUEST_LOADING: (request: string) => `La requête \`${request}\` est en cours de traitement. Les données récupérées par la requête seront mises en cache pour 4h afin d'accélérer les requêtes suivantes.`,
+  REQUEST_LOADING: (request?: string) => `La requête${request ? ` \`${request}\`` : ''} est en cours de traitement.`,
+  REQUEST_LOADING_THEN_CACHED: (request: string) => `La requête \`${request}\` est en cours de traitement. Les données récupérées par la requête seront mises en cache pour 4h afin d'accélérer les requêtes suivantes.`,
 
-  ROLE_REMOVED: (role?: string) => `Le rôle ${role ? `\`${role}\`` : ''} a été supprimé.`,
+  ROLE_REMOVED: (role?: string, membersCount?: number) => `Le rôle ${role ? `\`${role}\`` : ''} a été retiré${typeof membersCount === 'number' ? ` de ${membersCount} membre(s)` : ''}.`,
   YEAR_GROUP_ROLE_ADDED: (yearGroup: string) => `Le rôle de groupe d'année \`${yearGroup}\` a été appliqué.`,
   TP_GROUP_ROLE_ADDED: (tpGroup: string) => `Le rôle de groupe de TP \`${tpGroup}\` a été appliqué.`,
   ASSO_GROUP_ROLE_ADDED: (assoGroup: string) => `Le rôle de groupe d'association \`${assoGroup}\` a été appliqué.`,
@@ -54,6 +56,7 @@ export default {
   NOT_IN_TP_CHANNEL: `La commande ne peut être exécutée que dans les channels de groupes de TP. ${needHelp}`,
   MISSING_ROLE: (role: string) => `Le rôle \`${role}\` est nécessaire pour exécuter cette commande. ${needHelp}`,
   MISSING_ROLE_SOME: (roles: string[]) => `Un des rôles \`${roles.toString()}\` est nécessaire pour exécuter cette commande. ${needHelp}`,
+  UNKNOWN_ROLE: (role: string) => `Le rôle \`${role}\` n'existe pas. ${needHelp}`,
   UNKNOWN_GROUP: (group: string) => `Le groupe \`${group}\` n'existe pas. ${needHelp}`,
   UNKNOWN_GROUP_TD: (tdGroup: string, yearGroup: string) => `Le groupe de TD \`${tdGroup}\` du group d'année \`${yearGroup}\` n'existe pas. ${needHelp}`,
   UNKNOWN_GROUP_TP: (tpGroup: string) => `Le groupe de TP \`${tpGroup}\` n'existe pas. ${needHelp}`,
@@ -62,5 +65,6 @@ export default {
   UNKNOWN_GROUP_PLANNING: (planningGroup: string) => `Le groupe de planning \`${planningGroup}\` n'existe pas. ${needHelp}`,
   UNKNOWN_CHANNEL: (channel: string) => `Le channel \`${channel}\` n'existe pas.`,
   UNKNOWN_COMMAND: (command: string) => `La commande \`${command}\` n'existe pas. ${needHelp}`,
+  NO_PERMISSION: `Seuls les membres autorisés peuvent exécuter cette commande. ${needHelp}`,
   INVALID_COMMAND_ARGUMENT_NUMBER: (command: string, numberArgs: number, minArgs: number, maxArgs?: number) => `Le nombre d'arguments passés (${numberArgs}) pour la commande \`${command}\` est invalide. Le nombre minimum d'arguments est de ${minArgs} et le maximum de ${maxArgs || 'infini'}. ${needHelp}`
 }

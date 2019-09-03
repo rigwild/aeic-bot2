@@ -11,16 +11,16 @@ const command: Command = {
     maxArgs: 1,
     description: 'Choisir le groupe de TP à rejoindre. Utiliser `remove` pour le retirer.',
     examples: [
-      // !choisirGroupeTp tp1a
-      `${t}choisirGroupeTp tp1a`,
-      `${t}choisirGroupeTp tp1b`,
-      `${t}choisirGroupeTp tp1c`,
-      `${t}choisirGroupeTp tp1d`,
-      `${t}choisirGroupeTp tp1e`,
-      `${t}choisirGroupeTp tp2a`,
-      `${t}choisirGroupeTp tp2b`,
-      `${t}choisirGroupeTp tp2c`,
-      `${t}choisirGroupeTp tp2d`,
+      // !choisirGroupeTp 1tpa
+      `${t}choisirGroupeTp 1tpa`,
+      `${t}choisirGroupeTp 1tpb`,
+      `${t}choisirGroupeTp 1tpc`,
+      `${t}choisirGroupeTp 1tpd`,
+      `${t}choisirGroupeTp 1tpe`,
+      `${t}choisirGroupeTp 2tpa`,
+      `${t}choisirGroupeTp 2tpb`,
+      `${t}choisirGroupeTp 2tpc`,
+      `${t}choisirGroupeTp 2app`,
       `${t}choisirGroupeTp licencepro`,
       `${t}choisirGroupeTp remove`
     ]
