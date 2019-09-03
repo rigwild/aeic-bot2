@@ -10,6 +10,7 @@ export const defaultTpGroups: TpGroup[] = [
   ['2tpa', 'dut2', 'td1', 'DUT2 TPA', '2tpa-remind'],
   ['2tpb', 'dut2', 'td1', 'DUT2 TPB', '2tpb-remind'],
   ['2tpc', 'dut2', 'td2', 'DUT2 TPC', '2tpc-remind'],
+  ['2tpd', 'dut2', 'td2', 'DUT2 TPD', '2tpd-remind'],
   ['2app', 'dut2', 'td3', 'DUT INFO2 Apprentissage', '2app-remind'],
   ['licencepro', 'dut3', 'td1', 'LP DIM Apprentissage', 'licencepro-remind']
 ].map(x => ({

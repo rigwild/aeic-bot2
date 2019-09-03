@@ -12,6 +12,7 @@ import choisirGroupeAsso from './list/choisirGroupeAsso'
 import afficherPlanning from './list/afficherPlanning'
 import trouverPersonne from './list/trouverPersonne'
 import choisirGroupeAnnee from './list/choisirGroupeAnnee'
+import zAdminRolePrune from './list/zAdminRolePrune'
 
 // Inject all available commands here
 export const commands = {
@@ -23,7 +24,8 @@ export const commands = {
   choisirGroupeAsso,
   afficherPlanning,
   trouverPersonne,
-  choisirGroupeAnnee
+  choisirGroupeAnnee,
+  zAdminRolePrune
 }
 
 // Make all commands keys lowercase

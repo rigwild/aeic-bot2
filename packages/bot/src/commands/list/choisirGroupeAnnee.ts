@@ -17,7 +17,6 @@ const command: Command = {
       `${t}choisirGroupeAnnee 1ere annee`,
       `${t}choisirGroupeAnnee 2ème année FI`,
       `${t}choisirGroupeAnnee 2ème année APP`,
-      `${t}choisirGroupeAnnee 2eme annee app`,
       `${t}choisirGroupeAnnee licence pro`,
       `${t}choisirGroupeAnnee ancetre`,
       `${t}choisirGroupeAnnee remove`
