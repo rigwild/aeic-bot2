@@ -36,6 +36,7 @@ export default {
   UNREACHABLE_HOST: (host: string) => `L'hôte ${host} n'est pas atteignable.`,
   REQUEST_LOADING: (request: string) => `La requête \`${request}\` est en cours de traitement. Les données récupérées par la requête seront mises en cache pour 4h afin d'accélérer les requêtes suivantes.`,
 
+  ROLE_REMOVED: (role?: string) => `Le rôle ${role ? `\`${role}\`` : ''} a été supprimé.`,
   YEAR_GROUP_ROLE_ADDED: (yearGroup: string) => `Le rôle de groupe d'année \`${yearGroup}\` a été appliqué.`,
   TP_GROUP_ROLE_ADDED: (tpGroup: string) => `Le rôle de groupe de TP \`${tpGroup}\` a été appliqué.`,
   ASSO_GROUP_ROLE_ADDED: (assoGroup: string) => `Le rôle de groupe d'association \`${assoGroup}\` a été appliqué.`,

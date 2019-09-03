@@ -12,7 +12,8 @@ export const buildPlanningEmbed = (group: string, planningData: { screenDate: st
   embed.title = `Planning du groupe \`${group}\` pour la semaine \`${getDateWeek(new Date(planningData.screenDate))}\``
   embed.footer = { text: 'Date de mise en cache', icon_url: 'https://planning-iut-calais.asauvage.fr/favicon/favicon-32x32.png' }
   embed.timestamp = new Date(planningData.screenDate)
-  embed.image = { url: `${PLANNING_LINK}${planningData.screenPath}` }
+  embed.image = { url: `${PLANNING_LINK}${planningData.screenPath}?nonce=${Date.now()}` }
+  embed.url = `${PLANNING_LINK}${planningData.screenPath}`
   return embed
 }
 

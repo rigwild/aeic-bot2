@@ -31,6 +31,7 @@ const command: Command = {
     if (tpGroup === 'remove') {
       const author = await message.guild.member(message.author)
       await author.removeRoles(author.roles.filter(aRole => tpGroupExists(aRole.name)))
+      await message.reply(msgId.ROLE_REMOVED())
       return
     }
 

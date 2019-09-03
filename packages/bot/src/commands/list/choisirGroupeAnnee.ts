@@ -29,6 +29,7 @@ const command: Command = {
     if (yearGroup === 'remove') {
       const author = await message.guild.member(message.author)
       await author.removeRoles(author.roles.filter(aRole => yearGroupExists(aRole.name)))
+      await message.reply(msgId.ROLE_REMOVED())
       return
     }
 

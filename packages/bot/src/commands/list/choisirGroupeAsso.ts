@@ -25,6 +25,7 @@ const command: Command = {
     if (assoGroup === 'remove') {
       const author = await message.guild.member(message.author)
       await author.removeRoles(author.roles.filter(aRole => assoGroupExists(aRole.name)))
+      await message.reply(msgId.ROLE_REMOVED())
       return
     }
 
