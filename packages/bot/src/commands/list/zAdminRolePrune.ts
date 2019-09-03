@@ -2,6 +2,7 @@ import { config, msgId } from '@aeic-bot2/core'
 const { COMMAND_TRIGGER: t } = config
 
 import { Command } from '../types'
+import { hasAuthorRole } from '@aeic-bot2/core/dist/utils';
 
 const command: Command = {
   meta: {
@@ -31,8 +32,7 @@ const command: Command = {
     const count = dRole.members.size
 
     // Remove the role from all members that have it
-    for (const aMember of dRole.members.values())
-      await aMember.removeRole(dRole)
+    await Promise.all(dRole.members.map(x => x.removeRole(dRole)))
 
     await message.reply(msgId.ROLE_REMOVED(role, count))
   }

@@ -57,7 +57,8 @@ export default () => new CronJob(AUTO_REMINDER_CRON_TIME, async () => {
       if (!channel || !(channel instanceof TextChannel))
         throw new Error(msgId.UNKNOWN_CHANNEL(aTpGroup.remindChannel))
 
-      channel.send(`RAPPELS JOURNALIERS DU ${toHumanDate(new Date())} pour le groupe \`${aTpGroup.name}\``)
+      await channel.send('-------------------------')
+      await channel.send(`RAPPELS JOURNALIERS DU ${toHumanDate(new Date())} pour le groupe \`${aTpGroup.name}\` - Tu peux muter ce channel si je te spam : clic droit -> \`[✅] Mute #${aTpGroup.name}-remind\``)
       // Remind of the homework
       await homeworkRemind(channel, aTpGroup)
       // Remind of the planning

@@ -7,13 +7,16 @@ const { hasAuthorRole, tpGroupExists } = utilsCore
 
 import { Command } from '../types'
 
-export const buildHomeworkEmbed = (tpGroup: string, homework: Homework[]) => new RichEmbed({
-  title: `Devoirs du groupe \`${tpGroup}\``,
-  fields: homework.map(aHomework => ({
-    name: `Pour le \`${toHumanDate(aHomework.dueDate)}\``,
-    value: `Matière : ${aHomework.subject} - Ajouté par <@${aHomework.authorId}>${aHomework.addedDate && ` le \`${toHumanDateTime(aHomework.addedDate)}`}\`.\n\`\`\`${aHomework.content}\`\`\``
-  }))
-})
+export const buildHomeworkEmbed = (tpGroup: string, homework: Homework[]) => {
+  let embed = new RichEmbed({ title: `Devoirs du groupe \`${tpGroup}\`` })
+  if (homework.length > 0)
+    embed.fields = homework.map(aHomework => ({
+      name: `Pour le \`${toHumanDate(aHomework.dueDate)}\``,
+      value: `Matière : ${aHomework.subject} - Ajouté par <@${aHomework.authorId}>${aHomework.addedDate && ` le \`${toHumanDateTime(aHomework.addedDate)}`}\`.\n\`\`\`${aHomework.content}\`\`\``
+    }))
+  else embed.description = 'Aucun devoir **enregistré**.'
+  return embed
+}
 
 const command: Command = {
   meta: {

@@ -1,6 +1,6 @@
 import Discord from 'discord.js'
 
-import { DISCORD_AUTH_TOKEN, DISCORD_SERVER_ID } from './config'
+import { DISCORD_AUTH_TOKEN, DISCORD_SERVER_ID, COMMAND_TRIGGER, DASHBOARD_URI } from './config'
 
 // Create the bot instance
 export const bot = new Discord.Client()
@@ -15,6 +15,7 @@ export const botStart = (): Promise<void> => new Promise(resolve => {
     const serverInfo = bot.guilds.find(x => x.id === DISCORD_SERVER_ID)
     if (!serverInfo) throw new Error(`The server ID=${DISCORD_SERVER_ID} was not found. Check the bot has access to it.`)
     console.info(`Bot connected on the server "${serverInfo.name}" ID=${DISCORD_SERVER_ID}.`)
+    bot.user.setActivity(`Tape ${COMMAND_TRIGGER}aide 😉`)
     resolve()
   })
 })
