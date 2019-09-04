@@ -3,29 +3,31 @@ const { COMMAND_TRIGGER, ARG_SEPARATOR } = config
 
 import { DiscordMessageForcedTextChannel } from './types'
 
+import afficherDevoir from './list/afficherDevoir'
+import afficherPlanning from './list/afficherPlanning'
 import aide from './list/aide'
 import ajouterDevoir from './list/ajouterDevoir'
 import ajouterDevoirTd from './list/ajouterDevoirTd'
-import afficherDevoir from './list/afficherDevoir'
-import choisirGroupeTp from './list/choisirGroupeTp'
-import choisirGroupeAsso from './list/choisirGroupeAsso'
-import afficherPlanning from './list/afficherPlanning'
-import trouverPersonne from './list/trouverPersonne'
 import choisirGroupeAnnee from './list/choisirGroupeAnnee'
+import choisirGroupeAsso from './list/choisirGroupeAsso'
+import choisirGroupeTp from './list/choisirGroupeTp'
+import trouverPersonne from './list/trouverPersonne'
 import zAdminRolePrune from './list/zAdminRolePrune'
+import listerPlanning from './list/listerPlanning'
 
 // Inject all available commands here
 export const commands = {
+  afficherDevoir,
+  afficherPlanning,
   aide,
   ajouterDevoir,
   ajouterDevoirTd,
-  afficherDevoir,
-  choisirGroupeTp,
-  choisirGroupeAsso,
-  afficherPlanning,
-  trouverPersonne,
   choisirGroupeAnnee,
-  zAdminRolePrune
+  choisirGroupeAsso,
+  choisirGroupeTp,
+  trouverPersonne,
+  zAdminRolePrune,
+  listerPlanning
 }
 
 // Make all commands keys lowercase

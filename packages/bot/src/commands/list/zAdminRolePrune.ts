@@ -2,7 +2,6 @@ import { config, msgId } from '@aeic-bot2/core'
 const { COMMAND_TRIGGER: t } = config
 
 import { Command } from '../types'
-import { hasAuthorRole } from '@aeic-bot2/core/dist/utils';
 
 const command: Command = {
   meta: {

@@ -1,9 +1,9 @@
 import { RichEmbed } from '@aeic-bot2/core/dist/types'
 
-import { getDateWeek } from '@aeic-bot2/common'
-import { config, msgId, utilsCore, TpGroupModel } from '@aeic-bot2/core'
+import { getDateWeek, defaultTpGroups } from '@aeic-bot2/common'
+import { config, msgId, utilsCore } from '@aeic-bot2/core'
 const { COMMAND_TRIGGER: t, PLANNING_LINK } = config
-const { hasAuthorRole, planningIutLoader, tpGroupExists } = utilsCore
+const { planningIutLoader, tpGroupExists } = utilsCore
 
 import { Command } from '../types'
 
@@ -26,7 +26,8 @@ const command: Command = {
     examples: [
       // !afficherPlanning tp1a
       `${t}afficherPlanning`,
-      `${t}afficherPlanning tp1a`,
+      `${t}afficherPlanning 1tpa`,
+      `${t}afficherPlanning 2tpd`,
       `${t}afficherPlanning DUT1 TPA`,
       `${t}afficherPlanning DUT2 TD2`,
       `${t}afficherPlanning Apprentis info S4`
@@ -40,21 +41,24 @@ const command: Command = {
       const group = message.channel.name
       // Check the message was sent in a TP group channel
       if (!tpGroupExists(group))
-        throw new Error(msgId.NOT_IN_TP_CHANNEL)
-
-      // Check the author has the TP group role
-      if (!(await hasAuthorRole(message, group)))
-        throw new Error(msgId.MISSING_ROLE(group))
+        throw new Error(msgId.UNKNOWN_GROUP_TP(group))
 
       // Get the TP's planning group
-      const tpGroupData = await TpGroupModel.findOne({ name: group.toLowerCase() })
+      const tpGroupData = defaultTpGroups.find(x => x.name === group.toLowerCase())
       if (!tpGroupData || !tpGroupData.planningGroup)
         throw new Error(msgId.UNKNOWN_GROUP_TP_PLANNING_GROUP(group))
 
       groupPlanningToLoad = tpGroupData.planningGroup
     }
     // An argument was passed, check its planning
-    else groupPlanningToLoad = args[0]
+    else {
+      const argGroup = groupPlanningToLoad = args[0]
+
+      // Check if the argGroup is a TP group
+      const tpGroupData = defaultTpGroups.find(x => x.name === argGroup.toLowerCase())
+      // If it is a TP group, get the corresponding planning group. Else put the raw argument
+      groupPlanningToLoad = tpGroupData && tpGroupData.planningGroup ? tpGroupData.planningGroup : args[0]
+    }
 
     // Send a loading message in the channel if the request is not cached
     if (!planningIutLoader.isCached()) await message.channel.send(msgId.REQUEST_LOADING_THEN_CACHED('afficherPlanning'))

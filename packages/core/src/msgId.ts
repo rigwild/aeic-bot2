@@ -28,7 +28,7 @@ Allez, j'arrête mon spam ! :nerd: Tu peux voir l'ensemble de mes commandes ici 
 }
 
 const needHelp = `Rends-toi sur ${DOC_URI} pour obtenir de l'aide sur les commandes.
-Si t'as la flemme, tu peux toujours utiliser le dashboard ${DASHBOARD_URI} :eyes: ${DASHBOARD_URI}`
+Si t'as la flemme, tu peux toujours utiliser le dashboard ${DASHBOARD_URI} :eyes:`
 
 export default {
   AEIC_BOT_HELP,
@@ -36,7 +36,7 @@ export default {
   INVALID_STR_SIZE: (str: string, min: number, max?: number) => `La chaîne de caractère \`${str}\` est d'une taille invalide. Sa taille doit être ${max ? `comprise entre \`${min}\` et \`${max}\`` : `au minimum de \`${min}\``} caractères.`,
   UNREACHABLE_HOST: (host: string) => `L'hôte ${host} n'est pas atteignable.`,
   REQUEST_LOADING: (request?: string) => `La requête${request ? ` \`${request}\`` : ''} est en cours de traitement.`,
-  REQUEST_LOADING_THEN_CACHED: (request: string) => `La requête \`${request}\` est en cours de traitement. Les données récupérées par la requête seront mises en cache pour 4h afin d'accélérer les requêtes suivantes.`,
+  REQUEST_LOADING_THEN_CACHED: (request: string) => `La requête \`${request}\` est en cours de traitement. Les données récupérées par la requête seront mises en cache pour 1h afin d'accélérer les requêtes suivantes.`,
 
   ROLE_REMOVED: (role?: string, membersCount?: number) => `Le rôle ${role ? `\`${role}\`` : ''} a été retiré${typeof membersCount === 'number' ? ` de ${membersCount} membre(s)` : ''}.`,
   YEAR_GROUP_ROLE_ADDED: (yearGroup: string) => `Le rôle de groupe d'année \`${yearGroup}\` a été appliqué.`,
@@ -62,7 +62,7 @@ export default {
   UNKNOWN_GROUP_TP: (tpGroup: string) => `Le groupe de TP \`${tpGroup}\` n'existe pas. ${needHelp}`,
   UNKNOWN_GROUP_TP_PLANNING_GROUP: (tpGroup: string) => `Le groupe de TP \`${tpGroup}\` ne possède pas de groupe de planning. ${needHelp}`,
   UNKNOWN_GROUP_ASSO: (assoGroup: string) => `Le groupe d'association \`${assoGroup}\` n'existe pas. ${needHelp}`,
-  UNKNOWN_GROUP_PLANNING: (planningGroup: string) => `Le groupe de planning \`${planningGroup}\` n'existe pas. ${needHelp}`,
+  UNKNOWN_GROUP_PLANNING: (planningGroup: string, groups: string[]) => `Le groupe de planning \`${planningGroup}\` n'existe pas. Voici la liste des groupes disponibles :\n\`\`\`\n${groups.join(', ')}\`\`\`${needHelp}`,
   UNKNOWN_CHANNEL: (channel: string) => `Le channel \`${channel}\` n'existe pas.`,
   UNKNOWN_COMMAND: (command: string) => `La commande \`${command}\` n'existe pas. ${needHelp}`,
   NO_PERMISSION: `Seuls les membres autorisés peuvent exécuter cette commande. ${needHelp}`,

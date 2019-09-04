@@ -31,7 +31,7 @@ class ExoPlatformLoader {
   }
 
   /** Check if data was cached less than 4 hours ago */
-  isCached() { return !!this.cacheLastUpdate && this.cacheLastUpdate > new Date(Date.now() - 1000 * 60 * 60 * 4) }
+  isCached() { return !!this.cacheLastUpdate && this.cacheLastUpdate > new Date(Date.now() - 1000 * 60 * 60 * 1) }
   /** Get last cache timestamp */
   getCacheLastUpdate() { return this.cacheLastUpdate }
 
