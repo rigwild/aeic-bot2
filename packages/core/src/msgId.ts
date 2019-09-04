@@ -33,7 +33,6 @@ Si t'as la flemme, tu peux toujours utiliser le dashboard ${DASHBOARD_URI} :eyes
 export default {
   AEIC_BOT_HELP,
   ...WELCOME,
-  INVALID_STR_SIZE: (str: string, min: number, max?: number) => `La chaîne de caractère \`${str}\` est d'une taille invalide. Sa taille doit être ${max ? `comprise entre \`${min}\` et \`${max}\`` : `au minimum de \`${min}\``} caractères.`,
   UNREACHABLE_HOST: (host: string) => `L'hôte ${host} n'est pas atteignable.`,
   REQUEST_LOADING: (request?: string) => `La requête${request ? ` \`${request}\`` : ''} est en cours de traitement.`,
   REQUEST_LOADING_THEN_CACHED: (request: string) => `La requête \`${request}\` est en cours de traitement. Les données récupérées par la requête seront mises en cache pour 1h afin d'accélérer les requêtes suivantes.`,
@@ -48,8 +47,6 @@ export default {
   HOMEWORK_ADDED: (homework: Homework, tpGroup: string) => `Un devoir pour le \`${toHumanDate(homework.dueDate)}\` du cours \`${homework.subject}\` a été ajouté au groupe de TP \`${tpGroup}\`.\`\`\`${homework.content}\`\`\``,
   HOMEWORK_ADDED_VIA_TD: (homework: Homework, tpGroup: string, authorId: string) => `Un devoir pour le \`${toHumanDate(homework.dueDate)}\` du cours \`${homework.subject}\` a été ajouté au groupe de TP \`${tpGroup}\` par <@${authorId}> (ajout de devoir via groupe de TD).\`\`\`${homework.content}\`\`\``,
 
-  INVALID_DATE: `Le format de date est incorrect. ${needHelp}`,
-  DATE_IN_PAST: `La date ne peut pas être dans le passé. ${needHelp}`,
 
   NO_EXO_USER_FOUND: (request: string) => `Aucun utilisateur eXo Platform ne correspond à la recherche de nom complet, d'email et de nom d'utilisateur pour l'expression régulière \`/${request}/gi\`.`,
   NOT_IN_CHANNEL: (...channel: string[]) => `La commande ne peut être exécutée que dans les channels : \`${channel.join(', ')}\`. ${needHelp}`,
@@ -64,7 +61,13 @@ export default {
   UNKNOWN_GROUP_ASSO: (assoGroup: string) => `Le groupe d'association \`${assoGroup}\` n'existe pas. ${needHelp}`,
   UNKNOWN_GROUP_PLANNING: (planningGroup: string, groups: string[]) => `Le groupe de planning \`${planningGroup}\` n'existe pas. Voici la liste des groupes disponibles :\n\`\`\`\n${groups.join(', ')}\`\`\`${needHelp}`,
   UNKNOWN_CHANNEL: (channel: string) => `Le channel \`${channel}\` n'existe pas.`,
+  INVALID_WEEK_NUMBER: `Le chiffre réprésentant la semaine à sélectionner doit être un nombre entier entre 1 et 4. ${needHelp}`,
+
   UNKNOWN_COMMAND: (command: string) => `La commande \`${command}\` n'existe pas. ${needHelp}`,
   NO_PERMISSION: `Seuls les membres autorisés peuvent exécuter cette commande. ${needHelp}`,
-  INVALID_COMMAND_ARGUMENT_NUMBER: (command: string, numberArgs: number, minArgs: number, maxArgs?: number) => `Le nombre d'arguments passés (${numberArgs}) pour la commande \`${command}\` est invalide. Le nombre minimum d'arguments est de ${minArgs} et le maximum de ${maxArgs || 'infini'}. ${needHelp}`
+  INVALID_COMMAND_ARGUMENT_NUMBER: (command: string, numberArgs: number, minArgs: number, maxArgs?: number) => `Le nombre d'arguments passés (${numberArgs}) pour la commande \`${command}\` est invalide. Le nombre minimum d'arguments est de ${minArgs} et le maximum de ${maxArgs || 'infini'}. ${needHelp}`,
+
+  INVALID_STR_SIZE: (str: string, min: number, max?: number) => `La chaîne de caractère \`${str}\` est d'une taille invalide. Sa taille doit être ${max ? `comprise entre \`${min}\` et \`${max}\`` : `au minimum de \`${min}\``} caractères.`,
+  INVALID_DATE: `Le format de date est incorrect. ${needHelp}`,
+  DATE_IN_PAST: `La date ne peut pas être dans le passé. ${needHelp}`
 }

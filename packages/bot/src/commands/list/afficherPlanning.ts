@@ -61,9 +61,14 @@ const command: Command = {
     }
 
     // Send a loading message in the channel if the request is not cached
-    if (!planningIutLoader.isCached()) await message.channel.send(msgId.REQUEST_LOADING_THEN_CACHED('afficherPlanning'))
+    const loadingMessage = !planningIutLoader.isCached()
+      ? message.channel.send(msgId.REQUEST_LOADING_THEN_CACHED('afficherPlanning')).then(() => { })
+      : Promise.resolve()
 
-    const planningData = (await planningIutLoader.getGroup(groupPlanningToLoad))[0]
+    // Get list of classes with its planning data
+    const [planningDataAll] = await Promise.all([planningIutLoader.getGroup(groupPlanningToLoad), loadingMessage])
+
+    const planningData = planningDataAll[0]
     await message.reply({ embed: buildPlanningEmbed(groupPlanningToLoad, planningData) })
   }
 }

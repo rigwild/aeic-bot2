@@ -1,4 +1,4 @@
-import { RichEmbed } from '@aeic-bot2/core/dist/types'
+import { RichEmbed, User, Message } from '@aeic-bot2/core/dist/types'
 
 import { config, msgId, utilsCore } from '@aeic-bot2/core'
 const { COMMAND_TRIGGER: t, EXO_PLATFORM_LINK } = config
@@ -25,10 +25,12 @@ const command: Command = {
 
   async run(message, search) {
     // Send a loading message in the channel if the request is not cached
-    if (!ExoPlatformLoader.isCached()) await message.channel.send(msgId.REQUEST_LOADING_THEN_CACHED(`/${search}/gi`))
+    const loadingMessage = !ExoPlatformLoader.isCached()
+      ? message.channel.send(msgId.REQUEST_LOADING_THEN_CACHED(`/${search}/gi`)).then(() => { })
+      : Promise.resolve()
 
     // Search for the users
-    const users = await ExoPlatformLoader.searchUser(search)
+    const [users] = await Promise.all([ExoPlatformLoader.searchUser(search), loadingMessage])
 
     // Send the response
     if (users.length === 0) await message.reply(msgId.NO_EXO_USER_FOUND(search))
