@@ -35,8 +35,8 @@ const commandsLowered = Object.fromEntries(Object.entries(commands).map(([k, v])
 
 export default async (message: DiscordMessageForcedTextChannel) => {
   try {
-    // Remove the command trigger
-    const msg = message.content.substring(COMMAND_TRIGGER.length)
+    // Remove the command trigger and trim (phone auto-space between command trigger and command)
+    const msg = message.content.substring(COMMAND_TRIGGER.length).trim()
     // Check command exists
     const usedCommand = msg.replace(/\s.*/, '')
     const usedCommandLowered = usedCommand.toLowerCase()

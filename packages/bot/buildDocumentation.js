@@ -33,7 +33,7 @@ ${summaryTemplate(commands)}
 ---
 
 ## Tutoriel
-Pour lancer une commande, votre message doit commencer par \`${COMMAND_TRIGGER}\`, suivi d'une commande existante.
+Pour lancer une commande, votre message doit commencer par \`${COMMAND_TRIGGER}\`, suivi d'une commande existante (si votre téléphone place automatiquement un espace après \`${COMMAND_TRIGGER}\`, la commande sera tout de même prise en compte).
 
 Une commande peut nécessiter des arguments. Si un seul est nécessaire, vous pouvez taper votre commande suivie par l'argument à renseigner :
 \`\`\`sh

@@ -9,13 +9,14 @@
    - [`.choisirGroupeAnnee`](#choisirGroupeAnnee)
    - [`.choisirGroupeAsso`](#choisirGroupeAsso)
    - [`.choisirGroupeTp`](#choisirGroupeTp)
+   - [`.listerPlanning`](#listerPlanning)
    - [`.trouverPersonne`](#trouverPersonne)
    - [`.zAdminRolePrune`](#zAdminRolePrune)
 
 ---
 
 ## Tutoriel
-Pour lancer une commande, votre message doit commencer par `.`, suivi d'une commande existante.
+Pour lancer une commande, votre message doit commencer par `.`, suivi d'une commande existante (si votre téléphone place automatiquement un espace après `.`, la commande sera tout de même prise en compte).
 
 Une commande peut nécessiter des arguments. Si un seul est nécessaire, vous pouvez taper votre commande suivie par l'argument à renseigner :
 ```sh
@@ -65,7 +66,10 @@ Afficher le planning d'un groupe. **Commande utilisable sans paramètres dans un
 .afficherPlanning
 ```
 ```
-.afficherPlanning tp1a
+.afficherPlanning 1tpa
+```
+```
+.afficherPlanning 2tpd
 ```
 ```
 .afficherPlanning DUT1 TPA
@@ -237,6 +241,34 @@ Choisir le groupe de TP à rejoindre. Utiliser `remove` pour le retirer.
 ```
 ```
 .choisirGroupeTp remove
+```
+
+---
+
+### `.listerPlanning`
+#### Description
+Lister les plannings disponibles. Ajouter un chiffre en paramètre aura pour effet de sélectionner la semaine à appliquer (1 = semaine actuel, 2 semaine prochaine, jusque 4). Voir : <a href="https://planning-iut-calais.asauvage.fr" target="_blank" rel="noopener">https://planning-iut-calais.asauvage.fr</a>.
+
+#### Arguments
+| Minimum | Maximum |
+| :-----: |  :----: |
+| 0 | 1 |
+
+#### Exemple(s)
+```
+.listerPlanning
+```
+```
+.listerPlanning 1
+```
+```
+.listerPlanning 2
+```
+```
+.listerPlanning 3
+```
+```
+.listerPlanning 4
 ```
 
 ---

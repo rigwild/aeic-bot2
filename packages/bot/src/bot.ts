@@ -11,7 +11,8 @@ export default async () => {
 
   // Check if new message contained a command, then execute it
   bot.on('message', message => {
-    if (message.guild.id === DISCORD_SERVER_ID
+    if (message.guild
+      && message.guild.id === DISCORD_SERVER_ID
       && message.content.trim().startsWith(COMMAND_TRIGGER)
       && message.channel instanceof TextChannel)
       return commandLoader(<DiscordMessageForcedTextChannel>message)
