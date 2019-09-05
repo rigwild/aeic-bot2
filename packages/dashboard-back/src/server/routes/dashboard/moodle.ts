@@ -40,13 +40,15 @@ router.post('/moodle', asyncMiddleware(async (req, res) => {
   }).then(res => res.text())
 
   // Format the code to inject in a sandboxed iframe with minimal code
-  // (worst code ever, but it works 🤐)
   const calendarHTML = calendarPage
     .split('<!-- main mandatory content of the moodle page  -->')[1]
     .split('<!-- end of main mandatory content of the moodle page -->')[0]
     .match(/\<table[\s\S]*?\<\/table\>/g)
   if (!calendarHTML || calendarHTML.length === 0) throw boom.internal()
   const calendarHTML2 = calendarHTML[0]
+    .replace(/<ul class=\"events-new\"><li/g, '<div class="events-new"><div')
+    .replace(/<\/li><\/ul>/g, '<\/div><\/div>')
+    .replace(/<a href=/g, '<a target="_blank" href=')
 
   const calendarHead = `<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <style>
@@ -63,7 +65,6 @@ router.post('/moodle', asyncMiddleware(async (req, res) => {
     body {
       height: 100%;
       padding: 0;
-      overflow: hidden;
       margin: 0;
       background: white;
     }
@@ -82,6 +83,23 @@ router.post('/moodle', asyncMiddleware(async (req, res) => {
     }
     td.day.today {
       border: 2px solid #6b6b6b;
+    }
+
+    td.day.nottoday.cell {
+      width: 100px;
+    }
+    .events-new {
+      display: flex;
+      text-align: left;
+      align-items: center;
+      justify-content: center;
+      padding: 5px;
+      font-size: 12px;
+      flex-direction: column;
+    }
+    .calendar_event_course {
+      margin-bottom: 10px;
+      padding: 0;
     }
   </style>`
 

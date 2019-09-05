@@ -33,7 +33,9 @@ ${summaryTemplate(commands)}
 ---
 
 ## Tutoriel
-Pour lancer une commande, votre message doit commencer par \`${COMMAND_TRIGGER}\`, suivi d'une commande existante (si votre téléphone place automatiquement un espace après \`${COMMAND_TRIGGER}\`, la commande sera tout de même prise en compte).
+Pour lancer une commande, votre message doit commencer par \`${COMMAND_TRIGGER}\`, suivi d'une commande existante.
+
+Si votre téléphone place automatiquement un espace après \`${COMMAND_TRIGGER}\`, la commande sera tout de même prise en compte.
 
 Une commande peut nécessiter des arguments. Si un seul est nécessaire, vous pouvez taper votre commande suivie par l'argument à renseigner :
 \`\`\`sh
@@ -50,6 +52,7 @@ Les commandes et leurs arguments ne sont pas sensibles à la casse, les commande
 \`\`\`sh
 ${COMMAND_TRIGGER}unExemple
 ${COMMAND_TRIGGER}UnexEmpLe
+${COMMAND_TRIGGER} UnexEmpLe
 \`\`\`
 
 ## Liste des commandes

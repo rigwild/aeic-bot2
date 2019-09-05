@@ -12,7 +12,7 @@ const command: Command = {
     command: 'listerPlanning',
     minArgs: 0,
     maxArgs: 1,
-    description: `Lister les plannings disponibles. Ajouter un chiffre en paramètre aura pour effet de sélectionner la semaine à appliquer (1 = semaine actuel, 2 semaine prochaine, jusque 4). Voir : <a href="${PLANNING_LINK}" target="_blank" rel="noopener">${PLANNING_LINK}</a>.`,
+    description: `Lister les plannings disponibles. Ajouter un chiffre en paramètre aura pour effet de sélectionner la semaine à appliquer (1: semaine actuel, 2: semaine prochaine, jusque 4). Voir : <a href="${PLANNING_LINK}" target="_blank" rel="noopener">${PLANNING_LINK}</a>.`,
     examples: [
       // !listerPlanning
       `${t}listerPlanning`,

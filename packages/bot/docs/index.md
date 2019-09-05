@@ -16,7 +16,9 @@
 ---
 
 ## Tutoriel
-Pour lancer une commande, votre message doit commencer par `.`, suivi d'une commande existante (si votre téléphone place automatiquement un espace après `.`, la commande sera tout de même prise en compte).
+Pour lancer une commande, votre message doit commencer par `.`, suivi d'une commande existante.
+
+Si votre téléphone place automatiquement un espace après `.`, la commande sera tout de même prise en compte.
 
 Une commande peut nécessiter des arguments. Si un seul est nécessaire, vous pouvez taper votre commande suivie par l'argument à renseigner :
 ```sh
@@ -33,6 +35,7 @@ Les commandes et leurs arguments ne sont pas sensibles à la casse, les commande
 ```sh
 .unExemple
 .UnexEmpLe
+. UnexEmpLe
 ```
 
 ## Liste des commandes
@@ -247,7 +250,7 @@ Choisir le groupe de TP à rejoindre. Utiliser `remove` pour le retirer.
 
 ### `.listerPlanning`
 #### Description
-Lister les plannings disponibles. Ajouter un chiffre en paramètre aura pour effet de sélectionner la semaine à appliquer (1 = semaine actuel, 2 semaine prochaine, jusque 4). Voir : <a href="https://planning-iut-calais.asauvage.fr" target="_blank" rel="noopener">https://planning-iut-calais.asauvage.fr</a>.
+Lister les plannings disponibles. Ajouter un chiffre en paramètre aura pour effet de sélectionner la semaine à appliquer (1: semaine actuel, 2: semaine prochaine, jusque 4). Voir : <a href="https://planning-iut-calais.asauvage.fr" target="_blank" rel="noopener">https://planning-iut-calais.asauvage.fr</a>.
 
 #### Arguments
 | Minimum | Maximum |
