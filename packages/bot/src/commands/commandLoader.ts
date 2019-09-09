@@ -39,7 +39,11 @@ export default async (message: DiscordMessageForcedTextChannel) => {
     const msg = message.content.substring(COMMAND_TRIGGER.length).trim()
     // Check command exists
     const usedCommand = msg.replace(/\s.*/, '')
+    // Ignore if command does not contain any letters
+    if (!usedCommand.match(/[a-zA-Z]/)) return
+
     const usedCommandLowered = usedCommand.toLowerCase()
+
     if (!commandsLowered[usedCommandLowered]) throw new Error(msgId.UNKNOWN_COMMAND(usedCommand))
 
     const selectedCommand = commandsLowered[usedCommandLowered]
