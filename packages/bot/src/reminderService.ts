@@ -2,6 +2,7 @@ import { CronJob } from 'cron'
 
 import { toHumanDate } from '@aeic-bot2/common'
 import { config, bot, msgId, utilsCore } from '@aeic-bot2/core'
+import { COMMAND_TRIGGER, DASHBOARD_URI } from '@aeic-bot2/core/dist/config'
 import { TpGroupModel, TpGroupDocument } from '@aeic-bot2/core/dist/database/TpGroup'
 const { AUTO_REMINDER_CRON_TIME, DISCORD_SERVER_ID } = config
 const { planningIutLoader } = utilsCore
@@ -31,7 +32,9 @@ const homeworkRemind = (channel: TextChannel, tpGroup: TpGroupDocument) => {
  */
 const planningRemind = async (channel: TextChannel, tpGroup: TpGroupDocument) => {
   if (!tpGroup.planningGroup) return
-  const planningData = (await planningIutLoader.getGroup(tpGroup.planningGroup))[0]
+
+  const weekDayNumber = new Date().getDay()
+  const planningData = (await planningIutLoader.getGroup(tpGroup.planningGroup))[weekDayNumber === 6 || weekDayNumber === 7 ? 0 : 1]
   return channel.send(buildPlanningEmbed(tpGroup.name, planningData))
 }
 
@@ -57,8 +60,16 @@ export default () => new CronJob(AUTO_REMINDER_CRON_TIME, async () => {
       if (!channel || !(channel instanceof TextChannel))
         throw new Error(msgId.UNKNOWN_CHANNEL(aTpGroup.remindChannel))
 
-      await channel.send('-------------------------')
-      await channel.send(`RAPPELS JOURNALIERS DU ${toHumanDate(new Date())} pour le groupe \`${aTpGroup.name}\` - Tu peux muter ce channel si je te spam : clic droit -> \`[✅] Mute #${aTpGroup.name}-remind\``)
+      await channel.send(`**RAPPEL JOURNALIERS DU ${toHumanDate(new Date())} pour le groupe \`${aTpGroup.name}\`**\n`
+        + `Tu peux muter ce channel si je te spam : \`[✅] Mute #${aTpGroup.name}-remind\`\n\n`
+        + `Lien du dashboard : ${DASHBOARD_URI}\n`
+        + `Rappel des commandes relatives aux groupes de TP :\`\`\`\n\n`
+        + `Lister les desvoirs :\n${COMMAND_TRIGGER}afficherDevoir\n\n`
+        + `Ajouter un devoir :\n${COMMAND_TRIGGER}ajouterDevoir 2021-10-21 -- Algorithmique-- TP sur les boucles\n\n`
+        + `Afficher le planning :\n${COMMAND_TRIGGER}afficherPlanning\n`
+        + `Trouver quelqu'un sur ExoPlatform :\n${COMMAND_TRIGGER}trouverPersonne antoine sauvage`
+        + `\n\`\`\``)
+
       // Remind of the homework
       await homeworkRemind(channel, aTpGroup)
       // Remind of the planning
