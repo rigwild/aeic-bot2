@@ -1,7 +1,7 @@
 import { Homework } from '@aeic-bot2/common'
 import { config, msgId, utilsCore, TpGroupModel } from '@aeic-bot2/core'
 const { COMMAND_TRIGGER: t, ARG_SEPARATOR: s } = config
-const { tpGroupExists, hasAuthorRole } = utilsCore
+const { tpGroupExists } = utilsCore
 
 import { Command } from '../types'
 
@@ -23,10 +23,6 @@ const command: Command = {
     // Check the message was sent in a TP group channel
     if (!tpGroupExists(tpGroup))
       throw new Error(msgId.NOT_IN_TP_CHANNEL)
-
-    // Check the author has the TP group role
-    if (!(await hasAuthorRole(message, tpGroup)))
-      throw new Error(msgId.MISSING_ROLE(tpGroup))
 
     // Check the dueDate is a valid date
     const parsedDueDate = Date.parse(dueDate)
