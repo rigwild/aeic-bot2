@@ -28,7 +28,7 @@
       </template>
       <template v-slot="data">
         <div class="iframe-container">
-          <iframe :srcdoc="data" sandbox="allow-popups"></iframe>
+          <iframe :srcdoc="data" sandbox="allow-popups allow-popups-to-escape-sandbox"></iframe>
         </div>
       </template>
       <template v-slot:rejected="error">

@@ -48,7 +48,7 @@ router.post('/moodle', asyncMiddleware(async (req, res) => {
   const calendarHTML2 = calendarHTML[0]
     .replace(/<ul class=\"events-new\"><li/g, '<div class="events-new"><div')
     .replace(/<\/li><\/ul>/g, '<\/div><\/div>')
-    .replace(/<a href=/g, '<a target="_blank" href=')
+    .replace(/<a href=/g, '<a target="_blank" rel="noopener" href=')
 
   const calendarHead = `<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <style>
