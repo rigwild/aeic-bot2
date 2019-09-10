@@ -12,7 +12,7 @@ const router = express.Router()
 
 // Get a Discord user's profile
 router.get('/discordUser', asyncMiddleware(async (req, res) =>
-  ({ data: await getDiscordUserProfile(req.user.token) })))
+  res.json({ data: await getDiscordUserProfile(req.user.discordToken) })))
 
 // Update a Discord user's year group
 router.patch('/discordUser/yearGroup', asyncMiddleware(async (req, res) => {

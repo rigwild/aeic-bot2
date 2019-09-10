@@ -6,7 +6,7 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div v-if="!isBackCheckLoading && isBackUp && isLoggedIn" class="collapse navbar-collapse" id="navbarText">
+        <div v-if="!loading && isBackEndUp && isLoggedIn" class="collapse navbar-collapse" id="navbarText">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
               <router-link to="/dashboard/discord" exact-active-class="active" class="nav-link">Discord</router-link>
@@ -25,11 +25,12 @@
     </nav>
 
     <div class="container mt-2 mb-4">
-      <div v-if="isBackCheckLoading" class="text-center">
-        <p>Checking back-end server is up...</p>
+      <div v-if="loading" class="text-center">
+        <p v-if="!isBackEndUp">Checking back-end server is up...</p>
+        <p v-else-if="isLoggedIn">Loading your Discord data...</p>
         <b-spinner label="Loading..." />
       </div>
-      <div v-else-if="!isBackUp">
+      <div v-else-if="!isBackEndUp">
         <b-alert show variant="danger">The back-end server does not seem to be up. Check back later.</b-alert>
       </div>
       <div v-else>
@@ -57,7 +58,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex'
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 
 import { API_PREFIX } from '@/utils'
 
@@ -65,26 +66,34 @@ export default {
   data() {
     return {
       // Before rendering, check the back-end is up
-      isBackCheckLoading: true,
-      isBackUp: false
+      loading: true,
+      isBackEndUp: false
     }
   },
   computed: {
     ...mapGetters(['isLoggedIn', 'discordFullPseudo'])
   },
-  mounted() {
-    this.checkApiUp()
+  async mounted() {
+    this.loading = true
+    try {
+      // Check the back-end server is up
+      await fetch(`${API_PREFIX}/checkUp`)
+      this.isBackEndUp = true
+
+      // Reload Discord profile data
+      if (this.isLoggedIn)
+        await this.refreshDiscordUser()
+    }
+    catch (error) {
+      this.isBackEndUp = false
+    }
+    finally {
+      this.loading = false
+    }
   },
   methods: {
-    ...mapMutations(['setLoggedOut']),
-
-    async checkApiUp() {
-      this.isBackCheckLoading = true
-      await fetch(`${API_PREFIX}/checkUp`)
-        .then(res => (this.isBackUp = res.status === 200))
-        .catch(() => (this.isBackUp = false))
-        .finally(() => (this.isBackCheckLoading = false))
-    }
+    ...mapActions(['refreshDiscordUser']),
+    ...mapMutations(['setLoggedOut'])
   }
 }
 </script>

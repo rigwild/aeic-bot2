@@ -7,7 +7,7 @@ export declare interface LoggedDiscordUserRequestHandler {
     req: (Request & {
       user: {
         id: User['id']
-        token: string
+        discordToken: string
       }
     }),
     res: Response,

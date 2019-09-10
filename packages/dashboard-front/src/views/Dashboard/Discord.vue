@@ -2,11 +2,6 @@
   <div>
     <h1>Dashboard - Discord</h1>
     <hr>
-    <h5>
-      ⚠️ If you used bot commands in Discord, this Dashboard may be glitched (not in sync).<br>
-      ⚠️ Disconnect/Reconnect from the Dashboard to fix if it happen.
-    </h5>
-    <hr>
     <UserCard />
     <hr>
     <SetYearGroup />
