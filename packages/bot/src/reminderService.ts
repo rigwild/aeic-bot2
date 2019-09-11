@@ -34,7 +34,7 @@ const planningRemind = async (channel: TextChannel, tpGroup: TpGroupDocument) =>
   if (!tpGroup.planningGroup) return
 
   const weekDayNumber = new Date().getDay()
-  const planningData = (await planningIutLoader.getGroup(tpGroup.planningGroup))[weekDayNumber === 6 || weekDayNumber === 7 ? 0 : 1]
+  const planningData = (await planningIutLoader.getGroup(tpGroup.planningGroup))[weekDayNumber === 6 || weekDayNumber === 7 ? 1 : 0]
   return channel.send(buildPlanningEmbed(tpGroup.name, planningData))
 }
 
@@ -66,7 +66,7 @@ export default () => new CronJob(AUTO_REMINDER_CRON_TIME, async () => {
         + `Rappel des commandes relatives aux groupes de TP :\`\`\`\n\n`
         + `Lister les desvoirs :\n${COMMAND_TRIGGER}afficherDevoir\n\n`
         + `Ajouter un devoir :\n${COMMAND_TRIGGER}ajouterDevoir 2021-10-21 -- Algorithmique-- TP sur les boucles\n\n`
-        + `Afficher le planning :\n${COMMAND_TRIGGER}afficherPlanning\n`
+        + `Afficher le planning :\n${COMMAND_TRIGGER}afficherPlanning\n\n`
         + `Trouver quelqu'un sur ExoPlatform :\n${COMMAND_TRIGGER}trouverPersonne antoine sauvage`
         + `\n\`\`\``)
 
