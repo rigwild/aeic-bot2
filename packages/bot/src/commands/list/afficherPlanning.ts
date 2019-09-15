@@ -69,10 +69,7 @@ const command: Command = {
     // Get list of classes with its planning data
     const [planningDataAll] = await Promise.all([planningIutLoader.getGroup(groupPlanningToLoad), loadingMessage])
 
-    const weekDayNumber = new Date().getDay()
-
-    const planningData = weekDayNumber === 6 || weekDayNumber === 7 ? planningDataAll[1] : planningDataAll[0]
-    await message.reply({ embed: buildPlanningEmbed(groupPlanningToLoad, planningData) })
+    await message.reply({ embed: buildPlanningEmbed(groupPlanningToLoad, planningDataAll[isWeekEnd() ? 1 : 0]) })
   }
 }
 export default command
