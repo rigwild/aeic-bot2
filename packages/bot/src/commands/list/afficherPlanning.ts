@@ -3,13 +3,14 @@ import { RichEmbed } from '@aeic-bot2/core/dist/types'
 import { getDateWeek, defaultTpGroups } from '@aeic-bot2/common'
 import { config, msgId, utilsCore } from '@aeic-bot2/core'
 const { COMMAND_TRIGGER: t, PLANNING_LINK } = config
-const { planningIutLoader, tpGroupExists } = utilsCore
+const { planningIutLoader, tpGroupExists, isWeekEnd } = utilsCore
 
 import { Command } from '../types'
 
 export const buildPlanningEmbed = (group: string, planningData: { screenDate: string, screenPath: string }) => {
   let embed = new RichEmbed()
-  embed.title = `Planning du groupe \`${group}\` pour la semaine \`${getDateWeek(new Date(planningData.screenDate))}\``
+
+  embed.title = `Planning du groupe \`${group}\` pour la semaine \`${getDateWeek(new Date(planningData.screenDate)) + (isWeekEnd() ? 1 : 0)}\``
   embed.footer = { text: 'Date de mise en cache', icon_url: 'https://planning-iut-calais.asauvage.fr/favicon/favicon-32x32.png' }
   embed.timestamp = new Date(planningData.screenDate)
   embed.image = { url: `${PLANNING_LINK}${planningData.screenPath}?nonce=${Date.now()}` }
@@ -69,6 +70,7 @@ const command: Command = {
     const [planningDataAll] = await Promise.all([planningIutLoader.getGroup(groupPlanningToLoad), loadingMessage])
 
     const weekDayNumber = new Date().getDay()
+
     const planningData = weekDayNumber === 6 || weekDayNumber === 7 ? planningDataAll[1] : planningDataAll[0]
     await message.reply({ embed: buildPlanningEmbed(groupPlanningToLoad, planningData) })
   }

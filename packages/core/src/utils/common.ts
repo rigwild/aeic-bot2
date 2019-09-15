@@ -55,3 +55,13 @@ export const hasAuthorRoleSome = async (message: Message, ...neededRoles: string
   return neededRoles.some(aNeededRole =>
     memberRoles.find(aMemberRole => aMemberRole.name.toLowerCase() === aNeededRole.toLowerCase()))
 }
+
+/**
+ * Check if a day is during the week-end (Friday, Saturday or Sunday)
+ * @param date Date to check
+ * @returns Is the date during the week-end
+ */
+export const isWeekEnd = (date: Date = new Date()) => {
+  const weekDayNumber = date.getDay()
+  return [0, 5, 6].some(x => x === weekDayNumber)
+}

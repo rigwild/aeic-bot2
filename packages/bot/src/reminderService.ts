@@ -5,7 +5,7 @@ import { config, bot, msgId, utilsCore } from '@aeic-bot2/core'
 import { COMMAND_TRIGGER, DASHBOARD_URI } from '@aeic-bot2/core/dist/config'
 import { TpGroupModel, TpGroupDocument } from '@aeic-bot2/core/dist/database/TpGroup'
 const { AUTO_REMINDER_CRON_TIME, DISCORD_SERVER_ID } = config
-const { planningIutLoader } = utilsCore
+const { planningIutLoader, isWeekEnd } = utilsCore
 import { TextChannel } from '@aeic-bot2/core/dist/types'
 
 import { buildHomeworkEmbed } from './commands/list/afficherDevoir'
@@ -32,9 +32,7 @@ const homeworkRemind = (channel: TextChannel, tpGroup: TpGroupDocument) => {
  */
 const planningRemind = async (channel: TextChannel, tpGroup: TpGroupDocument) => {
   if (!tpGroup.planningGroup) return
-
-  const weekDayNumber = new Date().getDay()
-  const planningData = (await planningIutLoader.getGroup(tpGroup.planningGroup))[weekDayNumber === 6 || weekDayNumber === 7 ? 1 : 0]
+  const planningData = (await planningIutLoader.getGroup(tpGroup.planningGroup))[isWeekEnd() ? 1 : 0]
   return channel.send(buildPlanningEmbed(tpGroup.name, planningData))
 }
 
