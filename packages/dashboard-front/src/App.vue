@@ -75,17 +75,22 @@ export default {
   },
   async mounted() {
     this.loading = true
+
     try {
       // Check the back-end server is up
       await fetch(`${API_PREFIX}/checkUp`)
+        .catch(err => {
+          this.isBackEndUp = false
+          throw err
+        })
       this.isBackEndUp = true
 
       // Reload Discord profile data
-      if (this.isLoggedIn)
-        await this.refreshDiscordUser()
+      if (this.isLoggedIn) await this.refreshDiscordUser()
     }
-    catch (error) {
-      this.isBackEndUp = false
+    catch (err) {
+      console.error(err)
+      await this.setLoggedOut()
     }
     finally {
       this.loading = false
