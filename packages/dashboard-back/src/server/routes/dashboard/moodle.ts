@@ -85,8 +85,9 @@ router.post('/moodle', asyncMiddleware(async (req, res) => {
       border: 2px solid #6b6b6b;
     }
 
-    td.day.nottoday.cell {
+    td.cell {
       width: 100px;
+      word-break: break-word;
     }
     .events-new {
       display: flex;
