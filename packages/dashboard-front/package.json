@@ -9,22 +9,22 @@
   },
   "dependencies": {
     "@aeic-bot2/common": "*",
-    "bootstrap": "^4.3.1",
-    "bootstrap-vue": "^2.0.0-rc.27",
-    "vue": "^2.6.10",
-    "vue-promised": "^1.2.1",
-    "vue-router": "^3.1.2",
-    "vuex": "^3.1.1",
-    "vuex-persistedstate": "^2.5.4"
+    "bootstrap": "^4.4.1",
+    "bootstrap-vue": "^2.4.2",
+    "vue": "^2.6.11",
+    "vue-promised": "^1.2.2",
+    "vue-router": "^3.1.5",
+    "vuex": "^3.1.2",
+    "vuex-persistedstate": "^2.7.1"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.10.0",
-    "@vue/cli-plugin-eslint": "^3.10.0",
-    "@vue/cli-service": "^3.10.0",
-    "babel-eslint": "^10.0.2",
-    "eslint": "^5.16.0",
-    "eslint-plugin-vue": "^5.2.3",
-    "vue-template-compiler": "^2.6.10"
+    "@vue/cli-plugin-babel": "^4.2.2",
+    "@vue/cli-plugin-eslint": "^4.2.2",
+    "@vue/cli-service": "^4.2.2",
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.8.0",
+    "eslint-plugin-vue": "^6.2.1",
+    "vue-template-compiler": "^2.6.11"
   },
   "postcss": {
     "plugins": {

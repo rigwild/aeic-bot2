@@ -11,16 +11,16 @@
   "dependencies": {
     "@aeic-bot2/common": "*",
     "discord.js": "^11.5.1",
-    "dotenv-safe": "^8.1.0",
+    "dotenv-safe": "^8.2.0",
     "exoplatform-api-wrapper": "^0.1.8",
-    "mongoose": "^5.6.10",
+    "mongoose": "^5.9.1",
     "node-fetch": "^2.6.0"
   },
   "devDependencies": {
-    "@types/dotenv-safe": "^5.0.3",
-    "@types/mongoose": "^5.5.13",
-    "@types/node": "^12.7.2",
-    "@types/node-fetch": "^2.5.0",
-    "typescript": "^3.5.3"
+    "@types/dotenv-safe": "^8.1.0",
+    "@types/mongoose": "^5.7.1",
+    "@types/node": "^13.7.1",
+    "@types/node-fetch": "^2.5.4",
+    "typescript": "^3.7.5"
   }
 }
