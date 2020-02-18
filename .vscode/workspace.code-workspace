@@ -1,0 +1,25 @@
+
+{
+	"folders": [
+    {
+      "name": "bot",
+      "path": "../packages/bot"
+    },
+    {
+      "name": "common",
+      "path": "../packages/common"
+    },
+    {
+      "name": "core",
+      "path": "../packages/core"
+    },
+    {
+      "name": "dashboard-back",
+      "path": "../packages/dashboard-back"
+    },
+    {
+      "name": "dashboard-front",
+      "path": "../packages/dashboard-front"
+    }
+	]
+}

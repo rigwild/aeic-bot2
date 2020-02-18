@@ -57,11 +57,21 @@ export const hasAuthorRoleSome = async (message: Message, ...neededRoles: string
 }
 
 /**
- * Check if a day is during the week-end (Friday, Saturday or Sunday)
+ * Check if a day is during the week-end (Saturday or Sunday)
  * @param date Date to check
  * @returns Is the date during the week-end
  */
 export const isWeekEnd = (date: Date = new Date()) => {
+  const weekDayNumber = date.getDay()
+  return [0, 6].some(x => x === weekDayNumber)
+}
+
+/**
+ * Check if a day is during the week-end or friday (Friday, Saturday or Sunday)
+ * @param date Date to check
+ * @returns Is the date during the week-end
+ */
+export const isWeekEndOrFriday = (date: Date = new Date()) => {
   const weekDayNumber = date.getDay()
   return [0, 5, 6].some(x => x === weekDayNumber)
 }

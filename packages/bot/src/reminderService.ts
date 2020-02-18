@@ -18,7 +18,7 @@ import { buildPlanningEmbed } from './commands/list/afficherPlanning'
  */
 const homeworkRemind = (channel: TextChannel, tpGroup: TpGroupDocument) => {
   // Keep only homework that are due in the future
-  const dateMin = new Date(Date.now() + -1 * 24 * 3600 * 1000)
+  const dateMin = new Date(Date.now() - 1 * 24 * 3600 * 1000)
   const homework = tpGroup.homework ? tpGroup.homework.filter(aHomework => dateMin < aHomework.dueDate) : []
 
   // Build the message that will be sent
@@ -33,6 +33,7 @@ const homeworkRemind = (channel: TextChannel, tpGroup: TpGroupDocument) => {
 const planningRemind = async (channel: TextChannel, tpGroup: TpGroupDocument) => {
   if (!tpGroup.planningGroup) return
   const planningData = (await planningIutLoader.getGroup(tpGroup.planningGroup))[isWeekEnd() ? 1 : 0]
+  console.log(await planningIutLoader.getGroup(tpGroup.planningGroup))
   return channel.send(buildPlanningEmbed(tpGroup.name, planningData))
 }
 
