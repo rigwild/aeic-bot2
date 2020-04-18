@@ -20,7 +20,7 @@
     "cron": "^1.8.2"
   },
   "devDependencies": {
-    "@types/cron": "^1.7.1",
-    "typescript": "^3.7.5"
+    "@types/cron": "^1.7.2",
+    "typescript": "^3.8.3"
   }
 }

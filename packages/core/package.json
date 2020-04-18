@@ -10,17 +10,18 @@
   },
   "dependencies": {
     "@aeic-bot2/common": "*",
-    "discord.js": "^11.5.1",
+    "discord.js": "^12.2.0",
     "dotenv-safe": "^8.2.0",
     "exoplatform-api-wrapper": "^0.1.8",
-    "mongoose": "^5.9.1",
+    "mongoose": "^5.9.9",
     "node-fetch": "^2.6.0"
   },
   "devDependencies": {
     "@types/dotenv-safe": "^8.1.0",
-    "@types/mongoose": "^5.7.1",
-    "@types/node": "^13.7.1",
-    "@types/node-fetch": "^2.5.4",
-    "typescript": "^3.7.5"
+    "@types/mongoose": "^5.7.12",
+    "@types/node": "^13.13.0",
+    "@types/node-fetch": "^2.5.6",
+    "@types/ws": "^7.2.4",
+    "typescript": "^3.8.3"
   }
 }
