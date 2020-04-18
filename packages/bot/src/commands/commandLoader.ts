@@ -7,7 +7,6 @@ import afficherDevoir from './list/afficherDevoir'
 import afficherPlanning from './list/afficherPlanning'
 import aide from './list/aide'
 import ajouterDevoir from './list/ajouterDevoir'
-import ajouterDevoirTd from './list/ajouterDevoirTd'
 import choisirGroupeAnnee from './list/choisirGroupeAnnee'
 import choisirGroupeAsso from './list/choisirGroupeAsso'
 import choisirGroupeTp from './list/choisirGroupeTp'
@@ -21,7 +20,6 @@ export const commands = {
   afficherPlanning,
   aide,
   ajouterDevoir,
-  ajouterDevoirTd,
   choisirGroupeAnnee,
   choisirGroupeAsso,
   choisirGroupeTp,

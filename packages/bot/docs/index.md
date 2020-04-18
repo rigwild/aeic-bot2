@@ -5,7 +5,6 @@
    - [`.afficherPlanning`](#afficherPlanning)
    - [`.aide`](#aide)
    - [`.ajouterDevoir`](#ajouterDevoir)
-   - [`.ajouterDevoirTd`](#ajouterDevoirTd)
    - [`.choisirGroupeAnnee`](#choisirGroupeAnnee)
    - [`.choisirGroupeAsso`](#choisirGroupeAsso)
    - [`.choisirGroupeTp`](#choisirGroupeTp)
@@ -117,25 +116,6 @@ Ajouter un devoir à un groupe de TP. **Commande à utiliser dans un channel de 
 ```
 ```
 .ajouterDevoir 2020-01-18 -- Maths -- DS Ould-Said
-```
-
----
-
-### `.ajouterDevoirTd`
-#### Description
-Ajouter un devoir à un groupe de TD (le devoir sera ajouté à chaque groupes de TP présents dans le groupe de TD).
-
-#### Arguments
-| Minimum | Maximum |
-| :-----: |  :----: |
-| 5 | 5 |
-
-#### Exemple(s)
-```
-.ajouterDevoirTd td1 -- dut1 -- 2020-04-24 -- Java -- TP Breakout
-```
-```
-.ajouterDevoirTd td1 -- dut2 -- 2020-01-18 -- Maths -- DS Ould-Said
 ```
 
 ---
