@@ -1,4 +1,4 @@
-import { Message, TextChannel, GuildMember } from 'discord.js'
+import { Message, TextChannel, GuildMember, GuildMemberRoleManager } from 'discord.js'
 
 import { removeAccents, defaultTpGroupsName, defaultAssoGroupsName, defaultYearGroupsName } from '@aeic-bot2/common'
 
@@ -35,7 +35,7 @@ export const isMessageInChannel = (message: Message, channel: string) =>
  */
 export const hasRole = async (role: GuildMember['roles'], ...neededRoles: string[]) =>
   neededRoles.every(aNeededRole =>
-    role.find(aMemberRole => aMemberRole.name.toLowerCase() === aNeededRole.toLowerCase()))
+    role.cache.find(aMemberRole => aMemberRole.name.toLowerCase() === aNeededRole.toLowerCase()))
 
 /**
  * Check a message's author has roles. Case insensitive.
@@ -43,7 +43,7 @@ export const hasRole = async (role: GuildMember['roles'], ...neededRoles: string
  * @param neededRoles Roles to check
  */
 export const hasAuthorRole = async (message: Message, ...neededRoles: string[]) =>
-  hasRole(await message.guild.member(message.author).roles, ...neededRoles)
+  hasRole(await message.guild?.member(message.author)?.roles as GuildMemberRoleManager, ...neededRoles)
 
 /**
  * Check a message's author has one of some roles. Case insensitive.
@@ -51,9 +51,9 @@ export const hasAuthorRole = async (message: Message, ...neededRoles: string[]) 
  * @param role Roles to check
  */
 export const hasAuthorRoleSome = async (message: Message, ...neededRoles: string[]) => {
-  const memberRoles = await message.guild.member(message.author).roles
+  const memberRoles = await message.guild?.member(message.author)?.roles as GuildMemberRoleManager 
   return neededRoles.some(aNeededRole =>
-    memberRoles.find(aMemberRole => aMemberRole.name.toLowerCase() === aNeededRole.toLowerCase()))
+    memberRoles.cache.find(aMemberRole => aMemberRole.name.toLowerCase() === aNeededRole.toLowerCase()))
 }
 
 /**

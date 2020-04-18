@@ -1,5 +1,5 @@
 import boom from '@hapi/boom'
-import { ErrorRequestHandler } from 'express'
+import { ErrorRequestHandler } from 'express-serve-static-core'
 
 import { LoggedDiscordUserRequestHandler } from './types'
 
@@ -16,7 +16,7 @@ export const asyncMiddleware = (fn: LoggedDiscordUserRequestHandler) => (req: an
 }
 
 // Middleware to handle middleware errors
-export const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
+export const errorHandler: ErrorRequestHandler = (err: any, req: any, res: any, next: any) => {
   // Check whether the error is a boom error
   if (!err.isBoom) {
     // Check if error is invalid JSON body

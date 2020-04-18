@@ -1,4 +1,4 @@
-import { RichEmbed, User, Message } from '@aeic-bot2/core/dist/types'
+import { MessageEmbed, User, Message } from '@aeic-bot2/core/dist/types'
 
 import { config, msgId, utilsCore } from '@aeic-bot2/core'
 const { COMMAND_TRIGGER: t, EXO_PLATFORM_LINK } = config
@@ -15,9 +15,9 @@ const command: Command = {
     examples: [
       // !trouverPersonne synave
       `${t}trouverPersonne synave`,
-      `${t}trouverPersonne antoine sauvage`,
-      `${t}trouverPersonne contact@asauvage.fr`,
-      `${t}trouverPersonne act@asauvage.f`,
+      `${t}trouverPersonne rémi synave`,
+      `${t}trouverPersonne me@rigwild.dev`,
+      `${t}trouverPersonne e@rigwi`,
       `${t}trouverPersonne ^antoine`,
       `${t}trouverPersonne \@gmail\.com`
     ]
@@ -35,13 +35,14 @@ const command: Command = {
     // Send the response
     if (users.length === 0) await message.reply(msgId.NO_EXO_USER_FOUND(search))
     else {
-      let embed = new RichEmbed()
+      let embed = new MessageEmbed()
       embed.title = `Résultat de la recherche \`/${search}/gi\``
-      embed.footer = { text: `https://${EXO_PLATFORM_LINK} - Date de mise en cache`, icon_url: 'https://www.exoplatform.com/wp-content/themes/westand-child/assets/images/logo.png' }
-      embed.timestamp = ExoPlatformLoader.getCacheLastUpdate() || undefined
+      embed.footer = { text: `https://${EXO_PLATFORM_LINK} - Date de mise en cache`, iconURL: 'https://www.exoplatform.com/wp-content/themes/westand-child/assets/images/logo.png' }
+      embed.setTimestamp(ExoPlatformLoader.getCacheLastUpdate() || undefined)
       embed.fields = users.map(aUser => ({
         name: aUser.fullname,
-        value: `${aUser.username} - ${aUser.email ? aUser.email : 'Pas d\'email'} - [Lien eXo](https://${EXO_PLATFORM_LINK}/portal/intranet/profile/${aUser.username})`
+        value: `${aUser.username} - ${aUser.email ? aUser.email : 'Pas d\'email'} - [Lien eXo](https://${EXO_PLATFORM_LINK}/portal/intranet/profile/${aUser.username})`,
+        inline: false
       }))
       await message.reply({ embed })
     }

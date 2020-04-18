@@ -1,4 +1,4 @@
-import { RichEmbed } from '@aeic-bot2/core/dist/types'
+import { MessageEmbed } from '@aeic-bot2/core/dist/types'
 
 import { getDateWeek, defaultTpGroups } from '@aeic-bot2/common'
 import { config, msgId, utilsCore } from '@aeic-bot2/core'
@@ -8,11 +8,11 @@ const { planningIutLoader, tpGroupExists, isWeekEnd } = utilsCore
 import { Command } from '../types'
 
 export const buildPlanningEmbed = (group: string, planningData: { screenDate: string, screenPath: string }) => {
-  let embed = new RichEmbed()
+  let embed = new MessageEmbed()
 
   embed.title = `Planning du groupe \`${group}\` pour la semaine \`${getDateWeek(new Date(planningData.screenDate)) + (isWeekEnd() ? 1 : 0)}\``
-  embed.footer = { text: 'Date de mise en cache', icon_url: 'https://planning-iut-calais.asauvage.fr/favicon/favicon-32x32.png' }
-  embed.timestamp = new Date(planningData.screenDate)
+  embed.footer = { text: 'Date de mise en cache', iconURL: 'https://planning-iut-calais.asauvage.fr/favicon/favicon-32x32.png' }
+  embed.setTimestamp(new Date(planningData.screenDate))
   embed.image = { url: `${PLANNING_LINK}${planningData.screenPath}?nonce=${Date.now()}` }
   embed.url = `${PLANNING_LINK}${planningData.screenPath}`
   return embed

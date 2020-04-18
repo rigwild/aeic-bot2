@@ -4,6 +4,7 @@ const { COMMAND_TRIGGER: t } = config
 const { yearGroupExists } = utilsCore
 
 import { Command } from '../types'
+import { GuildMember } from '@aeic-bot2/core/dist/types'
 
 const command: Command = {
   meta: {
@@ -26,8 +27,8 @@ const command: Command = {
   async run(message, yearGroup) {
     // Remove TP group role
     if (yearGroup === 'remove') {
-      const author = await message.guild.member(message.author)
-      await author.removeRoles(author.roles.filter(aRole => yearGroupExists(aRole.name)))
+      const author = await message.guild?.member(message.author) as GuildMember
+      await author.roles.remove(author.roles.cache.filter(aRole => yearGroupExists(aRole.name)))
       await message.reply(msgId.ROLE_REMOVED())
       return
     }
@@ -37,11 +38,11 @@ const command: Command = {
       throw new Error(msgId.UNKNOWN_GROUP(yearGroup))
 
     // Delete other year groups roles and add the new one
-    const author = await message.guild.member(message.author)
-    const rolesToDelete = author.roles.filter(aRole => !!defaultYearGroupsName.find(aYearGroup => removeAccents(aYearGroup).toLowerCase() === removeAccents(aRole.name).toLowerCase()))
-    const roleToAdd = message.guild.roles.find(aRole => removeAccents(aRole.name).toLowerCase() === removeAccents(yearGroup).toLowerCase())
-    await author.removeRoles(rolesToDelete)
-    await author.addRole(roleToAdd)
+    const author = await message.guild?.member(message.author) as GuildMember
+    const rolesToDelete = author.roles.cache.filter(aRole => !!defaultYearGroupsName.find(aYearGroup => removeAccents(aYearGroup).toLowerCase() === removeAccents(aRole.name).toLowerCase()))
+    const roleToAdd = message.guild?.roles.cache.find(aRole => removeAccents(aRole.name).toLowerCase() === removeAccents(yearGroup).toLowerCase())
+    await author.roles.add(rolesToDelete)
+    if (roleToAdd) await author.roles.remove(roleToAdd)
 
     await message.reply(msgId.YEAR_GROUP_ROLE_ADDED(yearGroup))
   }

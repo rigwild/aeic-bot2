@@ -1,4 +1,4 @@
-import { RichEmbed } from '@aeic-bot2/core/dist/types'
+import { MessageEmbed } from '@aeic-bot2/core/dist/types'
 
 import { toHumanDateTime, toHumanDate, Homework } from '@aeic-bot2/common'
 import { config, msgId, utilsCore, TpGroupModel } from '@aeic-bot2/core'
@@ -8,11 +8,12 @@ const { tpGroupExists } = utilsCore
 import { Command } from '../types'
 
 export const buildHomeworkEmbed = (tpGroup: string, homework: Homework[]) => {
-  let embed = new RichEmbed({ title: `Devoirs du groupe \`${tpGroup}\`` })
+  let embed = new MessageEmbed({ title: `Devoirs du groupe \`${tpGroup}\`` })
   if (homework.length > 0)
     embed.fields = homework.map(aHomework => ({
       name: `Pour le \`${toHumanDate(aHomework.dueDate)}\``,
-      value: `Matière : ${aHomework.subject} - Ajouté par <@${aHomework.authorId}>${aHomework.addedDate && ` le \`${toHumanDateTime(aHomework.addedDate)}`}\`.\n\`\`\`${aHomework.content}\`\`\``
+      value: `Matière : ${aHomework.subject} - Ajouté par <@${aHomework.authorId}>${aHomework.addedDate && ` le \`${toHumanDateTime(aHomework.addedDate)}`}\`.\n\`\`\`${aHomework.content}\`\`\``,
+      inline: false
     }))
   else embed.description = 'Aucun devoir **enregistré**.'
   return embed

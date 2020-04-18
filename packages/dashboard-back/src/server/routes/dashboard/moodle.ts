@@ -1,10 +1,11 @@
 import express from 'express'
 import fetch from 'node-fetch'
 import boom from '@hapi/boom'
+import { Router } from 'express-serve-static-core'
 
 import { asyncMiddleware, checkRequiredParameters } from '../../utils'
 
-const router = express.Router()
+const router = express.Router() as Router
 
 // Load a user's Moodle calendar
 router.post('/moodle', asyncMiddleware(async (req, res) => {

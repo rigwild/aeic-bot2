@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken'
 import fetch from 'node-fetch'
 import btoa from 'btoa'
 import boom from '@hapi/boom'
+import { Router } from 'express-serve-static-core'
 
 import { config } from '@aeic-bot2/core'
 const { DISCORD_REDIRECT_URI, DISCORD_CLIENT_ID, DISCORD_CLIENT_SECRET, SERVER_SECRET } = config
@@ -10,7 +11,7 @@ const { DISCORD_REDIRECT_URI, DISCORD_CLIENT_ID, DISCORD_CLIENT_SECRET, SERVER_S
 import { asyncMiddleware } from '../utils'
 import { getDiscordUserProfile } from '../bot'
 
-const router = express.Router()
+const router = express.Router() as Router
 
 router.get('/discordRedirect', asyncMiddleware((req, res) => {
   // Redirect to the oauth validation page

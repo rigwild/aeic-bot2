@@ -1,4 +1,4 @@
-import { RichEmbed } from '@aeic-bot2/core/dist/types'
+import { MessageEmbed } from '@aeic-bot2/core/dist/types'
 
 import { getDateWeek } from '@aeic-bot2/common'
 import { config, msgId, utilsCore } from '@aeic-bot2/core'
@@ -37,12 +37,12 @@ const command: Command = {
     let [classesList] = await Promise.all([planningIutLoader.getClassesList(), loadingMessage])
 
     // Build the embed
-    let embed = new RichEmbed()
+    let embed = new MessageEmbed()
     const lastCache = new Date(classesList[0].weeks[usedWeek].screenDate)
     const weekNumber = getDateWeek(lastCache) - 1 + usedWeek
     embed.title = `Liste des plannings disponibles pour la semaine \`${weekNumber}\``
-    embed.footer = { text: 'Date de mise en cache', icon_url: 'https://planning-iut-calais.asauvage.fr/favicon/favicon-32x32.png' }
-    embed.timestamp = lastCache
+    embed.footer = { text: 'Date de mise en cache', iconURL: 'https://planning-iut-calais.asauvage.fr/favicon/favicon-32x32.png' }
+    embed.setTimestamp(lastCache)
 
     // Add group fields with link to planning
     // Embed can't have more than 25 fields, make 25 fields and the rest in description

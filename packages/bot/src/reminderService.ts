@@ -44,7 +44,7 @@ const planningRemind = async (channel: TextChannel, tpGroup: TpGroupDocument) =>
 export default () => new CronJob(AUTO_REMINDER_CRON_TIME, async () => {
   console.info(`Reminder process started`)
   // Get the guild
-  const guild = bot.guilds.get(DISCORD_SERVER_ID)
+  const guild = bot.guilds.cache.get(DISCORD_SERVER_ID)
   if (!guild) return
 
   // Get all TP groups documents
@@ -54,7 +54,7 @@ export default () => new CronJob(AUTO_REMINDER_CRON_TIME, async () => {
       if (!aTpGroup.remindChannel) continue
 
       // Check the TP group remind channel exists
-      const channel = guild.channels.find(aChannel => aChannel.name === aTpGroup.remindChannel)
+      const channel = guild.channels.cache.find(aChannel => aChannel.name === aTpGroup.remindChannel)
 
       if (!channel || !(channel instanceof TextChannel))
         throw new Error(msgId.UNKNOWN_CHANNEL(aTpGroup.remindChannel))

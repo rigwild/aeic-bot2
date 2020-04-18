@@ -3,6 +3,7 @@ const { COMMAND_TRIGGER: t } = config
 const { assoGroupExists } = utilsCore
 
 import { Command } from '../types'
+import { GuildMember } from '@aeic-bot2/core/dist/types'
 
 const command: Command = {
   meta: {
@@ -23,8 +24,8 @@ const command: Command = {
   async run(message, assoGroup) {
     // Remove Asso group role
     if (assoGroup === 'remove') {
-      const author = await message.guild.member(message.author)
-      await author.removeRoles(author.roles.filter(aRole => assoGroupExists(aRole.name)))
+      const author = await message.guild?.member(message.author) as GuildMember 
+      await author.roles.remove(author.roles.cache.filter(aRole => assoGroupExists(aRole.name)))
       await message.reply(msgId.ROLE_REMOVED())
       return
     }
@@ -34,11 +35,11 @@ const command: Command = {
       throw new Error(msgId.UNKNOWN_GROUP_ASSO(assoGroup))
 
     // Delete other association groups roles and add the new one
-    const author = await message.guild.member(message.author)
-    const rolesToDelete = author.roles.filter(aRole => assoGroupExists(aRole.name))
-    const roleToAdd = message.guild.roles.find(aRole => aRole.name.toLowerCase() === assoGroup.toLowerCase())
-    await author.removeRoles(rolesToDelete)
-    await author.addRole(roleToAdd)
+    const author = await message.guild?.member(message.author) as GuildMember
+    const rolesToDelete = author.roles.cache.filter(aRole => assoGroupExists(aRole.name))
+    const roleToAdd = message.guild?.roles.cache.find(aRole => aRole.name.toLowerCase() === assoGroup.toLowerCase())
+    await author.roles.remove(rolesToDelete)
+    if (roleToAdd) await author.roles.add(roleToAdd)
 
     await message.reply(msgId.ASSO_GROUP_ROLE_ADDED(assoGroup.toLowerCase()))
   }

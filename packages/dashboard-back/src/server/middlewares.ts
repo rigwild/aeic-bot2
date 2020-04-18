@@ -1,6 +1,6 @@
 import boom from '@hapi/boom'
 import expressJwt from 'express-jwt'
-import { RequestHandler } from 'express'
+import { RequestHandler } from 'express-serve-static-core'
 
 import { config } from '@aeic-bot2/core'
 const { SERVER_SECRET } = config

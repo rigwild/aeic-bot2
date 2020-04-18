@@ -1,10 +1,11 @@
 import express from 'express'
 import { request } from 'https'
 import boom from '@hapi/boom'
+import { Router } from 'express-serve-static-core'
 
 import { asyncMiddleware, checkRequiredParameters } from '../../utils'
 
-const router = express.Router()
+const router = express.Router() as Router
 
 const getLatestSemester = (ine: string): Promise<string> => new Promise((resolve, reject) => {
   const req = request('https://extra.univ-littoral.fr/abs/index.php', {

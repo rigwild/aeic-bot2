@@ -23,7 +23,8 @@ export default async () => {
     if (member.guild.id !== DISCORD_SERVER_ID) return
     try {
       await member.send(msgId.WELCOME_DM)
-      await member.guild.defaultChannel.send(msgId.WELCOME_PUBLIC(member.id))
+      const taverne = await member.guild.channels.cache.find(x => x.name === 'taverne')
+      if (taverne instanceof TextChannel) taverne.send(msgId.WELCOME_PUBLIC(member.id))
     }
     catch (error) {
       console.error(error)

@@ -20,10 +20,10 @@ const command: Command = {
 
   async run(message, role) {
     // Check the member has administration permission
-    if (!message.member.hasPermission('ADMINISTRATOR')) throw new Error(msgId.NO_PERMISSION)
+    if (!message.member?.hasPermission('ADMINISTRATOR')) throw new Error(msgId.NO_PERMISSION)
 
     // Find the role to delete
-    const dRole = await message.guild.roles.find(aRole => aRole.name.toLowerCase() === role.toLowerCase())
+    const dRole = await message.guild?.roles.cache.find(aRole => aRole.name.toLowerCase() === role.toLowerCase())
     if (!dRole) throw new Error(msgId.UNKNOWN_ROLE(role))
 
     await message.channel.send(msgId.REQUEST_LOADING())
@@ -31,7 +31,7 @@ const command: Command = {
     const count = dRole.members.size
 
     // Remove the role from all members that have it
-    await Promise.all(dRole.members.map(x => x.removeRole(dRole)))
+    await Promise.all(dRole.members.map(x => x.roles.remove(dRole)))
 
     await message.reply(msgId.ROLE_REMOVED(role, count))
   }

@@ -1,5 +1,6 @@
 import express from 'express'
 import boom from '@hapi/boom'
+import { Router } from 'express-serve-static-core'
 
 import { Homework } from '@aeic-bot2/common'
 
@@ -7,12 +8,12 @@ import { utilsCore, config } from '@aeic-bot2/core'
 const { tpGroupExists, planningIutLoader, hasRole } = utilsCore
 const { PLANNING_LINK } = config
 import { TpGroupModel } from '@aeic-bot2/core'
-import { TpGroupDocument } from '@aeic-bot2/core/dist/types'
+import { TpGroupDocument, GuildMember } from '@aeic-bot2/core/dist/types'
 
 import { getGuildMember, extractMemberProfile } from '../../bot'
 import { asyncMiddleware, removeAccents, checkRequiredParameters } from '../../utils'
 
-const router = express.Router()
+const router = express.Router() as Router
 
 // Get the list of homework for a TP group
 router.get('/tpGroup/:tpGroup/homework', asyncMiddleware(async (req, res) => {
@@ -23,7 +24,7 @@ router.get('/tpGroup/:tpGroup/homework', asyncMiddleware(async (req, res) => {
     throw boom.badRequest('Invalid TP group.')
 
   // Get Discord Guild member data
-  const user = await getGuildMember(req.user.id)
+  const user = await getGuildMember(req.user.id) as GuildMember
 
   // Check the member has the TP group role
   if (!(await hasRole(user.roles, tpGroup)))
@@ -68,7 +69,7 @@ router.put('/tpGroup/:tpGroup/homework', asyncMiddleware(async (req, res) => {
     throw boom.badRequest('The due date can not be in the past.')
 
   // Get Discord Guild member data
-  const user = await getGuildMember(req.user.id)
+  const user = await getGuildMember(req.user.id) as GuildMember
 
   // Check the member has the TP group role
   if (!(await hasRole(user.roles, tpGroup)))
@@ -115,7 +116,7 @@ router.delete('/tpGroup/:tpGroup/homework/:homeworkId', asyncMiddleware(async (r
     throw boom.notFound('The homework was not found in the provided TP.')
 
   // Get Discord Guild member data
-  const user = await getGuildMember(req.user.id)
+  const user = await getGuildMember(req.user.id) as GuildMember
 
   // Check the member has the TP group role
   if (!(await hasRole(user.roles, tpGroup)))

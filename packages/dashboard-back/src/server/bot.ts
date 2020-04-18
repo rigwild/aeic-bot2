@@ -9,14 +9,14 @@ import { Guild, User, GuildMember } from '@aeic-bot2/core/dist/types'
  * Fetch the Discord's guild the bot is watching
  * @returns Data of the Discord guild
  */
-export const getGuild = () => <Guild>bot.guilds.get(DISCORD_SERVER_ID)
+export const getGuild = () => <Guild>bot.guilds.cache.get(DISCORD_SERVER_ID)
 
 /**
  * Fetch a Discord's guild member data
  * @param userId Targetted user ID
  * @returns Data of the Discord user
  */
-export const getGuildMember = async (userId: string) => bot.fetchUser(userId).then(user => getGuild().member(user))
+export const getGuildMember = async (userId: string) => bot.users.fetch(userId).then(user => getGuild().member(user))
 
 /**
  * Extract useful profile data from a member
@@ -28,9 +28,9 @@ export const extractMemberProfile = (member: GuildMember) => ({
   displayName: member.displayName,
   displayHexColor: member.displayHexColor,
   discriminator: member.user.discriminator,
-  avatarURL: member.user.avatarURL,
-  highestRole: { name: member.highestRole.name, hexColor: member.highestRole.hexColor },
-  roles: member.roles.map(aRole => aRole.name)
+  avatarURL: member.user.avatarURL({ size: 512 }),
+  highestRole: { name: member.roles.highest.name, hexColor: member.roles.highest.hexColor },
+  roles: member.roles.cache.map(aRole => aRole.name)
 })
 
 /**
