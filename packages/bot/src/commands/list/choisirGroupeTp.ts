@@ -44,8 +44,8 @@ const command: Command = {
     const author = await message.guild?.member(message.author) as GuildMember 
     const rolesToDelete = author.roles.cache.filter(aRole => tpGroupExists(aRole.name))
     const roleToAdd = message.guild?.roles.cache.find(aRole => aRole.name.toLowerCase() === tpGroup.toLowerCase())
-    await author.roles.add(rolesToDelete)
-    if (roleToAdd) await author.roles.remove(roleToAdd)
+    await author.roles.remove(rolesToDelete)
+    if (roleToAdd) await author.roles.add(roleToAdd)
 
     await message.reply(msgId.TP_GROUP_ROLE_ADDED(tpGroup.toLowerCase()))
   }
