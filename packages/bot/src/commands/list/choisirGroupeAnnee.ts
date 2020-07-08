@@ -32,18 +32,18 @@ const command: Command = {
       await message.reply(msgId.ROLE_REMOVED())
       return
     }
-
+    
     // Check the year group exists
     if (!yearGroupExists(yearGroup))
-      throw new Error(msgId.UNKNOWN_GROUP(yearGroup))
-
+    throw new Error(msgId.UNKNOWN_GROUP(yearGroup))
+    
     // Delete other year groups roles and add the new one
     const author = await message.guild?.member(message.author) as GuildMember
     const rolesToDelete = author.roles.cache.filter(aRole => !!defaultYearGroupsName.find(aYearGroup => removeAccents(aYearGroup).toLowerCase() === removeAccents(aRole.name).toLowerCase()))
     const roleToAdd = message.guild?.roles.cache.find(aRole => removeAccents(aRole.name).toLowerCase() === removeAccents(yearGroup).toLowerCase())
-    await author.roles.add(rolesToDelete)
-    if (roleToAdd) await author.roles.remove(roleToAdd)
-
+    await author.roles.remove(rolesToDelete)
+    if (roleToAdd) await author.roles.add(roleToAdd)
+    
     await message.reply(msgId.YEAR_GROUP_ROLE_ADDED(yearGroup))
   }
 }
