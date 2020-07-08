@@ -66,7 +66,7 @@ export default () => new CronJob(AUTO_REMINDER_CRON_TIME, async () => {
         + `Lister les desvoirs :\n${COMMAND_TRIGGER}afficherDevoir\n\n`
         + `Ajouter un devoir :\n${COMMAND_TRIGGER}ajouterDevoir 2021-10-21 -- Algorithmique-- TP sur les boucles\n\n`
         + `Afficher le planning :\n${COMMAND_TRIGGER}afficherPlanning\n\n`
-        + `Trouver quelqu'un sur ExoPlatform :\n${COMMAND_TRIGGER}trouverPersonne antoine sauvage`
+        + `Trouver quelqu'un sur ExoPlatform :\n${COMMAND_TRIGGER}trouverPersonne rigwild`
         + `\n\`\`\``)
 
       // Remind of the homework

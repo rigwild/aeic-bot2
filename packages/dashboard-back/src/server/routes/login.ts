@@ -15,7 +15,7 @@ const router = express.Router() as Router
 
 router.get('/discordRedirect', asyncMiddleware((req, res) => {
   // Redirect to the oauth validation page
-  res.redirect(`https://discordapp.com/api/oauth2/authorize?client_id=${DISCORD_CLIENT_ID}&scope=identify&response_type=code&redirect_uri=${encodeURIComponent(DISCORD_REDIRECT_URI)}`)
+  res.redirect(307, `https://discordapp.com/api/oauth2/authorize?client_id=${DISCORD_CLIENT_ID}&scope=identify&response_type=code&redirect_uri=${encodeURIComponent(DISCORD_REDIRECT_URI)}`)
 }))
 
 router.get('/discordCallback/:code', asyncMiddleware(async (req, res) => {
@@ -24,9 +24,13 @@ router.get('/discordCallback/:code', asyncMiddleware(async (req, res) => {
   const code = req.params.code
 
   // Get a token
-  const token = await fetch(`https://discordapp.com/api/oauth2/token?grant_type=authorization_code&code=${code}&redirect_uri=${encodeURIComponent(DISCORD_REDIRECT_URI)}`, {
+  const token = await fetch(`https://discordapp.com/api/oauth2/token`, {
     method: 'POST',
-    headers: { Authorization: `Basic ${btoa(`${DISCORD_CLIENT_ID}:${DISCORD_CLIENT_SECRET}`)}` }
+    body: `grant_type=authorization_code&code=${code}&redirect_uri=${encodeURIComponent(DISCORD_REDIRECT_URI)}`,
+    headers: {
+       Authorization: `Basic ${btoa(`${DISCORD_CLIENT_ID}:${DISCORD_CLIENT_SECRET}`)}`,
+       'Content-Type': 'application/x-www-form-urlencoded'
+      }
   }).then(_res => _res.json())
   if (token.error) throw boom.badRequest(token.error_description)
 
