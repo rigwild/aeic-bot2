@@ -5,7 +5,7 @@
     "packages/*"
   ],
   "devDependencies": {
-    "lerna": "^3.16.4"
+    "lerna": "^3.22.1"
   },
   "homepage": "https://github.com/rigwild/aeic-bot2#readme",
   "bugs": {
