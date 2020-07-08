@@ -37,11 +37,11 @@ const command: Command = {
     else {
       let embed = new MessageEmbed()
       embed.title = `Résultat de la recherche \`/${search}/gi\``
-      embed.footer = { text: `https://${EXO_PLATFORM_LINK} - Date de mise en cache`, iconURL: 'https://www.exoplatform.com/wp-content/themes/westand-child/assets/images/logo.png' }
+      embed.footer = { text: `http://${EXO_PLATFORM_LINK} - Date de mise en cache`, iconURL: 'https://www.exoplatform.com/wp-content/themes/westand-child/assets/images/logo.png' }
       embed.setTimestamp(ExoPlatformLoader.getCacheLastUpdate() || undefined)
       embed.fields = users.map(aUser => ({
         name: aUser.fullname,
-        value: `${aUser.username} - ${aUser.email ? aUser.email : 'Pas d\'email'} - [Lien eXo](https://${EXO_PLATFORM_LINK}/portal/intranet/profile/${aUser.username})`,
+        value: `${aUser.username} - ${aUser.email ? aUser.email : 'Pas d\'email'} - [Lien eXo](http://${EXO_PLATFORM_LINK}/portal/intranet/profile/${aUser.username})`,
         inline: false
       }))
       await message.reply({ embed })

@@ -161,10 +161,9 @@ event-target-shim@^5.0.0:
   resolved "https://registry.yarnpkg.com/event-target-shim/-/event-target-shim-5.0.1.tgz#5d4d3ebdf9583d63a5333ce2deb7480ab2b05789"
   integrity sha512-i/2XbnSz/uxRCU6+NdVJgKWDTM427+MqYbkQzD321DuCQJUqOuJKIA0IM2+W2xtYHdKOmZ4dR6fExsd4SXL+WQ==
 
-exoplatform-api-wrapper@^0.1.8:
-  version "0.1.8"
-  resolved "https://registry.yarnpkg.com/exoplatform-api-wrapper/-/exoplatform-api-wrapper-0.1.8.tgz#df3238fbb2a3de5f038cc5e02023a3236a01ba13"
-  integrity sha512-NQ7ej34KJkEKnjjq33j+/5TKRSVGSaUYcGIcE8BHuTs6byUAQwllDt/6WCJubUMQmDblo8tg/frXoy07B0Su9g==
+"exoplatform-api-wrapper@github:rigwild/exoplatform-api-wrapper#unsecure":
+  version "0.1.9"
+  resolved "https://codeload.github.com/rigwild/exoplatform-api-wrapper/tar.gz/899756b1f66a0bb3f696087904f5b2ce5f8e9c99"
 
 form-data@^3.0.0:
   version "3.0.0"

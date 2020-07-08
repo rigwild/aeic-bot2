@@ -14,7 +14,7 @@ class ExoPlatformLoader {
   private loggedIn: boolean = false
 
   constructor() {
-    this.exoWrapper = new ExoPlatformWrapper(EXO_PLATFORM_LINK, undefined, 'TLSv1_method', 'AES128-SHA')
+    this.exoWrapper = new ExoPlatformWrapper(EXO_PLATFORM_LINK)
   }
 
   /**
